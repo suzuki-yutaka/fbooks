@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="43.0" layoutY="20.0" prefHeight="42.0" prefWidth="154.0" styleClass="title" text="書籍登録" />
+      <Pane layoutX="22.0" layoutY="52.0" prefHeight="287.0" prefWidth="550.0">
+         <children>
+            <Label layoutX="23.0" layoutY="34.0" prefHeight="22.0" prefWidth="113.0" text="タイトル" />
+            <Label layoutX="23.0" layoutY="70.0" prefHeight="22.0" prefWidth="113.0" text="著者" />
+            <Label layoutX="23.0" layoutY="150.0" prefHeight="22.0" prefWidth="113.0" text="出版日" />
+            <Label layoutX="23.0" layoutY="110.0" prefHeight="22.0" prefWidth="113.0" text="出版社" />
+            <Label layoutX="23.0" layoutY="195.0" prefHeight="22.0" prefWidth="113.0" text="読書開始日" />
+            <Label layoutX="23.0" layoutY="232.0" prefHeight="22.0" prefWidth="38.0" text="メモ" />
+            <Label layoutX="284.0" layoutY="195.0" prefHeight="22.0" prefWidth="66.0" text="読書終了日" />
+            <TextField fx:id="TitleField" layoutX="105.0" layoutY="34.0" prefHeight="23.0" prefWidth="395.0" />
+            <TextField fx:id="AuthorField" layoutX="105.0" layoutY="70.0" prefHeight="23.0" prefWidth="395.0" />
+            <TextField fx:id="CompanyField" layoutX="105.0" layoutY="110.0" prefHeight="23.0" prefWidth="395.0" />
+            <TextField fx:id="PubDayField" layoutX="105.0" layoutY="150.0" prefHeight="23.0" prefWidth="395.0" />
+            <TextField fx:id="ReadStartField" layoutX="105.0" layoutY="195.0" prefHeight="23.0" prefWidth="138.0" />
+            <TextField fx:id="ReadEndField" layoutX="362.0" layoutY="195.0" prefHeight="23.0" prefWidth="138.0" />
+            <TextArea fx:id="MemoField" layoutX="105.0" layoutY="232.0" prefHeight="61.0" prefWidth="395.0" />
+         </children>
+      </Pane>
+      <Button layoutX="247.0" layoutY="371.0" mnemonicParsing="false" onAction="#handleButtonActionAdd" text="登録" />
+      <Button layoutX="306.0" layoutY="371.0" mnemonicParsing="false" onAction="#handleButtonAction" text="戻る" />
+   </children>
+   <stylesheets>
+      <URL value="@../css/main.css" />
+   </stylesheets>
+</fx:root>

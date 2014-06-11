@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.*?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane layoutX="15.0" layoutY="70.0" prefHeight="400.0" prefWidth="750.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="750.0">
+               <children>
+                  <Button layoutX="445.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleButtonActionEditPage" text="編集" />
+                  <Button layoutX="504.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleButtonActionDel" text="削除" />
+                  <Label layoutX="43.0" layoutY="64.0" prefHeight="22.0" prefWidth="38.0" text="タイトル" />
+                  <Label layoutX="43.0" layoutY="81.0" prefHeight="22.0" prefWidth="38.0" text="著者" />
+                  <Label layoutX="43.0" layoutY="98.0" prefHeight="22.0" prefWidth="38.0" text="出版社" />
+                  <Label layoutX="43.0" layoutY="115.0" prefHeight="22.0" prefWidth="38.0" text="出版日" />
+                  <Label layoutX="43.0" layoutY="132.0" prefHeight="22.0" prefWidth="66.0" text="読書開始日" />
+                  <Label layoutX="304.0" layoutY="132.0" prefHeight="22.0" prefWidth="66.0" text="読書終了日" />
+                  <Label layoutX="43.0" layoutY="149.0" prefHeight="22.0" prefWidth="38.0" text="メモ" />
+                  <Label fx:id="TitleField" layoutX="109.0" layoutY="68.0" prefHeight="15.0" prefWidth="134.0" />
+                  <Label fx:id="AuthorField" layoutX="109.0" layoutY="85.0" prefHeight="15.0" prefWidth="134.0" />
+                  <Label fx:id="CompanyField" layoutX="109.0" layoutY="102.0" prefHeight="15.0" prefWidth="134.0" />
+                  <Label fx:id="PubDayField" layoutX="109.0" layoutY="119.0" prefHeight="15.0" prefWidth="134.0" />
+                  <Label fx:id="ReadStartField" layoutX="109.0" layoutY="136.0" prefHeight="15.0" prefWidth="134.0" />
+                  <Label fx:id="ReadEndField" layoutX="370.0" layoutY="136.0" prefHeight="15.0" prefWidth="134.0" />
+                  <Label fx:id="MemoField" layoutX="109.0" layoutY="153.0" prefHeight="52.0" prefWidth="330.0" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+      <Label layoutX="43.0" layoutY="20.0" prefHeight="32.0" prefWidth="52.0" styleClass="SearchRes" text="〇〇件" />
+      <Label layoutX="94.0" layoutY="20.0" prefHeight="32.0" prefWidth="101.0" styleClass="SearchRes" text="見つかりました。" />
+      <Button layoutX="356.0" layoutY="500.0" mnemonicParsing="false" onAction="#handleButtonAction" text="戻る" />
+   </children>
+   <stylesheets>
+      <URL value="@../css/main.css" />
+   </stylesheets>
+</fx:root>
