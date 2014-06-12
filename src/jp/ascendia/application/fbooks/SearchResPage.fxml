@@ -13,20 +13,20 @@
                <children>
                   <Button layoutX="445.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleButtonActionEditPage" text="編集" />
                   <Button layoutX="504.0" layoutY="169.0" mnemonicParsing="false" onAction="#handleButtonActionDel" text="削除" />
-                  <Label layoutX="43.0" layoutY="64.0" prefHeight="22.0" prefWidth="38.0" text="タイトル" />
-                  <Label layoutX="43.0" layoutY="81.0" prefHeight="22.0" prefWidth="38.0" text="著者" />
-                  <Label layoutX="43.0" layoutY="98.0" prefHeight="22.0" prefWidth="38.0" text="出版社" />
-                  <Label layoutX="43.0" layoutY="115.0" prefHeight="22.0" prefWidth="38.0" text="出版日" />
-                  <Label layoutX="43.0" layoutY="132.0" prefHeight="22.0" prefWidth="66.0" text="読書開始日" />
-                  <Label layoutX="304.0" layoutY="132.0" prefHeight="22.0" prefWidth="66.0" text="読書終了日" />
-                  <Label layoutX="43.0" layoutY="149.0" prefHeight="22.0" prefWidth="38.0" text="メモ" />
-                  <Label fx:id="TitleField" layoutX="109.0" layoutY="68.0" prefHeight="15.0" prefWidth="134.0" />
-                  <Label fx:id="AuthorField" layoutX="109.0" layoutY="85.0" prefHeight="15.0" prefWidth="134.0" />
-                  <Label fx:id="CompanyField" layoutX="109.0" layoutY="102.0" prefHeight="15.0" prefWidth="134.0" />
-                  <Label fx:id="PubDayField" layoutX="109.0" layoutY="119.0" prefHeight="15.0" prefWidth="134.0" />
-                  <Label fx:id="ReadStartField" layoutX="109.0" layoutY="136.0" prefHeight="15.0" prefWidth="134.0" />
-                  <Label fx:id="ReadEndField" layoutX="370.0" layoutY="136.0" prefHeight="15.0" prefWidth="134.0" />
-                  <Label fx:id="MemoField" layoutX="109.0" layoutY="153.0" prefHeight="52.0" prefWidth="330.0" />
+                  <Label fx:id="Titlelabel" layoutX="43.0" layoutY="64.0" prefHeight="22.0" prefWidth="38.0" />
+                  <Label fx:id="Authorlabel" layoutX="43.0" layoutY="81.0" prefHeight="22.0" prefWidth="38.0" />
+                  <Label fx:id="Companylabel" layoutX="43.0" layoutY="98.0" prefHeight="22.0" prefWidth="38.0" />
+                  <Label fx:id="PubDaylabel" layoutX="43.0" layoutY="115.0" prefHeight="22.0" prefWidth="38.0" />
+                  <Label fx:id="ReadStartlabel" layoutX="43.0" layoutY="132.0" prefHeight="22.0" prefWidth="66.0" />
+                  <Label fx:id="ReadEndlabel" layoutX="304.0" layoutY="132.0" prefHeight="22.0" prefWidth="66.0" />
+                  <Label fx:id="Memolabel" layoutX="43.0" layoutY="149.0" prefHeight="22.0" prefWidth="38.0" />
+                  <Label fx:id="FixTitlelabel" layoutX="109.0" layoutY="68.0" prefHeight="15.0" prefWidth="134.0" />
+                  <Label fx:id="FixAuthorlabel" layoutX="109.0" layoutY="85.0" prefHeight="15.0" prefWidth="134.0" />
+                  <Label fx:id="FixCompanylabel" layoutX="109.0" layoutY="102.0" prefHeight="15.0" prefWidth="134.0" />
+                  <Label fx:id="FixPubDaylabel" layoutX="109.0" layoutY="119.0" prefHeight="15.0" prefWidth="134.0" />
+                  <Label fx:id="FixReadStartlabel" layoutX="109.0" layoutY="136.0" prefHeight="15.0" prefWidth="134.0" />
+                  <Label fx:id="FixReadEndlabel" layoutX="370.0" layoutY="136.0" prefHeight="15.0" prefWidth="134.0" />
+                  <Label fx:id="FixMemolabel" layoutX="109.0" layoutY="153.0" prefHeight="52.0" prefWidth="330.0" />
                </children>
             </AnchorPane>
          </content>
