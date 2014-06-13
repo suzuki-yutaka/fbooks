@@ -77,11 +77,11 @@ public class Main extends Application {
      * 検索結果ページへ遷移する
      * @param String[]
      */
-    public void sendSearResController(String[] SearchText) throws ClassNotFoundException {
+    public void sendSearResController(Book[] bookArray) throws ClassNotFoundException {
 
         stage.setTitle("検索結果");
 
-        SearResController controller = new SearResController(SearchText);
+        SearResController controller = new SearResController(bookArray);
         this.replaceSceneContent(controller);
     }
 

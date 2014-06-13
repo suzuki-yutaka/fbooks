@@ -14,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 public class SearResController extends AnchorPane implements Initializable {
 
     /** ラベルに表示するテキスト */
-    private final String[] labelText = new String[10];
+    private Book[] labelText = null;
 
     /** ラベル */
     @FXML
@@ -46,17 +46,49 @@ public class SearResController extends AnchorPane implements Initializable {
     @FXML
     private Label FixMemolabel;
 
+    @FXML
+    private Label Titlelabel1;
+    @FXML
+    private Label Authorlabel1;
+    @FXML
+    private Label Companylabel1;
+    @FXML
+    private Label PubDaylabel1;
+    @FXML
+    private Label ReadStartlabel1;
+    @FXML
+    private Label ReadEndlabel1;
+    @FXML
+    private Label Memolabel1;
+    @FXML
+    private Label FixTitlelabel1;
+    @FXML
+    private Label FixAuthorlabel1;
+    @FXML
+    private Label FixCompanylabel1;
+    @FXML
+    private Label FixPubDaylabel1;
+    @FXML
+    private Label FixReadStartlabel1;
+    @FXML
+    private Label FixReadEndlabel1;
+    @FXML
+    private Label FixMemolabel1;
+
     /**
      * コンストラクタ
      */
-    public SearResController(String[] SearchText) throws ClassNotFoundException {
-        labelText[0] = SearchText[0];
-        labelText[1] = SearchText[1];
-        labelText[2] = SearchText[2];
-        labelText[3] = SearchText[3];
-        labelText[4] = SearchText[4];
-        labelText[5] = SearchText[5];
-        labelText[6] = SearchText[6];
+    public SearResController(Book[] bookArray) throws ClassNotFoundException {
+        labelText = bookArray.clone();
+        for (int i = 0; i < bookArray.length; i++) {
+            labelText[i].title = bookArray[i].getTitle();
+            labelText[i].author = bookArray[i].getAuthor();
+            labelText[i].company = bookArray[i].getCompany();
+            labelText[i].publishday = bookArray[i].getPublishday();
+            labelText[i].readstart = bookArray[i].getReadstart();
+            labelText[i].readend = bookArray[i].getReadend();
+            labelText[i].memo = bookArray[i].getMemo();
+        }
 
         loadFXML();
     }
@@ -88,13 +120,32 @@ public class SearResController extends AnchorPane implements Initializable {
         ReadStartlabel.setText("読書開始日");
         ReadEndlabel.setText("読書終了日");
         Memolabel.setText("メモ");
-        FixTitlelabel.setText(labelText[0]);
-        FixAuthorlabel.setText(labelText[1]);
-        FixCompanylabel.setText(labelText[2]);
-        FixPubDaylabel.setText(labelText[3]);
-        FixReadStartlabel.setText(labelText[4]);
-        FixReadEndlabel.setText(labelText[5]);
-        FixMemolabel.setText(labelText[6]);
+
+        FixTitlelabel.setText(labelText[0].title);
+        FixAuthorlabel.setText(labelText[0].author);
+        FixCompanylabel.setText(labelText[0].company);
+        FixPubDaylabel.setText(labelText[0].publishday);
+        FixReadStartlabel.setText(labelText[0].readstart);
+        FixReadEndlabel.setText(labelText[0].readend);
+        FixMemolabel.setText(labelText[0].memo);
+
+        if (labelText.length > 1) {
+            Titlelabel1.setText("タイトル");
+            Authorlabel1.setText("著者");
+            Companylabel1.setText("出版社");
+            PubDaylabel1.setText("出版日");
+            ReadStartlabel1.setText("読書開始日");
+            ReadEndlabel1.setText("読書終了日");
+            Memolabel1.setText("メモ");
+
+            FixTitlelabel1.setText(labelText[1].title);
+            FixAuthorlabel1.setText(labelText[1].author);
+            FixCompanylabel1.setText(labelText[1].company);
+            FixPubDaylabel1.setText(labelText[1].publishday);
+            FixReadStartlabel1.setText(labelText[1].readstart);
+            FixReadEndlabel1.setText(labelText[1].readend);
+            FixMemolabel1.setText(labelText[1].memo);
+        }
     }
 
     /**

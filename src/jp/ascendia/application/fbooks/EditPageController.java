@@ -40,6 +40,13 @@ public class EditPageController extends AnchorPane implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        TitleField.setText("初期値");
+        AuthorField.setText("初期値");
+        CompanyField.setText("初期値");
+        PubDayField.setText("初期値");
+        ReadStartField.setText("初期値");
+        ReadEndField.setText("初期値");
+        MemoField.setText("初期値");
     }
 
     /**

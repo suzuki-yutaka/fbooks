@@ -53,28 +53,34 @@ public class SearPageController extends AnchorPane implements Initializable {
     @FXML
     private TextField ReadEndField;
 
-    /** 入力テキスト用 */
-    private final String[] SearchText = new String[4];
-    /** 検索結果用 */
-    private String[] labelText = new String[10];
-
     //検索ページへ
     @FXML
     protected void handleButtonActionSearRes() throws ClassNotFoundException {
-        SearchText[0] = TitleField.getText();
-        SearchText[1] = AuthorField.getText();
-        SearchText[2] = ReadStartField.getText();
-        SearchText[3] = ReadEndField.getText();
+        /** 入力テキスト用 */
+        String[] SearchText = new String[4];
+
+        if (!"".equals(TitleField.getText())) {
+        	SearchText[0] = TitleField.getText();
+        }
+        if (!"".equals(AuthorField.getText())) {
+            SearchText[1] = AuthorField.getText();
+        }
+        if (!"".equals(ReadStartField.getText())) {
+            SearchText[2] = ReadStartField.getText();
+        }
+        if (!"".equals(ReadEndField.getText())) {
+            SearchText[3] = ReadEndField.getText();
+        }
 
         DatabaseFbooks db = new DatabaseFbooks();
-        labelText = db.searchBook(SearchText);
+        Book[] bookArray = db.searchBook(SearchText);
 
-        if("".equals(labelText[0]) || labelText[0] == null) {
+        if(bookArray.length == 0) {
         	//検索失敗
         	Main.getInstance().sendFixController("見つかりませんでした。");
         } else {
         	//検索結果表示ページへ
-        	Main.getInstance().sendSearResController(labelText);
+        	Main.getInstance().sendSearResController(bookArray);
         }
     }
 
