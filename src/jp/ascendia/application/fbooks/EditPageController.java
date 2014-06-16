@@ -13,10 +13,16 @@ import javafx.scene.layout.AnchorPane;
 
 
 public class EditPageController extends AnchorPane implements Initializable {
-    /**
+    private static Book[] initText = null;
+    private static int i;
+
+	/**
      * コンストラクタ
      */
-    public EditPageController() {
+    public EditPageController(Book[] labelText, int num) {
+        initText = labelText.clone();
+        i = num;
+
         loadFXML();
     }
 
@@ -40,13 +46,13 @@ public class EditPageController extends AnchorPane implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        TitleField.setText("初期値");
-        AuthorField.setText("初期値");
-        CompanyField.setText("初期値");
-        PubDayField.setText("初期値");
-        ReadStartField.setText("初期値");
-        ReadEndField.setText("初期値");
-        MemoField.setText("初期値");
+        TitleField.setText(initText[i].title);
+        AuthorField.setText(initText[i].author);
+        CompanyField.setText(initText[i].company);
+        PubDayField.setText(initText[i].publishday);
+        ReadStartField.setText(initText[i].readstart);
+        ReadEndField.setText(initText[i].readend);
+        MemoField.setText(initText[i].memo);
     }
 
     /**
@@ -72,10 +78,8 @@ public class EditPageController extends AnchorPane implements Initializable {
     //編集処理
     @FXML
     protected void handleButtonActionEdit() throws ClassNotFoundException{
-        int fixflg;
-        if ("".equals(TitleField.getText()) || "".equals(AuthorField.getText()) || "".equals(CompanyField.getText())) {
-           fixflg = 0;
-        } else {
+        int fixflg = 0;
+        if (!("".equals(TitleField.getText()) || "".equals(AuthorField.getText()) || "".equals(CompanyField.getText()))) {
             TextField[0] = TitleField.getText();
             TextField[1] = AuthorField.getText();
             TextField[2] = CompanyField.getText();
@@ -85,8 +89,19 @@ public class EditPageController extends AnchorPane implements Initializable {
             TextField[6] = MemoField.getText();
 
             DatabaseFbooks db = new DatabaseFbooks();
-            db.updateBook(TextField);
-            fixflg = 1;
+            String[] SearchText = new String[4];
+
+            SearchText[0] = TextField[0];
+            Book[] bookArray = db.searchBook(SearchText);
+
+            if (bookArray.length != 0) {
+                //ID、タイトルが同一の場合のみ更新可能、現状タイトルの編集はできない。
+                if (bookArray[0].id.equals(initText[i].id) &&  TextField[0].equals(initText[i].title)) {
+                    DatabaseFbooks db2 = new DatabaseFbooks();
+                    db2.updateBook(TextField);
+                    fixflg = 1;
+                }
+            }
         }
 
         if (fixflg == 1) {
@@ -94,7 +109,7 @@ public class EditPageController extends AnchorPane implements Initializable {
             Main.getInstance().sendFixController("編集内容が反映されました。");
         } else {
         	//編集失敗
-        	Main.getInstance().sendEditPageController();
+        	Main.getInstance().sendEditPageController(initText, i);
         }
     }
 

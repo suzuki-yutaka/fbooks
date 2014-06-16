@@ -73,6 +73,8 @@ public class Main extends Application {
         this.replaceSceneContent(controller);
     }
 
+    int i;
+
     /**
      * 検索結果ページへ遷移する
      * @param String[]
@@ -88,11 +90,11 @@ public class Main extends Application {
     /**
      * 編集ページへ遷移する
      */
-    public void sendEditPageController() {
+    public void sendEditPageController(Book[] labelText, int num) {
 
         stage.setTitle("書籍編集");
 
-        EditPageController controller = new EditPageController();
+        EditPageController controller = new EditPageController(labelText, num);
         this.replaceSceneContent(controller);
     }
 

@@ -1,6 +1,7 @@
 package jp.ascendia.application.fbooks;
 
 public class Book {
+    protected String id;
     protected String title;
     protected String author;
     protected String company;
@@ -9,7 +10,9 @@ public class Book {
     protected String readend;
     protected String memo;
 
-
+	public String getId() {
+		return id;
+	}
 	public String getTitle() {
 		return title;
 	}

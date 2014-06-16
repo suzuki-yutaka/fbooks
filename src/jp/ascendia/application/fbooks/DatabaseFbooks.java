@@ -98,12 +98,12 @@ public class DatabaseFbooks {
         }
     }
 
-    public void deleteBook(Book[] labelText) {
+    public void deleteBook(Book[] labelText, int i) {
         try {
             connect();
 
             PreparedStatement statement = connection.prepareStatement("DELETE FROM book_table WHERE b_title = ?");
-            statement.setString(1, labelText[0].title);
+            statement.setString(1, labelText[i].title);
             statement.executeUpdate();
 
             statement.close();
@@ -124,7 +124,6 @@ public class DatabaseFbooks {
             statement.setString(3, TextField[2]);
             statement.setString(4, TextField[3]);
 
-
             ResultSet rs = statement.executeQuery();
             bookArray = createBooks(rs);
 
@@ -138,6 +137,7 @@ public class DatabaseFbooks {
 
     protected Book createBook(ResultSet rs) throws SQLException {
         Book book = new Book();
+        book.id = rs.getString("b_id");
         book.title = rs.getString("b_title");
         book.author = rs.getString("b_author");
         book.company = rs.getString("b_company");

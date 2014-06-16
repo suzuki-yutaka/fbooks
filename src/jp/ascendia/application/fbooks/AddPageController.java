@@ -52,6 +52,10 @@ public class AddPageController extends AnchorPane implements Initializable {
     private TextField CompanyField;
     @FXML
     private TextField PubDayField;
+    //@FXML
+    //private DatePicker ReadStartField;
+    //@FXML
+    //private DatePicker ReadEndField;
     @FXML
     private TextField ReadStartField;
     @FXML
@@ -60,14 +64,13 @@ public class AddPageController extends AnchorPane implements Initializable {
     private TextArea MemoField;
     /** 入力テキスト用 */
     private final String[] TextField = new String[10];
+    //private final LocalDate[] ld = new LocalDate[2];
 
     //登録処理
     @FXML
     protected void handleButtonActionAdd() throws ClassNotFoundException {
-        int fixflg;
-        if ("".equals(TitleField.getText()) || "".equals(AuthorField.getText()) || "".equals(CompanyField.getText())) {
-            fixflg = 0;
-        } else {
+        int fixflg = 0;
+        if (!("".equals(TitleField.getText()) || "".equals(AuthorField.getText()) || "".equals(CompanyField.getText()))) {
             TextField[0] = TitleField.getText();
             TextField[1] = AuthorField.getText();
             TextField[2] = CompanyField.getText();
@@ -75,6 +78,8 @@ public class AddPageController extends AnchorPane implements Initializable {
             TextField[4] = ReadStartField.getText();
             TextField[5] = ReadEndField.getText();
             TextField[6] = MemoField.getText();
+            //ld[0] = ReadStartField.getValue();
+            //ld[1] = ReadEndField.getValue();
 
             DatabaseFbooks db = new DatabaseFbooks();
             db.addBook(TextField);
