@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -51,20 +52,15 @@ public class AddPageController extends AnchorPane implements Initializable {
     @FXML
     private TextField CompanyField;
     @FXML
-    private TextField PubDayField;
-    //@FXML
-    //private DatePicker ReadStartField;
-    //@FXML
-    //private DatePicker ReadEndField;
+    private DatePicker PubDayField;
     @FXML
-    private TextField ReadStartField;
+    private DatePicker ReadStartField;
     @FXML
-    private TextField ReadEndField;
+    private DatePicker ReadEndField;
     @FXML
     private TextArea MemoField;
     /** 入力テキスト用 */
-    private final String[] TextField = new String[10];
-    //private final LocalDate[] ld = new LocalDate[2];
+    private final String[] TextField = new String[7];
 
     //登録処理
     @FXML
@@ -74,12 +70,10 @@ public class AddPageController extends AnchorPane implements Initializable {
             TextField[0] = TitleField.getText();
             TextField[1] = AuthorField.getText();
             TextField[2] = CompanyField.getText();
-            TextField[3] = PubDayField.getText();
-            TextField[4] = ReadStartField.getText();
-            TextField[5] = ReadEndField.getText();
+            TextField[3] = PubDayField.getValue().toString();
+            TextField[4] = ReadStartField.getValue().toString();
+            TextField[5] = ReadEndField.getValue().toString();
             TextField[6] = MemoField.getText();
-            //ld[0] = ReadStartField.getValue();
-            //ld[1] = ReadEndField.getValue();
 
             DatabaseFbooks db = new DatabaseFbooks();
             db.addBook(TextField);

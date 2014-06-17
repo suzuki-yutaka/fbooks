@@ -2,11 +2,13 @@ package jp.ascendia.application.fbooks;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -46,13 +48,13 @@ public class EditPageController extends AnchorPane implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        TitleField.setText(initText[i].title);
-        AuthorField.setText(initText[i].author);
-        CompanyField.setText(initText[i].company);
-        PubDayField.setText(initText[i].publishday);
-        ReadStartField.setText(initText[i].readstart);
-        ReadEndField.setText(initText[i].readend);
-        MemoField.setText(initText[i].memo);
+        TitleField.setText(initText[i].getTitle());
+        AuthorField.setText(initText[i].getAuthor());
+        CompanyField.setText(initText[i].getCompany());
+        PubDayField.setValue(LocalDate.parse(initText[i].getPublishday()));
+        ReadStartField.setValue(LocalDate.parse(initText[i].getReadstart()));
+        ReadEndField.setValue(LocalDate.parse(initText[i].getReadend()));
+        MemoField.setText(initText[i].getMemo());
     }
 
     /**
@@ -65,15 +67,15 @@ public class EditPageController extends AnchorPane implements Initializable {
     @FXML
     private TextField CompanyField;
     @FXML
-    private TextField PubDayField;
+    private DatePicker PubDayField;
     @FXML
-    private TextField ReadStartField;
+    private DatePicker ReadStartField;
     @FXML
-    private TextField ReadEndField;
+    private DatePicker ReadEndField;
     @FXML
     private TextArea MemoField;
     /** 入力テキスト用 */
-    private final String[] TextField = new String[10];
+    private final String[] TextField = new String[7];
 
     //編集処理
     @FXML
@@ -83,9 +85,9 @@ public class EditPageController extends AnchorPane implements Initializable {
             TextField[0] = TitleField.getText();
             TextField[1] = AuthorField.getText();
             TextField[2] = CompanyField.getText();
-            TextField[3] = PubDayField.getText();
-            TextField[4] = ReadStartField.getText();
-            TextField[5] = ReadEndField.getText();
+            TextField[3] = PubDayField.getValue().toString();
+            TextField[4] = ReadStartField.getValue().toString();
+            TextField[5] = ReadEndField.getValue().toString();
             TextField[6] = MemoField.getText();
 
             DatabaseFbooks db = new DatabaseFbooks();

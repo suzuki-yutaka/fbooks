@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
@@ -49,9 +50,9 @@ public class SearPageController extends AnchorPane implements Initializable {
     @FXML
     private TextField AuthorField;
     @FXML
-    private TextField ReadStartField;
+    private DatePicker ReadStartField;
     @FXML
-    private TextField ReadEndField;
+    private DatePicker ReadEndField;
 
     //検索ページへ
     @FXML
@@ -65,11 +66,11 @@ public class SearPageController extends AnchorPane implements Initializable {
         if (!"".equals(AuthorField.getText())) {
             SearchText[1] = AuthorField.getText();
         }
-        if (!"".equals(ReadStartField.getText())) {
-            SearchText[2] = ReadStartField.getText();
+        if (ReadStartField.getValue() != null) {
+            SearchText[2] = ReadStartField.getValue().toString();
         }
-        if (!"".equals(ReadEndField.getText())) {
-            SearchText[3] = ReadEndField.getText();
+        if (ReadEndField.getValue() != null) {
+            SearchText[3] = ReadEndField.getValue().toString();
         }
 
         DatabaseFbooks db = new DatabaseFbooks();

@@ -31,23 +31,28 @@ public class SearResController extends AnchorPane implements Initializable {
         Label NumText  = new Label("件見つかりました。");
         hbox.getChildren().add(Num);
         hbox.getChildren().add(NumText);
-        hbox.setLayoutX(17);
-        hbox.setLayoutY(17);
+        hbox.setLayoutX(37);
+        hbox.setLayoutY(37);
+        hbox.setStyle("-fx-font-size: 25px;");
         this.getChildren().add(hbox);
 
         //スクロールパネル作成
         ScrollPane sp = new ScrollPane();
         sp.setPrefSize(750, 400);
         sp.setLayoutX(17);
-        sp.setLayoutY(50);
+        sp.setLayoutY(80);
 
         //グリッドパネル格納用のVBox作成
         VBox vbox = new VBox();
+        vbox.setStyle("-fx-background-color: white;");
+        vbox.setPrefSize(735, 400);
+        vbox.setLayoutX(37 );
+        vbox.setLayoutY(50);
 
         for (int i = 0; i < bookArray.length; i++) {
             //グリッドパネル作成
             GridPane grid = new GridPane();
-            grid.setPadding(new Insets(30, 10, 10, 10));
+            grid.setPadding(new Insets(30, 10, 10, 100));
             grid.setVgap(5);
             grid.setHgap(5);
 
@@ -107,12 +112,13 @@ public class SearResController extends AnchorPane implements Initializable {
 	        Button Edit = new Button("編集");
 	        Edit.setId(Integer.toString(i));
 	        GridPane.setConstraints(Edit, 0, 7);
-	        GridPane.setHalignment(Edit, HPos.RIGHT);
+	        GridPane.setHalignment(Edit, HPos.LEFT);
 	        grid.getChildren().add(Edit);
 
 	        //削除ボタン
 	        Button clear = new Button("削除");
 	        GridPane.setConstraints(clear, 1, 7);
+	        GridPane.setHalignment(clear, HPos.LEFT);
 	        grid.getChildren().add(clear);
 
 	        //編集処理

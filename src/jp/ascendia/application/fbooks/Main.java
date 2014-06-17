@@ -83,6 +83,10 @@ public class Main extends Application {
 
         stage.setTitle("検索結果");
 
+        Scene scene = stage.getScene();
+        String style = Main.class.getResource("../css/Main.css").toExternalForm();
+        scene.getStylesheets().add(style);
+
         SearResController controller = new SearResController(bookArray);
         this.replaceSceneContent(controller);
     }

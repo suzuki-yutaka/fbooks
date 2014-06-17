@@ -60,7 +60,7 @@ public class DatabaseFbooks {
 
             PreparedStatement statement = connection.prepareStatement(
             		"INSERT INTO book_table(b_title, b_author, b_company, b_pub_day, b_read_start, b_read_end, b_memo) "
-            		+ "VALUES (?, ?, ?, ?, ?, ?, ?)" );
+            		+ "VALUES (?, ?, ?, ?, date(?), date(?), ?)" );
             statement.setString(1, TextField[0]);
             statement.setString(2, TextField[1]);
             statement.setString(3, TextField[2]);
