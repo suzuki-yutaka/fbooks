@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -8,7 +9,8 @@
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="FixField" layoutX="41.0" layoutY="38.0" prefHeight="32.0" prefWidth="261.0" styleClass="SearchRes" />
-      <Button layoutX="41.0" layoutY="88.0" mnemonicParsing="false" onAction="#handleButtonAction" text="戻る" />
+      <Button layoutX="41.0" layoutY="108.0" mnemonicParsing="false" onAction="#handleButtonAction" text="トップページ" />
+      <Button layoutX="136.0" layoutY="108.0" mnemonicParsing="false" onAction="#AddPagehandleButtonAction" text="登録を続ける" />
    </children>
    <stylesheets>
       <URL value="@../css/main.css" />

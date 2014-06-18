@@ -52,8 +52,10 @@ public class EditPageController extends AnchorPane implements Initializable {
         AuthorField.setText(initText[i].getAuthor());
         CompanyField.setText(initText[i].getCompany());
         PubDayField.setValue(LocalDate.parse(initText[i].getPublishday()));
-        ReadStartField.setValue(LocalDate.parse(initText[i].getReadstart()));
-        ReadEndField.setValue(LocalDate.parse(initText[i].getReadend()));
+        if (initText[i].getReadstart() != null)
+        	ReadStartField.setValue(LocalDate.parse(initText[i].getReadstart()));
+        if (initText[i].getReadend() != null)
+        	ReadEndField.setValue(LocalDate.parse(initText[i].getReadend()));
         MemoField.setText(initText[i].getMemo());
     }
 
@@ -81,26 +83,28 @@ public class EditPageController extends AnchorPane implements Initializable {
     @FXML
     protected void handleButtonActionEdit() throws ClassNotFoundException{
         int fixflg = 0;
-        if (!("".equals(TitleField.getText()) || "".equals(AuthorField.getText()) || "".equals(CompanyField.getText()))) {
+        if (!("".equals(TitleField.getText()) || "".equals(AuthorField.getText()) || "".equals(CompanyField.getText()) ||
+        		PubDayField.getValue() == null)) {
             TextField[0] = TitleField.getText();
             TextField[1] = AuthorField.getText();
             TextField[2] = CompanyField.getText();
             TextField[3] = PubDayField.getValue().toString();
-            TextField[4] = ReadStartField.getValue().toString();
-            TextField[5] = ReadEndField.getValue().toString();
+            if (ReadStartField.getValue() != null)
+            	TextField[4] = ReadStartField.getValue().toString();
+            if (ReadEndField.getValue() != null)
+            	TextField[5] = ReadEndField.getValue().toString();
             TextField[6] = MemoField.getText();
 
             DatabaseFbooks db = new DatabaseFbooks();
             String[] SearchText = new String[4];
 
             SearchText[0] = TextField[0];
-            Book[] bookArray = db.searchBook(SearchText);
+            Book[] bookArray = db.searchBook(SearchText, 0);
 
             if (bookArray.length != 0) {
                 //ID、タイトルが同一の場合のみ更新可能、現状タイトルの編集はできない。
                 if (bookArray[0].id.equals(initText[i].id) &&  TextField[0].equals(initText[i].title)) {
-                    DatabaseFbooks db2 = new DatabaseFbooks();
-                    db2.updateBook(TextField);
+                    db.updateBook(TextField);
                     fixflg = 1;
                 }
             }
@@ -108,7 +112,7 @@ public class EditPageController extends AnchorPane implements Initializable {
 
         if (fixflg == 1) {
         	//確定ページへ
-            Main.getInstance().sendFixController("編集内容が反映されました。");
+            Main.getInstance().sendSearchFixController("編集内容が反映されました。");
         } else {
         	//編集失敗
         	Main.getInstance().sendEditPageController(initText, i);
@@ -117,7 +121,7 @@ public class EditPageController extends AnchorPane implements Initializable {
 
     //メインページへ
     @FXML
-    protected void handleButtonAction() {
-        Main.getInstance().sendMainController();
+    protected void handleButtonAction() throws ClassNotFoundException {
+        Main.getInstance().sendSearPageController();
     }
 }

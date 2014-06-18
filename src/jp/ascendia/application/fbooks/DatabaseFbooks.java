@@ -112,17 +112,23 @@ public class DatabaseFbooks {
         }
     }
 
-    public Book[] searchBook(String[] TextField) {
+    public Book[] searchBook(String[] TextField, int allflg) {
         Book[] bookArray = null;
         try {
+        	PreparedStatement statement;
             connect();
 
-            PreparedStatement statement = connection.prepareStatement(
-            		"SELECT * FROM book_table WHERE b_title = ? or b_author = ? or b_read_start = ? or b_read_end = ?" );
-            statement.setString(1, TextField[0]);
-            statement.setString(2, TextField[1]);
-            statement.setString(3, TextField[2]);
-            statement.setString(4, TextField[3]);
+            if (allflg == 1) {
+                statement = connection.prepareStatement(
+                		"SELECT * FROM book_table" );
+            } else {
+                statement = connection.prepareStatement(
+                		"SELECT * FROM book_table WHERE b_title = ? or b_author = ? or b_read_start = ? or b_read_end = ?" );
+                statement.setString(1, TextField[0]);
+                statement.setString(2, TextField[1]);
+                statement.setString(3, TextField[2]);
+                statement.setString(4, TextField[3]);
+            }
 
             ResultSet rs = statement.executeQuery();
             bookArray = createBooks(rs);

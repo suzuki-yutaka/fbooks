@@ -105,11 +105,22 @@ public class Main extends Application {
     /**
      * 登録、編集完了ページへ遷移する
      */
-    public void sendFixController(String FixText) {
+    public void sendAddFixController(String FixText) {
 
         stage.setTitle("完了");
 
-        FixController controller = new FixController(FixText);
+        AddFixController controller = new AddFixController(FixText);
+        this.replaceSceneContent(controller);
+    }
+
+    /**
+     * 登録、編集完了ページへ遷移する
+     */
+    public void sendSearchFixController(String FixText) {
+
+        stage.setTitle("完了");
+
+        SearchFixController controller = new SearchFixController(FixText);
         this.replaceSceneContent(controller);
     }
 

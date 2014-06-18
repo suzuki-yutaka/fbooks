@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -8,26 +9,63 @@
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="40.0" layoutY="40.0" prefHeight="42.0" prefWidth="153.0" styleClass="title" text="書籍編集" />
-      <Pane layoutX="57.0" layoutY="87.0" prefHeight="324.0" prefWidth="550.0">
+      <Pane layoutX="57.0" layoutY="87.0" prefHeight="361.0" prefWidth="620.0">
          <children>
-            <Label alignment="CENTER_RIGHT" layoutX="35.0" layoutY="35.0" prefHeight="22.0" prefWidth="57.0" text="タイトル：" />
-            <Label alignment="CENTER_RIGHT" layoutX="35.0" layoutY="71.0" prefHeight="22.0" prefWidth="57.0" text="著者：" />
-            <Label alignment="CENTER_RIGHT" layoutX="35.0" layoutY="151.0" prefHeight="22.0" prefWidth="57.0" text="出版日：" />
-            <Label alignment="CENTER_RIGHT" layoutX="35.0" layoutY="111.0" prefHeight="22.0" prefWidth="57.0" text="出版社：" />
-            <Label alignment="CENTER_RIGHT" layoutX="17.0" layoutY="196.0" prefHeight="22.0" prefWidth="75.0" text="読書開始日：" />
-            <Label alignment="CENTER_RIGHT" layoutX="35.0" layoutY="232.0" prefHeight="22.0" prefWidth="57.0" text="メモ：" />
-            <Label layoutX="284.0" layoutY="195.0" prefHeight="22.0" prefWidth="66.0" text="読書終了日：" />
-            <TextField fx:id="TitleField" layoutX="105.0" layoutY="34.0" prefHeight="23.0" prefWidth="414.0" />
-            <TextField fx:id="AuthorField" layoutX="105.0" layoutY="70.0" prefHeight="23.0" prefWidth="414.0" />
-            <TextField fx:id="CompanyField" layoutX="105.0" layoutY="110.0" prefHeight="23.0" prefWidth="414.0" />
-            <TextArea fx:id="MemoField" layoutX="105.0" layoutY="232.0" prefHeight="61.0" prefWidth="414.0" />
-            <DatePicker fx:id="ReadStartField" layoutX="105.0" layoutY="195.0" />
-            <DatePicker fx:id="ReadEndField" layoutX="356.0" layoutY="195.0" />
-            <DatePicker fx:id="PubDayField" layoutX="105.0" layoutY="150.0" />
+            <Label alignment="CENTER_RIGHT" layoutX="2.0" layoutY="24.0" prefHeight="22.0" prefWidth="90.0" text="※タイトル：">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="73.0" prefHeight="22.0" prefWidth="83.0" text="※著者：">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="167.0" prefHeight="22.0" prefWidth="83.0" text="※出版日：">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="122.0" prefHeight="22.0" prefWidth="83.0" text="※出版社：">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label alignment="CENTER_RIGHT" layoutX="-9.0" layoutY="211.0" prefHeight="22.0" prefWidth="100.0" text="読書開始日：">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label alignment="CENTER_RIGHT" layoutX="35.0" layoutY="256.0" prefHeight="22.0" prefWidth="57.0" text="メモ：">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label layoutX="283.0" layoutY="211.0" prefHeight="22.0" prefWidth="100.0" text="読書終了日：">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <TextField fx:id="TitleField" layoutX="105.0" layoutY="21.0" prefHeight="30.0" prefWidth="450.0">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="AuthorField" layoutX="105.0" layoutY="70.0" prefHeight="30.0" prefWidth="450.0">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="CompanyField" layoutX="105.0" layoutY="119.0" prefHeight="30.0" prefWidth="450.0">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextArea fx:id="MemoField" layoutX="105.0" layoutY="257.0" prefHeight="60.0" prefWidth="450.0">
+               <font>
+                  <Font size="14.0" />
+               </font></TextArea>
+            <DatePicker fx:id="ReadStartField" layoutX="105.0" layoutY="211.0" />
+            <DatePicker fx:id="ReadEndField" layoutX="393.0" layoutY="211.0" />
+            <DatePicker fx:id="PubDayField" layoutX="105.0" layoutY="168.0" />
+            <Label layoutX="105.0" layoutY="334.0" prefHeight="18.0" prefWidth="153.0" text="※は必須の入力項目です。">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
          </children>
       </Pane>
-      <Button layoutX="310.0" layoutY="411.0" mnemonicParsing="false" onAction="#handleButtonActionEdit" text="更新" />
-      <Button layoutX="370.0" layoutY="411.0" mnemonicParsing="false" onAction="#handleButtonAction" text="戻る" />
+      <Button layoutX="330.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleButtonActionEdit" text="更新" />
+      <Button layoutX="390.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleButtonAction" text="戻る" />
    </children>
    <stylesheets>
       <URL value="@../css/main.css" />

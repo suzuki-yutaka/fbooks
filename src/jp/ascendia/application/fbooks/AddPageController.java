@@ -66,13 +66,16 @@ public class AddPageController extends AnchorPane implements Initializable {
     @FXML
     protected void handleButtonActionAdd() throws ClassNotFoundException {
         int fixflg = 0;
-        if (!("".equals(TitleField.getText()) || "".equals(AuthorField.getText()) || "".equals(CompanyField.getText()))) {
+        if (!("".equals(TitleField.getText()) || "".equals(AuthorField.getText()) || "".equals(CompanyField.getText()) ||
+        		PubDayField.getValue() == null)) {
             TextField[0] = TitleField.getText();
             TextField[1] = AuthorField.getText();
             TextField[2] = CompanyField.getText();
             TextField[3] = PubDayField.getValue().toString();
-            TextField[4] = ReadStartField.getValue().toString();
-            TextField[5] = ReadEndField.getValue().toString();
+            if (ReadStartField.getValue() != null)
+            	TextField[4] = ReadStartField.getValue().toString();
+            if (ReadEndField.getValue() != null)
+            	TextField[5] = ReadEndField.getValue().toString();
             TextField[6] = MemoField.getText();
 
             DatabaseFbooks db = new DatabaseFbooks();
@@ -82,7 +85,7 @@ public class AddPageController extends AnchorPane implements Initializable {
 
         if (fixflg == 1) {
         	//確定ページ
-        	Main.getInstance().sendFixController("登録されました。");
+        	Main.getInstance().sendAddFixController("登録されました。");
         } else {
         	//登録失敗
         	Main.getInstance().sendAddPageController();

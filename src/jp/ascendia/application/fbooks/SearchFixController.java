@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 
-public class FixController extends AnchorPane implements Initializable {
+public class SearchFixController extends AnchorPane implements Initializable {
 
 	/** ラベルに表示するテキスト */
     private final String FixText;
@@ -23,7 +23,7 @@ public class FixController extends AnchorPane implements Initializable {
     /**
      * コンストラクタ
      */
-    public FixController(String FixText) {
+    public SearchFixController(String FixText) {
     	this.FixText = FixText;
         loadFXML();
     }
@@ -33,7 +33,7 @@ public class FixController extends AnchorPane implements Initializable {
      */
     private void loadFXML() {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("FixPage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("SearchFixPage.fxml"));
         fxmlLoader.setRoot(this);
 
         // 自分自身をコントロールとして設定
@@ -49,6 +49,7 @@ public class FixController extends AnchorPane implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     	FixField.setText(FixText);
+    	FixField.setStyle("-fx-font-size: 24px");
     }
 
     /**
@@ -59,5 +60,10 @@ public class FixController extends AnchorPane implements Initializable {
     @FXML
     protected void handleButtonAction() {
         Main.getInstance().sendMainController();
+    }
+    //検索ページへ
+    @FXML
+    protected void SearchPagehandleButtonAction() {
+        Main.getInstance().sendSearPageController();
     }
 }
