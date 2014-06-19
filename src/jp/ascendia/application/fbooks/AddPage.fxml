@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.text.*?>
-<?import javafx.scene.paint.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -12,7 +11,7 @@
       <Label layoutX="40.0" layoutY="40.0" prefHeight="42.0" prefWidth="153.0" styleClass="title" text="書籍登録" />
       <Pane layoutX="57.0" layoutY="87.0" prefHeight="361.0" prefWidth="620.0">
          <children>
-            <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="24.0" prefHeight="22.0" prefWidth="83.0" text="※タイトル：">
+            <Label alignment="CENTER_RIGHT" layoutX="2.0" layoutY="24.0" prefHeight="22.0" prefWidth="90.0" text="※タイトル：">
                <font>
                   <Font size="18.0" />
                </font></Label>

@@ -11,10 +11,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 
-public class AddFixController extends AnchorPane implements Initializable {
+public class EditFixController extends AnchorPane implements Initializable {
 
 	/** ラベルに表示するテキスト */
-    private static String FixText;
+    private final String FixText;
+
+    private final String[] SearchText;
 
     /** ラベル */
     @FXML
@@ -23,8 +25,9 @@ public class AddFixController extends AnchorPane implements Initializable {
     /**
      * コンストラクタ
      */
-    public AddFixController(String text) {
-    	FixText = text;
+    public EditFixController(String FixText, String[] text) {
+    	this.FixText = FixText;
+    	this.SearchText = text;
         loadFXML();
     }
 
@@ -33,7 +36,7 @@ public class AddFixController extends AnchorPane implements Initializable {
      */
     private void loadFXML() {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("AddFixPage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("EditFixPage.fxml"));
         fxmlLoader.setRoot(this);
 
         // 自分自身をコントロールとして設定
@@ -61,9 +64,11 @@ public class AddFixController extends AnchorPane implements Initializable {
     protected void handleButtonAction() {
         Main.getInstance().sendMainController();
     }
-    //登録ページへ
+    //検索結果一覧ページへ
     @FXML
-    protected void AddPagehandleButtonAction() {
-        Main.getInstance().sendAddPageController(null);
+    protected void SearchPagehandleButtonAction() throws ClassNotFoundException {
+    	DatabaseFbooks db = new DatabaseFbooks();
+    	Book[] bookArray = db.searchBook(SearchText, 0);
+        Main.getInstance().sendSearResController(bookArray, SearchText);
     }
 }

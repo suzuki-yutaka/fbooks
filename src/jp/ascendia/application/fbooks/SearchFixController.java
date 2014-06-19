@@ -14,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 public class SearchFixController extends AnchorPane implements Initializable {
 
 	/** ラベルに表示するテキスト */
-    private final String FixText;
+    private static String FixText;
 
     /** ラベル */
     @FXML
@@ -23,8 +23,8 @@ public class SearchFixController extends AnchorPane implements Initializable {
     /**
      * コンストラクタ
      */
-    public SearchFixController(String FixText) {
-    	this.FixText = FixText;
+    public SearchFixController(String text) {
+    	FixText = text;
         loadFXML();
     }
 

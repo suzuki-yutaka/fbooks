@@ -15,15 +15,17 @@ import javafx.scene.layout.AnchorPane;
 
 
 public class EditPageController extends AnchorPane implements Initializable {
-    private static Book[] initText = null;
+    private static Book[] initText;
     private static int i;
+    private static String[] SearchText;
 
 	/**
      * コンストラクタ
      */
-    public EditPageController(Book[] labelText, int num) {
-        initText = labelText.clone();
+    public EditPageController(Book[] labelText, int num, String[] text) {
+        initText = labelText;
         i = num;
+        SearchText = text;
 
         loadFXML();
     }
@@ -77,12 +79,13 @@ public class EditPageController extends AnchorPane implements Initializable {
     @FXML
     private TextArea MemoField;
     /** 入力テキスト用 */
-    private final String[] TextField = new String[7];
+    private static String[] TextField = new String[7];
+    private static Book[] bookArray;
 
     //編集処理
     @FXML
     protected void handleButtonActionEdit() throws ClassNotFoundException{
-        int fixflg = 0;
+
         if (!("".equals(TitleField.getText()) || "".equals(AuthorField.getText()) || "".equals(CompanyField.getText()) ||
         		PubDayField.getValue() == null)) {
             TextField[0] = TitleField.getText();
@@ -96,32 +99,28 @@ public class EditPageController extends AnchorPane implements Initializable {
             TextField[6] = MemoField.getText();
 
             DatabaseFbooks db = new DatabaseFbooks();
-            String[] SearchText = new String[4];
-
-            SearchText[0] = TextField[0];
-            Book[] bookArray = db.searchBook(SearchText, 0);
+            String[] Search = new String[4];
+            Search[0] = TextField[0];
+            bookArray = db.searchBook(Search, 0);
 
             if (bookArray.length != 0) {
                 //ID、タイトルが同一の場合のみ更新可能、現状タイトルの編集はできない。
                 if (bookArray[0].id.equals(initText[i].id) &&  TextField[0].equals(initText[i].title)) {
                     db.updateBook(TextField);
-                    fixflg = 1;
+                    Main.getInstance().sendEditFixController("編集内容が反映されました。", SearchText);
                 }
             }
-        }
-
-        if (fixflg == 1) {
-        	//確定ページへ
-            Main.getInstance().sendSearchFixController("編集内容が反映されました。");
         } else {
         	//編集失敗
-        	Main.getInstance().sendEditPageController(initText, i);
+        	Main.getInstance().sendEditPageController(initText, i, SearchText);
         }
     }
 
-    //メインページへ
+    //検索結果ページへ
     @FXML
     protected void handleButtonAction() throws ClassNotFoundException {
-        Main.getInstance().sendSearPageController();
+    	DatabaseFbooks db = new DatabaseFbooks();
+    	bookArray = db.searchBook(SearchText, 0);
+        Main.getInstance().sendSearResController(bookArray, SearchText);
     }
 }

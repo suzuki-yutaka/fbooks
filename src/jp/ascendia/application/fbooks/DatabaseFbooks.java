@@ -47,7 +47,7 @@ public class DatabaseFbooks {
         }
     }
 
-    public void addBook(String[] TextField) {
+    public boolean addBook(String[] TextField) {
         try {
             connect();
 
@@ -71,8 +71,10 @@ public class DatabaseFbooks {
             statement.executeUpdate();
 
             statement.close();
+            return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
+            return false;
         }
     }
 

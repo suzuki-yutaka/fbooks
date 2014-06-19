@@ -46,7 +46,7 @@ public class MainController extends AnchorPane implements Initializable {
     //登録ページへ
     @FXML
     protected void handleButtonActionAddPage() {
-        Main.getInstance().sendAddPageController();
+        Main.getInstance().sendAddPageController(null);
     }
 
     //検索ページへ

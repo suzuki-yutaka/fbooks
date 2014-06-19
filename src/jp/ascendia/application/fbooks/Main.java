@@ -41,7 +41,7 @@ public class Main extends Application {
     }
 
     /**
-     * メインページへ遷移する
+     * メインページへ遷移
      */
     public void sendMainController() {
 
@@ -52,18 +52,18 @@ public class Main extends Application {
     }
 
     /**
-     * 登録ページへ遷移する
+     * 登録ページへ遷移
      */
-    public void sendAddPageController() {
+    public void sendAddPageController(String[] text) {
 
         stage.setTitle("書籍登録");
 
-        AddPageController controller = new AddPageController();
+        AddPageController controller = new AddPageController(text);
         this.replaceSceneContent(controller);
     }
 
     /**
-     * 検索ページへ遷移する
+     * 検索ページへ遷移
      */
     public void sendSearPageController() {
 
@@ -73,13 +73,11 @@ public class Main extends Application {
         this.replaceSceneContent(controller);
     }
 
-    int i;
-
     /**
-     * 検索結果ページへ遷移する
+     * 検索結果ページへ遷移
      * @param String[]
      */
-    public void sendSearResController(Book[] bookArray) throws ClassNotFoundException {
+    public void sendSearResController(Book[] bookArray, String[] SearchText) throws ClassNotFoundException {
 
         stage.setTitle("検索結果");
 
@@ -87,38 +85,49 @@ public class Main extends Application {
         String style = Main.class.getResource("../css/Main.css").toExternalForm();
         scene.getStylesheets().add(style);
 
-        SearResController controller = new SearResController(bookArray);
+        SearResController controller = new SearResController(bookArray, SearchText);
         this.replaceSceneContent(controller);
     }
 
     /**
-     * 編集ページへ遷移する
+     * 編集ページへ遷移
      */
-    public void sendEditPageController(Book[] labelText, int num) {
+    public void sendEditPageController(Book[] labelText, int num, String[] text) {
 
         stage.setTitle("書籍編集");
 
-        EditPageController controller = new EditPageController(labelText, num);
+        EditPageController controller = new EditPageController(labelText, num, text);
         this.replaceSceneContent(controller);
     }
 
     /**
-     * 登録、編集完了ページへ遷移する
+     * 登録完了ページへ遷移
      */
     public void sendAddFixController(String FixText) {
 
-        stage.setTitle("完了");
+        stage.setTitle("登録完了");
 
         AddFixController controller = new AddFixController(FixText);
         this.replaceSceneContent(controller);
     }
 
     /**
-     * 登録、編集完了ページへ遷移する
+     * 編集完了ページへ遷移
+     */
+    public void sendEditFixController(String FixText, String[] SearchText) {
+
+        stage.setTitle("編集完了");
+
+        EditFixController controller = new EditFixController(FixText, SearchText);
+        this.replaceSceneContent(controller);
+    }
+
+    /**
+     * 検索結果ページへ遷移
      */
     public void sendSearchFixController(String FixText) {
 
-        stage.setTitle("完了");
+        stage.setTitle("検索結果");
 
         SearchFixController controller = new SearchFixController(FixText);
         this.replaceSceneContent(controller);

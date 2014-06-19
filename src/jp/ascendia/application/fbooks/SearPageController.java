@@ -81,12 +81,12 @@ public class SearPageController extends AnchorPane implements Initializable {
         DatabaseFbooks db = new DatabaseFbooks();
         Book[] bookArray = db.searchBook(SearchText, allflg);
 
-        if(bookArray.length == 0) {
-        	//検索失敗
-        	Main.getInstance().sendSearchFixController("見つかりませんでした。");
-        } else {
+        if(bookArray.length > 0) {
         	//検索結果表示ページへ
-        	Main.getInstance().sendSearResController(bookArray);
+        	Main.getInstance().sendSearResController(bookArray, SearchText);
+        } else {
+        	//検索失敗
+            Main.getInstance().sendSearchFixController("見つかりませんでした。");
         }
     }
 
