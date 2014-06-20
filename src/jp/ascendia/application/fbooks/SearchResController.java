@@ -18,15 +18,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 
-public class SearResController extends AnchorPane implements Initializable {
+public class SearchResController extends AnchorPane implements Initializable {
 
     /**
      * コンストラクタ
      */
-    public SearResController(Book[] bookArray, String[] SearchText) throws ClassNotFoundException {
+    public SearchResController(Book[] SearchResult, String[] SearchText) throws ClassNotFoundException {
         //検索結果件数
         HBox hbox = new HBox();
-        Label Num  = new Label(Integer.toString(bookArray.length));
+        Label Num  = new Label(Integer.toString(SearchResult.length));
         Label NumText  = new Label("件見つかりました。");
         hbox.getChildren().add(Num);
         hbox.getChildren().add(NumText);
@@ -49,7 +49,7 @@ public class SearResController extends AnchorPane implements Initializable {
         vbox.setStyle("-fx-background-color: white;");
         vbox.setStyle("-fx-font-size: 14px;");
 
-        for (int i = 0; i < bookArray.length; i++) {
+        for (int i = 0; i < SearchResult.length; i++) {
             //グリッドパネル作成
             GridPane grid = new GridPane();
             grid.setPadding(new Insets(20, 0, 30, 100));
@@ -88,31 +88,31 @@ public class SearResController extends AnchorPane implements Initializable {
             GridPane.setHalignment(Memolabel, HPos.RIGHT);
             grid.getChildren().add(Memolabel);
 
-            Label ResTitlelabel  = new Label(bookArray[i].title);
+            Label ResTitlelabel  = new Label(SearchResult[i].title);
             GridPane.setConstraints(ResTitlelabel, 1, 0);
             grid.getChildren().add(ResTitlelabel);
             ResTitlelabel.setStyle("-fx-wrap-text: true;");
             ResTitlelabel.setMaxWidth(440);
-            Label ResAuthorlabel  = new Label(bookArray[i].author);
+            Label ResAuthorlabel  = new Label(SearchResult[i].author);
             GridPane.setConstraints(ResAuthorlabel, 1, 1);
             grid.getChildren().add(ResAuthorlabel);
             ResAuthorlabel.setStyle("-fx-wrap-text: true;");
             ResAuthorlabel.setMaxWidth(440);
-            Label ResCompanylabel  = new Label(bookArray[i].company);
+            Label ResCompanylabel  = new Label(SearchResult[i].company);
             GridPane.setConstraints(ResCompanylabel, 1, 2);
             grid.getChildren().add(ResCompanylabel);
             ResCompanylabel.setStyle("-fx-wrap-text: true;");
             ResCompanylabel.setMaxWidth(440);
-            Label ResPubDaylabel  = new Label(bookArray[i].publishday);
+            Label ResPubDaylabel  = new Label(SearchResult[i].publishday);
             GridPane.setConstraints(ResPubDaylabel, 1, 3);
             grid.getChildren().add(ResPubDaylabel);
-            Label ResReadStartlabel  = new Label(bookArray[i].readstart);
+            Label ResReadStartlabel  = new Label(SearchResult[i].readstart);
             GridPane.setConstraints(ResReadStartlabel, 1, 4);
             grid.getChildren().add(ResReadStartlabel);
-            Label ResReadEndlabel  = new Label(bookArray[i].readend);
+            Label ResReadEndlabel  = new Label(SearchResult[i].readend);
             GridPane.setConstraints(ResReadEndlabel, 1, 5);
             grid.getChildren().add(ResReadEndlabel);
-            Label ResMemolabel  = new Label(bookArray[i].memo);
+            Label ResMemolabel  = new Label(SearchResult[i].memo);
             ResMemolabel.setStyle("-fx-wrap-text: true;");
             ResMemolabel.setMaxWidth(440);
 	        GridPane.setConstraints(ResMemolabel, 1, 6);
@@ -135,7 +135,7 @@ public class SearResController extends AnchorPane implements Initializable {
 	        Edit.setOnAction(new EventHandler<ActionEvent>() {
 	        	@Override
 	        	public void handle(ActionEvent actionEvent) {
-	        		Main.getInstance().sendEditPageController(bookArray, Integer.parseInt(Edit.getId()), SearchText);
+	        		Main.getInstance().sendEditPageController(SearchResult, Integer.parseInt(Edit.getId()), SearchText);
 	        	}
 	        });
 
@@ -144,7 +144,7 @@ public class SearResController extends AnchorPane implements Initializable {
 	        	@Override
 	        	public void handle(ActionEvent actionEvent) {
 	                DatabaseFbooks db = new DatabaseFbooks();
-	                db.deleteBook(bookArray, Integer.parseInt(Edit.getId()));
+	                db.deleteBook(SearchResult, Integer.parseInt(Edit.getId()));
 
 	                //確定ページへ
 	                Main.getInstance().sendEditFixController("削除されました。", SearchText);
@@ -168,7 +168,7 @@ public class SearResController extends AnchorPane implements Initializable {
         back.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-            	Main.getInstance().sendSearPageController();
+            	Main.getInstance().sendSearchPageController();
             }
         });
     }

@@ -20,9 +20,7 @@ public class AddPageController extends AnchorPane implements Initializable {
     /**
      * コンストラクタ
      */
-    public AddPageController(String[] text) {
-        if (text != null)
-        	initText = text;
+    public AddPageController() {
         loadFXML();
     }
 
@@ -46,7 +44,7 @@ public class AddPageController extends AnchorPane implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    	if (initText != null) {
+    	if(initText != null) {
     		TitleField.setText(initText[0]);
     		AuthorField.setText(initText[1]);
     		CompanyField.setText(initText[2]);
@@ -58,7 +56,6 @@ public class AddPageController extends AnchorPane implements Initializable {
     			ReadEndField.setValue(LocalDate.parse(initText[5]));
     		MemoField.setText(initText[6]);
     	}
-    	initText = null;
     }
 
     /**
@@ -82,7 +79,7 @@ public class AddPageController extends AnchorPane implements Initializable {
     private TextField ResultField;
 
     /** 入力テキスト用 */
-    private static String[] TextField = new String[7];
+    private static String[] inputText = new String[7];
 
     //登録処理
     @FXML
@@ -91,32 +88,24 @@ public class AddPageController extends AnchorPane implements Initializable {
 
         if (!("".equals(TitleField.getText()) || "".equals(AuthorField.getText()) || "".equals(CompanyField.getText()) ||
         		PubDayField.getValue() == null)) {
-        	setText();
+            inputText[0] = TitleField.getText();
+            inputText[1] = AuthorField.getText();
+            inputText[2] = CompanyField.getText();
+            if (PubDayField.getValue() != null)
+            	inputText[3] = PubDayField.getValue().toString();
+            if (ReadStartField.getValue() != null)
+            	inputText[4] = ReadStartField.getValue().toString();
+            if (ReadEndField.getValue() != null)
+            	inputText[5] = ReadEndField.getValue().toString();
+            inputText[6] = MemoField.getText();
 
             DatabaseFbooks db = new DatabaseFbooks();
-            result = db.addBook(TextField);
+            result = db.addBook(inputText);
             if (result) {
             	//確定ページ
             	Main.getInstance().sendAddFixController("登録されました。");
             }
-        } else {
-        	//登録失敗
-        	setText();
-        	Main.getInstance().sendAddPageController(TextField);
         }
-    }
-
-    protected void setText() {
-        TextField[0] = TitleField.getText();
-        TextField[1] = AuthorField.getText();
-        TextField[2] = CompanyField.getText();
-        if (PubDayField.getValue() != null)
-        	TextField[3] = PubDayField.getValue().toString();
-        if (ReadStartField.getValue() != null)
-        	TextField[4] = ReadStartField.getValue().toString();
-        if (ReadEndField.getValue() != null)
-        	TextField[5] = ReadEndField.getValue().toString();
-        TextField[6] = MemoField.getText();
     }
 
     //メインページへ

@@ -54,22 +54,22 @@ public class Main extends Application {
     /**
      * 登録ページへ遷移
      */
-    public void sendAddPageController(String[] text) {
+    public void sendAddPageController() {
 
         stage.setTitle("書籍登録");
 
-        AddPageController controller = new AddPageController(text);
+        AddPageController controller = new AddPageController();
         this.replaceSceneContent(controller);
     }
 
     /**
      * 検索ページへ遷移
      */
-    public void sendSearPageController() {
+    public void sendSearchPageController() {
 
         stage.setTitle("書籍検索");
 
-        SearPageController controller = new SearPageController();
+        SearchPageController controller = new SearchPageController();
         this.replaceSceneContent(controller);
     }
 
@@ -77,7 +77,7 @@ public class Main extends Application {
      * 検索結果ページへ遷移
      * @param String[]
      */
-    public void sendSearResController(Book[] bookArray, String[] SearchText) throws ClassNotFoundException {
+    public void sendSearchResController(Book[] SearchResult, String[] SearchText) throws ClassNotFoundException {
 
         stage.setTitle("検索結果");
 
@@ -85,18 +85,18 @@ public class Main extends Application {
         String style = Main.class.getResource("../css/Main.css").toExternalForm();
         scene.getStylesheets().add(style);
 
-        SearResController controller = new SearResController(bookArray, SearchText);
+        SearchResController controller = new SearchResController(SearchResult, SearchText);
         this.replaceSceneContent(controller);
     }
 
     /**
      * 編集ページへ遷移
      */
-    public void sendEditPageController(Book[] labelText, int num, String[] text) {
+    public void sendEditPageController(Book[] SearchResult, int num, String[] SearchText) {
 
         stage.setTitle("書籍編集");
 
-        EditPageController controller = new EditPageController(labelText, num, text);
+        EditPageController controller = new EditPageController(SearchResult, num, SearchText);
         this.replaceSceneContent(controller);
     }
 

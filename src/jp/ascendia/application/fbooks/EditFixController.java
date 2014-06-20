@@ -14,9 +14,9 @@ import javafx.scene.layout.AnchorPane;
 public class EditFixController extends AnchorPane implements Initializable {
 
 	/** ラベルに表示するテキスト */
-    private final String FixText;
+    private static String msgText;
 
-    private final String[] SearchText;
+    private static String[] SearchText;
 
     /** ラベル */
     @FXML
@@ -25,9 +25,9 @@ public class EditFixController extends AnchorPane implements Initializable {
     /**
      * コンストラクタ
      */
-    public EditFixController(String FixText, String[] text) {
-    	this.FixText = FixText;
-    	this.SearchText = text;
+    public EditFixController(String fText, String[] stext) {
+    	msgText = fText;
+    	SearchText = stext;
         loadFXML();
     }
 
@@ -51,7 +51,7 @@ public class EditFixController extends AnchorPane implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    	FixField.setText(FixText);
+    	FixField.setText(msgText);
     	FixField.setStyle("-fx-font-size: 24px");
     }
 
@@ -67,8 +67,12 @@ public class EditFixController extends AnchorPane implements Initializable {
     //検索結果一覧ページへ
     @FXML
     protected void SearchPagehandleButtonAction() throws ClassNotFoundException {
+    	int allflg = 0;
+
     	DatabaseFbooks db = new DatabaseFbooks();
-    	Book[] bookArray = db.searchBook(SearchText, 0);
-        Main.getInstance().sendSearResController(bookArray, SearchText);
+    	if (SearchText[0] == null && SearchText[1] == null && SearchText[2] == null && SearchText[3] == null)
+    		allflg = 1;
+    	Book[] SearchResult = db.searchBook(SearchText, allflg);
+        Main.getInstance().sendSearchResController(SearchResult, SearchText);
     }
 }

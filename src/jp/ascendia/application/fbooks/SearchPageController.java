@@ -12,11 +12,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 
-public class SearPageController extends AnchorPane implements Initializable {
+public class SearchPageController extends AnchorPane implements Initializable {
     /**
      * コンストラクタ
      */
-    public SearPageController() {
+    public SearchPageController() {
         loadFXML();
     }
 
@@ -79,11 +79,11 @@ public class SearPageController extends AnchorPane implements Initializable {
         }
 
         DatabaseFbooks db = new DatabaseFbooks();
-        Book[] bookArray = db.searchBook(SearchText, allflg);
+        Book[] SearchResult = db.searchBook(SearchText, allflg);
 
-        if(bookArray.length > 0) {
+        if(SearchResult.length > 0) {
         	//検索結果表示ページへ
-        	Main.getInstance().sendSearResController(bookArray, SearchText);
+        	Main.getInstance().sendSearchResController(SearchResult, SearchText);
         } else {
         	//検索失敗
             Main.getInstance().sendSearchFixController("見つかりませんでした。");

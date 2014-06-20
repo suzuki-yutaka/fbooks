@@ -14,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 public class SearchFixController extends AnchorPane implements Initializable {
 
 	/** ラベルに表示するテキスト */
-    private static String FixText;
+    private static String msgText;
 
     /** ラベル */
     @FXML
@@ -24,7 +24,7 @@ public class SearchFixController extends AnchorPane implements Initializable {
      * コンストラクタ
      */
     public SearchFixController(String text) {
-    	FixText = text;
+    	msgText = text;
         loadFXML();
     }
 
@@ -48,7 +48,7 @@ public class SearchFixController extends AnchorPane implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    	FixField.setText(FixText);
+    	FixField.setText(msgText);
     	FixField.setStyle("-fx-font-size: 24px");
     }
 
@@ -64,6 +64,6 @@ public class SearchFixController extends AnchorPane implements Initializable {
     //検索ページへ
     @FXML
     protected void SearchPagehandleButtonAction() {
-        Main.getInstance().sendSearPageController();
+        Main.getInstance().sendSearchPageController();
     }
 }

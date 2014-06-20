@@ -14,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 public class AddFixController extends AnchorPane implements Initializable {
 
 	/** ラベルに表示するテキスト */
-    private static String FixText;
+    private static String msgText;
 
     /** ラベル */
     @FXML
@@ -24,7 +24,7 @@ public class AddFixController extends AnchorPane implements Initializable {
      * コンストラクタ
      */
     public AddFixController(String text) {
-    	FixText = text;
+    	msgText = text;
         loadFXML();
     }
 
@@ -48,7 +48,7 @@ public class AddFixController extends AnchorPane implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    	FixField.setText(FixText);
+    	FixField.setText(msgText);
     	FixField.setStyle("-fx-font-size: 24px");
     }
 
@@ -64,6 +64,6 @@ public class AddFixController extends AnchorPane implements Initializable {
     //登録ページへ
     @FXML
     protected void AddPagehandleButtonAction() {
-        Main.getInstance().sendAddPageController(null);
+        Main.getInstance().sendAddPageController();
     }
 }

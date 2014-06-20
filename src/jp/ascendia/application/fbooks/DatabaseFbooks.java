@@ -47,7 +47,7 @@ public class DatabaseFbooks {
         }
     }
 
-    public boolean addBook(String[] TextField) {
+    public boolean addBook(String[] text) {
         try {
             connect();
 
@@ -61,13 +61,13 @@ public class DatabaseFbooks {
             PreparedStatement statement = connection.prepareStatement(
             		"INSERT INTO book_table(b_title, b_author, b_company, b_pub_day, b_read_start, b_read_end, b_memo) "
             		+ "VALUES (?, ?, ?, ?, date(?), date(?), ?)" );
-            statement.setString(1, TextField[0]);
-            statement.setString(2, TextField[1]);
-            statement.setString(3, TextField[2]);
-            statement.setString(4, TextField[3]);
-            statement.setString(5, TextField[4]);
-            statement.setString(6, TextField[5]);
-            statement.setString(7, TextField[6]);
+            statement.setString(1, text[0]);
+            statement.setString(2, text[1]);
+            statement.setString(3, text[2]);
+            statement.setString(4, text[3]);
+            statement.setString(5, text[4]);
+            statement.setString(6, text[5]);
+            statement.setString(7, text[6]);
             statement.executeUpdate();
 
             statement.close();
@@ -78,20 +78,20 @@ public class DatabaseFbooks {
         }
     }
 
-    public void updateBook(String[] TextField) {
+    public void updateBook(String[] text) {
         try {
             connect();
 
             PreparedStatement statement = connection.prepareStatement(
             		"UPDATE book_table SET b_title = ?, b_author = ?, b_company = ?, b_pub_day = ?, b_read_start = ?, b_read_end = ?, b_memo = ? WHERE b_title = ?" );
-            statement.setString(1, TextField[0]);
-            statement.setString(2, TextField[1]);
-            statement.setString(3, TextField[2]);
-            statement.setString(4, TextField[3]);
-            statement.setString(5, TextField[4]);
-            statement.setString(6, TextField[5]);
-            statement.setString(7, TextField[6]);
-            statement.setString(8, TextField[0]);
+            statement.setString(1, text[0]);
+            statement.setString(2, text[1]);
+            statement.setString(3, text[2]);
+            statement.setString(4, text[3]);
+            statement.setString(5, text[4]);
+            statement.setString(6, text[5]);
+            statement.setString(7, text[6]);
+            statement.setString(8, text[0]);
             statement.executeUpdate();
 
             statement.close();
@@ -100,12 +100,12 @@ public class DatabaseFbooks {
         }
     }
 
-    public void deleteBook(Book[] labelText, int i) {
+    public void deleteBook(Book[] text, int i) {
         try {
             connect();
 
             PreparedStatement statement = connection.prepareStatement("DELETE FROM book_table WHERE b_title = ?");
-            statement.setString(1, labelText[i].title);
+            statement.setString(1, text[i].title);
             statement.executeUpdate();
 
             statement.close();
@@ -114,7 +114,7 @@ public class DatabaseFbooks {
         }
     }
 
-    public Book[] searchBook(String[] TextField, int allflg) {
+    public Book[] searchBook(String[] text, int allflg) {
         Book[] bookArray = null;
         try {
         	PreparedStatement statement;
@@ -126,10 +126,10 @@ public class DatabaseFbooks {
             } else {
                 statement = connection.prepareStatement(
                 		"SELECT * FROM book_table WHERE b_title = ? or b_author = ? or b_read_start = ? or b_read_end = ?" );
-                statement.setString(1, TextField[0]);
-                statement.setString(2, TextField[1]);
-                statement.setString(3, TextField[2]);
-                statement.setString(4, TextField[3]);
+                statement.setString(1, text[0]);
+                statement.setString(2, text[1]);
+                statement.setString(3, text[2]);
+                statement.setString(4, text[3]);
             }
 
             ResultSet rs = statement.executeQuery();
