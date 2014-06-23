@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import java.net.*?>
 <?import javafx.scene.image.*?>
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
@@ -13,11 +13,18 @@
       <Button layoutX="150.0" layoutY="126.0" mnemonicParsing="false" onAction="#handleButtonActionAddPage" prefHeight="50.0" prefWidth="138.0" text="新規登録">
          <font>
              <Font size="14.0" />
-         </font></Button>
+         </font>
+      </Button>
       <Button layoutX="150.0" layoutY="210.0" mnemonicParsing="false" onAction="#handleButtonActionSearPage" prefHeight="50.0" prefWidth="138.0" text="検索">
          <font>
             <Font size="14.0" />
-         </font></Button>
+         </font>
+      </Button>
+      <Button layoutX="150.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleButtonActionClose" prefHeight="50.0" prefWidth="138.0" text="閉じる">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
       <ImageView layoutX="50.0" layoutY="110.0" fitHeight="81.0" fitWidth="81.0" preserveRatio="true">
          <image>
             <Image preserveRatio="false" smooth="false" url="@../../../../../img/fukurou.png" />

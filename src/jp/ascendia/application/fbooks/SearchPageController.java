@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -50,15 +51,16 @@ public class SearchPageController extends AnchorPane implements Initializable {
     @FXML
     private TextField AuthorField;
     @FXML
-    private DatePicker ReadStartField;
+    private ComboBox<String> GenreCBox;
     @FXML
-    private DatePicker ReadEndField;
+    private DatePicker ReadStartDate;
+    @FXML
+    private DatePicker ReadEndDate;
 
-    //検索ページへ
+    //検索処理
     @FXML
     protected void handleButtonActionSearRes() throws ClassNotFoundException {
-        /** 入力テキスト用 */
-        String[] SearchText = new String[4];
+        String[] SearchText = new String[5];
         int allflg = 1;
 
         if (!"".equals(TitleField.getText())) {
@@ -69,12 +71,16 @@ public class SearchPageController extends AnchorPane implements Initializable {
             SearchText[1] = AuthorField.getText();
             allflg = 0;
         }
-        if (ReadStartField.getValue() != null) {
-            SearchText[2] = ReadStartField.getValue().toString();
+        if (GenreCBox.getValue() != null) {
+            SearchText[2] = GenreCBox.getValue().toString();
             allflg = 0;
         }
-        if (ReadEndField.getValue() != null) {
-            SearchText[3] = ReadEndField.getValue().toString();
+        if (ReadStartDate.getValue() != null) {
+            SearchText[3] = ReadStartDate.getValue().toString();
+            allflg = 0;
+        }
+        if (ReadEndDate.getValue() != null) {
+            SearchText[4] = ReadEndDate.getValue().toString();
             allflg = 0;
         }
 

@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Line;
 
 
 public class SearchResController extends AnchorPane implements Initializable {
@@ -23,6 +24,7 @@ public class SearchResController extends AnchorPane implements Initializable {
     /**
      * コンストラクタ
      */
+    //検索結果出力
     public SearchResController(Book[] SearchResult, String[] SearchText) throws ClassNotFoundException {
         //検索結果件数
         HBox hbox = new HBox();
@@ -47,76 +49,76 @@ public class SearchResController extends AnchorPane implements Initializable {
         vbox.setLayoutX(37);
         vbox.setLayoutY(50);
         vbox.setStyle("-fx-background-color: white;");
-        vbox.setStyle("-fx-font-size: 14px;");
 
         for (int i = 0; i < SearchResult.length; i++) {
             //グリッドパネル作成
             GridPane grid = new GridPane();
-            grid.setPadding(new Insets(20, 0, 30, 100));
+            grid.setPadding(new Insets(30, 0, 30, 100));
             grid.setVgap(5);
             grid.setHgap(5);
             grid.setMinHeight(USE_PREF_SIZE);
             grid.setMaxHeight(USE_PREF_SIZE);
+            grid.setStyle("-fx-font-size: 14px;");
 
-            Label Titlelabel  = new Label("タイトル：");
-            Titlelabel.setAlignment(Pos.TOP_RIGHT);
-            GridPane.setConstraints(Titlelabel, 0, 0);
-            GridPane.setHalignment(Titlelabel, HPos.RIGHT);
-            grid.getChildren().add(Titlelabel);
-            Label Authorlabel  = new Label("著者：");
-            GridPane.setConstraints(Authorlabel, 0, 1);
-            GridPane.setHalignment(Authorlabel, HPos.RIGHT);
-            grid.getChildren().add(Authorlabel);
-            Label Companylabel  = new Label("出版社：");
-            GridPane.setConstraints(Companylabel, 0, 2);
-            GridPane.setHalignment(Companylabel, HPos.RIGHT);
-            grid.getChildren().add(Companylabel);
-            Label PubDaylabel  = new Label("出版日：");
-            GridPane.setConstraints(PubDaylabel, 0, 3);
-            GridPane.setHalignment(PubDaylabel, HPos.RIGHT);
-            grid.getChildren().add(PubDaylabel);
-            Label ReadStartlabel  = new Label("読書開始日：");
-            GridPane.setConstraints(ReadStartlabel, 0, 4);
-            GridPane.setHalignment(ReadStartlabel, HPos.RIGHT);
-            grid.getChildren().add(ReadStartlabel);
-            Label ReadEndlabel  = new Label("読書終了日：");
-            GridPane.setConstraints(ReadEndlabel, 0, 5);
-            GridPane.setHalignment(ReadEndlabel, HPos.RIGHT);
-            grid.getChildren().add(ReadEndlabel);
-            Label Memolabel  = new Label("メモ：");
-            GridPane.setConstraints(Memolabel, 0, 6);
-            GridPane.setHalignment(Memolabel, HPos.RIGHT);
-            grid.getChildren().add(Memolabel);
+            Label Title  = new Label("タイトル：");
+            Title.setAlignment(Pos.TOP_RIGHT);
+            GridPane.setConstraints(Title, 0, 0);
+            GridPane.setHalignment(Title, HPos.RIGHT);
+            grid.getChildren().add(Title);
+            Label Author  = new Label("著者：");
+            GridPane.setConstraints(Author, 0, 1);
+            GridPane.setHalignment(Author, HPos.RIGHT);
+            grid.getChildren().add(Author);
+            Label Company  = new Label("出版社：");
+            GridPane.setConstraints(Company, 0, 2);
+            GridPane.setHalignment(Company, HPos.RIGHT);
+            grid.getChildren().add(Company);
+            Label Genre  = new Label("ジャンル：");
+            GridPane.setConstraints(Genre, 0, 3);
+            GridPane.setHalignment(Genre, HPos.RIGHT);
+            grid.getChildren().add(Genre);
+            Label ReadStart  = new Label("読書開始日：");
+            GridPane.setConstraints(ReadStart, 0, 4);
+            GridPane.setHalignment(ReadStart, HPos.RIGHT);
+            grid.getChildren().add(ReadStart);
+            Label ReadEnd  = new Label("読書終了日：");
+            GridPane.setConstraints(ReadEnd, 0, 5);
+            GridPane.setHalignment(ReadEnd, HPos.RIGHT);
+            grid.getChildren().add(ReadEnd);
+            Label Memo  = new Label("メモ：");
+            GridPane.setConstraints(Memo, 0, 6);
+            GridPane.setHalignment(Memo, HPos.RIGHT);
+            grid.getChildren().add(Memo);
 
-            Label ResTitlelabel  = new Label(SearchResult[i].title);
-            GridPane.setConstraints(ResTitlelabel, 1, 0);
-            grid.getChildren().add(ResTitlelabel);
-            ResTitlelabel.setStyle("-fx-wrap-text: true;");
-            ResTitlelabel.setMaxWidth(440);
-            Label ResAuthorlabel  = new Label(SearchResult[i].author);
-            GridPane.setConstraints(ResAuthorlabel, 1, 1);
-            grid.getChildren().add(ResAuthorlabel);
-            ResAuthorlabel.setStyle("-fx-wrap-text: true;");
-            ResAuthorlabel.setMaxWidth(440);
-            Label ResCompanylabel  = new Label(SearchResult[i].company);
-            GridPane.setConstraints(ResCompanylabel, 1, 2);
-            grid.getChildren().add(ResCompanylabel);
-            ResCompanylabel.setStyle("-fx-wrap-text: true;");
-            ResCompanylabel.setMaxWidth(440);
-            Label ResPubDaylabel  = new Label(SearchResult[i].publishday);
-            GridPane.setConstraints(ResPubDaylabel, 1, 3);
-            grid.getChildren().add(ResPubDaylabel);
-            Label ResReadStartlabel  = new Label(SearchResult[i].readstart);
-            GridPane.setConstraints(ResReadStartlabel, 1, 4);
-            grid.getChildren().add(ResReadStartlabel);
-            Label ResReadEndlabel  = new Label(SearchResult[i].readend);
-            GridPane.setConstraints(ResReadEndlabel, 1, 5);
-            grid.getChildren().add(ResReadEndlabel);
-            Label ResMemolabel  = new Label(SearchResult[i].memo);
-            ResMemolabel.setStyle("-fx-wrap-text: true;");
-            ResMemolabel.setMaxWidth(440);
-	        GridPane.setConstraints(ResMemolabel, 1, 6);
-	        grid.getChildren().add(ResMemolabel);
+            Label ResTitle  = new Label(SearchResult[i].title);
+            GridPane.setConstraints(ResTitle, 1, 0);
+            grid.getChildren().add(ResTitle);
+            ResTitle.setStyle("-fx-wrap-text: true;");
+            ResTitle.setMaxWidth(440);
+            Label ResAuthor  = new Label(SearchResult[i].author);
+            GridPane.setConstraints(ResAuthor, 1, 1);
+            grid.getChildren().add(ResAuthor);
+            ResAuthor.setStyle("-fx-wrap-text: true;");
+            ResAuthor.setMaxWidth(440);
+            Label ResCompany  = new Label(SearchResult[i].company);
+            GridPane.setConstraints(ResCompany, 1, 2);
+            grid.getChildren().add(ResCompany);
+            ResCompany.setStyle("-fx-wrap-text: true;");
+            ResCompany.setMaxWidth(440);
+            Label ResGenre  = new Label(SearchResult[i].genre);
+            GridPane.setConstraints(ResGenre, 1, 3);
+            grid.getChildren().add(ResGenre);
+            Label ResReadStart  = new Label(SearchResult[i].readstart);
+            GridPane.setConstraints(ResReadStart, 1, 4);
+            grid.getChildren().add(ResReadStart);
+            Label ResReadEnd  = new Label(SearchResult[i].readend);
+            GridPane.setConstraints(ResReadEnd, 1, 5);
+            grid.getChildren().add(ResReadEnd);
+            Label ResMemo  = new Label(SearchResult[i].memo);
+            ResMemo.setStyle("-fx-wrap-text: true;");
+            ResMemo.setMaxWidth(440);
+	        GridPane.setConstraints(ResMemo, 1, 6);
+	        grid.getChildren().add(ResMemo);
 
 	        //編集ボタン
 	        Button Edit = new Button("編集");
@@ -151,7 +153,13 @@ public class SearchResController extends AnchorPane implements Initializable {
 	        	}
 	        });
 
+	        //ライン
+	        Line line = new Line();
+	        line.setEndX(735);
+	        line.setStyle("-fx-stroke:  #1e90ff;");
+
 	        vbox.getChildren().add(grid);
+	        vbox.getChildren().add(line);
         }
         sp.setContent(vbox);
         this.getChildren().add(sp);

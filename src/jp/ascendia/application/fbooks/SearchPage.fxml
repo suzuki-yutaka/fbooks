@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.paint.*?>
 <?import java.lang.*?>
@@ -20,11 +21,15 @@
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Label alignment="CENTER_RIGHT" layoutX="12.0" layoutY="132.0" prefHeight="22.0" prefWidth="100.0" text="読書開始日：">
+            <Label alignment="CENTER_RIGHT" layoutX="30.0" layoutY="133.0" prefHeight="22.0" prefWidth="83.0" text="ジャンル：">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Label layoutX="304.0" layoutY="132.0" prefHeight="22.0" prefWidth="100.0" text="読書終了日：">
+            <Label alignment="CENTER_RIGHT" layoutX="12.0" layoutY="177.0" prefHeight="22.0" prefWidth="100.0" text="読書開始日：">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label layoutX="304.0" layoutY="177.0" prefHeight="22.0" prefWidth="100.0" text="読書終了日：">
                <font>
                   <Font size="18.0" />
                </font></Label>
@@ -36,12 +41,38 @@
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <DatePicker fx:id="ReadStartField" layoutX="125.0" layoutY="133.0" />
-            <DatePicker fx:id="ReadEndField" layoutX="413.0" layoutY="133.0" />
+            <ComboBox fx:id="GenreCBox" layoutX="125.0" layoutY="134.0" prefWidth="180.0">
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="文学・評論" />
+                     <String fx:value="人文・思想" />
+                     <String fx:value="社会・政治" />
+                     <String fx:value="ノンフィクション" />
+                     <String fx:value="歴史・地理" />
+                     <String fx:value="ビジネス・経済" />
+                     <String fx:value="投資・金融・会社経営" />
+                     <String fx:value="科学・テクノロジー" />
+                     <String fx:value="医学・薬学・看護学・歯科学" />
+                     <String fx:value="コンピュータ・IT" />
+                     <String fx:value="アート・建築・デザイン" />
+                     <String fx:value="趣味・実用" />
+                     <String fx:value="スポーツ・アウトドア" />
+                     <String fx:value="資格・検定・就職" />
+                     <String fx:value="暮らし・健康・子育て" />
+                     <String fx:value="旅行ガイド・マップ" />
+                     <String fx:value="コミック" />
+                     <String fx:value="文庫" />
+                     <String fx:value="雑誌" />
+                     <String fx:value="その他" />
+                  </FXCollections>
+               </items>
+            </ComboBox>
+            <DatePicker fx:id="ReadStartDate" layoutX="125.0" layoutY="178.0" />
+            <DatePicker fx:id="ReadEndDate" layoutX="413.0" layoutY="178.0" />
          </children>
       </Pane>
-      <Button layoutX="320.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleButtonActionSearRes" text="検索" />
-      <Button layoutX="380.0" layoutY="295.0" mnemonicParsing="false" onAction="#handleButtonAction" text="戻る" />
+      <Button layoutX="360.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleButtonActionSearRes" text="検索" />
+      <Button layoutX="420.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleButtonAction" text="戻る" />
    </children>
    <stylesheets>
      <URL value="@../css/main.css" />

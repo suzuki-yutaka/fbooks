@@ -2,6 +2,7 @@
 
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.*?>
@@ -9,6 +10,10 @@
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="40.0" layoutY="40.0" prefHeight="42.0" prefWidth="153.0" styleClass="title" text="書籍登録" />
+      <Label fx:id="MsgOutput" layoutX="224.0" layoutY="67.0" prefHeight="30.0" prefWidth="406.0" textFill="RED">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
       <Pane layoutX="57.0" layoutY="87.0" prefHeight="361.0" prefWidth="620.0">
          <children>
             <Label alignment="CENTER_RIGHT" layoutX="2.0" layoutY="24.0" prefHeight="22.0" prefWidth="90.0" text="※タイトル：">
@@ -19,7 +24,7 @@
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="167.0" prefHeight="22.0" prefWidth="83.0" text="※出版日：">
+            <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="167.0" prefHeight="22.0" prefWidth="83.0" text="※ジャンル：">
                <font>
                   <Font size="18.0" />
                </font></Label>
@@ -51,13 +56,38 @@
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <TextArea fx:id="MemoField" layoutX="105.0" layoutY="257.0" prefHeight="60.0" prefWidth="450.0">
+            <TextArea fx:id="MemoArea" layoutX="105.0" layoutY="257.0" prefHeight="60.0" prefWidth="450.0">
                <font>
                   <Font size="14.0" />
                </font></TextArea>
-            <DatePicker fx:id="ReadStartField" layoutX="105.0" layoutY="211.0" />
-            <DatePicker fx:id="ReadEndField" layoutX="393.0" layoutY="211.0" />
-            <DatePicker fx:id="PubDayField" layoutX="105.0" layoutY="168.0" />
+            <DatePicker fx:id="ReadStartDate" layoutX="105.0" layoutY="211.0" />
+            <DatePicker fx:id="ReadEndDate" layoutX="393.0" layoutY="211.0" />
+            <ComboBox fx:id="GenreCBox" layoutX="105.0" layoutY="168.0" prefWidth="180.0">
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="文学・評論" />
+                     <String fx:value="人文・思想" />
+                     <String fx:value="社会・政治" />
+                     <String fx:value="ノンフィクション" />
+                     <String fx:value="歴史・地理" />
+                     <String fx:value="ビジネス・経済" />
+                     <String fx:value="投資・金融・会社経営" />
+                     <String fx:value="科学・テクノロジー" />
+                     <String fx:value="医学・薬学・看護学・歯科学" />
+                     <String fx:value="コンピュータ・IT" />
+                     <String fx:value="アート・建築・デザイン" />
+                     <String fx:value="趣味・実用" />
+                     <String fx:value="スポーツ・アウトドア" />
+                     <String fx:value="資格・検定・就職" />
+                     <String fx:value="暮らし・健康・子育て" />
+                     <String fx:value="旅行ガイド・マップ" />
+                     <String fx:value="コミック" />
+                     <String fx:value="文庫" />
+                     <String fx:value="雑誌" />
+                     <String fx:value="その他" />
+                  </FXCollections>
+               </items>
+            </ComboBox>
             <Label layoutX="105.0" layoutY="334.0" prefHeight="18.0" prefWidth="153.0" text="※は必須の入力項目です。">
                <font>
                   <Font size="14.0" />

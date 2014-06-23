@@ -75,7 +75,7 @@ public class Main extends Application {
 
     /**
      * 検索結果ページへ遷移
-     * @param String[]
+     * @param Book[], String[]
      */
     public void sendSearchResController(Book[] SearchResult, String[] SearchText) throws ClassNotFoundException {
 
@@ -91,6 +91,7 @@ public class Main extends Application {
 
     /**
      * 編集ページへ遷移
+     * @param Book[], int, String[]
      */
     public void sendEditPageController(Book[] SearchResult, int num, String[] SearchText) {
 
@@ -102,6 +103,7 @@ public class Main extends Application {
 
     /**
      * 登録完了ページへ遷移
+     * @param String
      */
     public void sendAddFixController(String FixText) {
 
@@ -113,6 +115,7 @@ public class Main extends Application {
 
     /**
      * 編集完了ページへ遷移
+     * @param String, String[]
      */
     public void sendEditFixController(String FixText, String[] SearchText) {
 
@@ -124,6 +127,7 @@ public class Main extends Application {
 
     /**
      * 検索結果ページへ遷移
+     * @param String
      */
     public void sendSearchFixController(String FixText) {
 

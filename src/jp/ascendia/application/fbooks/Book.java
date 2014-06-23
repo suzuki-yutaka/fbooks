@@ -5,7 +5,7 @@ public class Book {
     protected String title;
     protected String author;
     protected String company;
-    protected String publishday;
+    protected String genre;
     protected String readstart;
     protected String readend;
     protected String memo;
@@ -22,8 +22,8 @@ public class Book {
 	public String getCompany() {
 		return company;
 	}
-	public String getPublishday() {
-		return publishday;
+	public String getGenre() {
+		return genre;
 	}
 	public String getReadstart() {
 		return readstart;

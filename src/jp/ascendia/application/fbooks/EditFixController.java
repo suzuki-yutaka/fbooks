@@ -13,7 +13,6 @@ import javafx.scene.layout.AnchorPane;
 
 public class EditFixController extends AnchorPane implements Initializable {
 
-	/** ラベルに表示するテキスト */
     private static String msgText;
 
     private static String[] SearchText;
@@ -70,7 +69,8 @@ public class EditFixController extends AnchorPane implements Initializable {
     	int allflg = 0;
 
     	DatabaseFbooks db = new DatabaseFbooks();
-    	if (SearchText[0] == null && SearchText[1] == null && SearchText[2] == null && SearchText[3] == null)
+    	if (SearchText[0] == null && SearchText[1] == null && SearchText[2] == null &&
+    			SearchText[3] == null && SearchText[4] == null)
     		allflg = 1;
     	Book[] SearchResult = db.searchBook(SearchText, allflg);
         Main.getInstance().sendSearchResController(SearchResult, SearchText);

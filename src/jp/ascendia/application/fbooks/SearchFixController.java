@@ -13,7 +13,6 @@ import javafx.scene.layout.AnchorPane;
 
 public class SearchFixController extends AnchorPane implements Initializable {
 
-	/** ラベルに表示するテキスト */
     private static String msgText;
 
     /** ラベル */

@@ -8,7 +8,9 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -53,12 +55,12 @@ public class EditPageController extends AnchorPane implements Initializable {
         TitleField.setText(initText[i].getTitle());
         AuthorField.setText(initText[i].getAuthor());
         CompanyField.setText(initText[i].getCompany());
-        PubDayField.setValue(LocalDate.parse(initText[i].getPublishday()));
+        GenreCBox.setValue(initText[i].getGenre());
         if (initText[i].getReadstart() != null)
-        	ReadStartField.setValue(LocalDate.parse(initText[i].getReadstart()));
+        	ReadStartDate.setValue(LocalDate.parse(initText[i].getReadstart()));
         if (initText[i].getReadend() != null)
-        	ReadEndField.setValue(LocalDate.parse(initText[i].getReadend()));
-        MemoField.setText(initText[i].getMemo());
+        	ReadEndDate.setValue(LocalDate.parse(initText[i].getReadend()));
+        MemoArea.setText(initText[i].getMemo());
     }
 
     /**
@@ -71,46 +73,69 @@ public class EditPageController extends AnchorPane implements Initializable {
     @FXML
     private TextField CompanyField;
     @FXML
-    private DatePicker PubDayField;
+    private ComboBox<String> GenreCBox;
     @FXML
-    private DatePicker ReadStartField;
+    private DatePicker ReadStartDate;
     @FXML
-    private DatePicker ReadEndField;
+    private DatePicker ReadEndDate;
     @FXML
-    private TextArea MemoField;
-
+    private TextArea MemoArea;
+    @FXML
+    private Label MsgOutput;
 
     //編集処理
     @FXML
     protected void handleButtonActionEdit() throws ClassNotFoundException{
-    	String[] inputText = new String[7];
+    	String[] inputText = new String[8];
+    	LocalDate start = null, end = null;
+    	Book[] SearchResult = null;
 
-        if (!("".equals(TitleField.getText()) || "".equals(AuthorField.getText()) || "".equals(CompanyField.getText()) ||
-        		PubDayField.getValue() == null)) {
-            inputText[0] = TitleField.getText();
-            inputText[1] = AuthorField.getText();
-            inputText[2] = CompanyField.getText();
-            inputText[3] = PubDayField.getValue().toString();
-            if (ReadStartField.getValue() != null)
-            	inputText[4] = ReadStartField.getValue().toString();
-            if (ReadEndField.getValue() != null)
-            	inputText[5] = ReadEndField.getValue().toString();
+    	//必須入力項目が入力されていない場合、更新不可
+        if ("".equals(TitleField.getText()) || "".equals(AuthorField.getText()) || "".equals(CompanyField.getText()) ||
+        		GenreCBox.getValue() == null) {
+        		MsgOutput.setText("必須の入力項目が入力されていません。");
+        	return;
+        }
 
-            inputText[6] = MemoField.getText();
+        if (ReadStartDate.getValue() != null)
+        	start = ReadStartDate.getValue();
+        if (ReadEndDate.getValue() != null)
+        	end = ReadEndDate.getValue();
+        //読書開始日が読書終了日より大きい場合、更新不可
+        if (start != null && end != null) {
+        	if (start.compareTo(end) > 0) {
+        		MsgOutput.setText("読書開始日は読書終了日以前に設定してください。");
+        		return;
+        	}
+        }
 
-            DatabaseFbooks db = new DatabaseFbooks();
-            String[] Search = new String[4];
-            Search[0] = inputText[0];
-            Book[] SearchResult = db.searchBook(Search, 0);
+        inputText[1] = TitleField.getText();
+        inputText[2] = AuthorField.getText();
+        inputText[3] = CompanyField.getText();
+        inputText[4] = GenreCBox.getValue().toString();
+        if (start != null)
+        	inputText[5] = start.toString();
+        if (end != null)
+        	inputText[6] = end.toString();
+        inputText[7] = MemoArea.getText();
 
+        DatabaseFbooks db = new DatabaseFbooks();
+        String[] Search = new String[5];
+        //登録済みタイトルのチェック
+        if (inputText[1].compareTo(initText[i].title) != 0) {
+            Search[0] = inputText[1];
+            SearchResult = db.searchBook(Search, 0);
             if (SearchResult.length > 0) {
-                //ID、タイトルが同一の場合のみ更新可能、現状タイトルの編集はできない。
-                if (SearchResult[0].id.equals(initText[i].id) &&  inputText[0].equals(initText[i].title)) {
-                    db.updateBook(inputText);
-                    Main.getInstance().sendEditFixController("編集内容が反映されました。", SearchText);
+                if (!SearchResult[0].id.equals(initText[i].id)) {
+                	MsgOutput.setText("登録済みのタイトルです。");
+                	return;
                 }
             }
         }
+
+        inputText[0] = initText[i].id;
+        db.updateBook(inputText);
+        Main.getInstance().sendEditFixController("編集内容が反映されました。", SearchText);
     }
 
     //検索結果ページへ
@@ -119,7 +144,8 @@ public class EditPageController extends AnchorPane implements Initializable {
     	int allflg = 0;
 
     	DatabaseFbooks db = new DatabaseFbooks();
-    	if (SearchText[0] == null && SearchText[1] == null && SearchText[2] == null && SearchText[3] == null)
+    	if (SearchText[0] == null && SearchText[1] == null && SearchText[2] == null &&
+    			SearchText[3] == null && SearchText[4] == null)
     		allflg = 1;
     	Book[] SearchResult = db.searchBook(SearchText, allflg);
         Main.getInstance().sendSearchResController(SearchResult, SearchText);
