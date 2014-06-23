@@ -66,12 +66,12 @@ public class EditFixController extends AnchorPane implements Initializable {
     //検索結果一覧ページへ
     @FXML
     protected void SearchPagehandleButtonAction() throws ClassNotFoundException {
-    	int allflg = 0;
+    	int allflg = 1;
 
     	DatabaseFbooks db = new DatabaseFbooks();
-    	if (SearchText[0] == null && SearchText[1] == null && SearchText[2] == null &&
-    			SearchText[3] == null && SearchText[4] == null)
-    		allflg = 1;
+    	if (SearchText[0] != null || SearchText[1] != null || SearchText[2] != null ||
+    			SearchText[3] != null || SearchText[4] != null)
+    		allflg = 0;
     	Book[] SearchResult = db.searchBook(SearchText, allflg);
         Main.getInstance().sendSearchResController(SearchResult, SearchText);
     }
