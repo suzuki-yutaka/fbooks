@@ -17,6 +17,7 @@ public class Main extends Application {
      * ステージ
      */
     protected static Stage stage;
+    protected static Stage fixStage;
 
     public void start(Stage primaryStage) throws Exception {
         // インスタンス

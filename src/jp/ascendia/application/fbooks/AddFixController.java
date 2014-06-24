@@ -55,16 +55,11 @@ public class AddFixController extends AnchorPane implements Initializable {
     /**
      * ボタンクリックアクション
      */
-
-    //メインページへ
-    @FXML
-    protected void handleButtonAction() {
-        Main.getInstance().MainController();
-    }
     //登録ページへ
     @FXML
     protected void AddPagehandleButtonAction() {
         Main.getInstance().AddController();
+        Main.fixStage.getScene().getWindow().hide();
     }
 
 }

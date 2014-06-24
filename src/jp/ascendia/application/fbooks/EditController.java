@@ -137,15 +137,15 @@ public class EditController extends AnchorPane implements Initializable {
         db.updateBook(inputText);
 
         EditFixController controller = new EditFixController("編集内容が反映されました。", SearchText);
-        SearchResController.editStage.setWidth(400);
-        SearchResController.editStage.setHeight(200);
-        SearchResController.editStage.getScene().setRoot(controller);
+        Main.fixStage.setWidth(400);
+        Main.fixStage.setHeight(200);
+        Main.fixStage.getScene().setRoot(controller);
     }
 
     //検索結果ページへ
     @FXML
     protected void handleButtonAction() throws ClassNotFoundException {
         //編集ウィンドウを閉じる
-        SearchResController.editStage.getScene().getWindow().hide();
+        Main.fixStage.getScene().getWindow().hide();
     }
 }

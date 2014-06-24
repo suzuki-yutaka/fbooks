@@ -24,10 +24,6 @@ import javafx.stage.Stage;
 
 
 public class SearchResController extends AnchorPane implements Initializable {
-    /**
-     * ステージ
-     */
-    protected static Stage editStage;
 
     /**
      * コンストラクタ
@@ -198,7 +194,7 @@ public class SearchResController extends AnchorPane implements Initializable {
 	        		EditController controller = new EditController(SearchResult, Integer.parseInt(Edit.getId()), SearchText);
 	                Scene editScene = new Scene(controller);
 		            Stage stage = new Stage();
-		            editStage = stage;
+		            Main.fixStage = stage;
 		            stage.setTitle("検索結果");
 		            stage.setScene(editScene);
 		            stage.setX(400);

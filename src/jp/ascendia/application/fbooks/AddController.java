@@ -8,13 +8,15 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class AddController extends AnchorPane implements Initializable {
 
@@ -66,9 +68,6 @@ public class AddController extends AnchorPane implements Initializable {
     @FXML
     private Label MsgOutput;
 
-	@FXML
-	private Button addButton;
-
     //登録処理
     @FXML
     protected void handleButtonActionAdd() throws ClassNotFoundException {
@@ -116,7 +115,18 @@ public class AddController extends AnchorPane implements Initializable {
 
         db.addBook(inputText);
         //確定ページ
-        MsgOutput.setText("登録されました!");
+
+        AddFixController controller = new AddFixController("登録されました！");
+        Scene fixScene = new Scene(controller);
+        Stage stage = new Stage();
+        Main.fixStage = stage;
+        stage.setWidth(400);
+        stage.setHeight(200);
+        stage.setTitle("検索結果");
+        stage.setScene(fixScene);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(Main.stage);
+        stage.show();
     }
 
     //メインページへ

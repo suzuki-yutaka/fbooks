@@ -70,6 +70,6 @@ public class EditFixController extends AnchorPane implements Initializable {
         Main.getInstance().SearchResController(SearchResult, SearchText, allflg);
 
         //編集ウィンドウを閉じる
-        SearchResController.editStage.getScene().getWindow().hide();
+        Main.fixStage.getScene().getWindow().hide();
     }
 }
