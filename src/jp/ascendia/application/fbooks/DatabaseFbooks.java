@@ -73,7 +73,8 @@ public class DatabaseFbooks {
             connect();
 
             PreparedStatement statement = connection.prepareStatement(
-            		"UPDATE book_table SET b_title = ?, b_author = ?, b_company = ?, b_genre = ?, b_read_start = ?, b_read_end = ?, b_memo = ? WHERE b_id = ?" );
+            		"UPDATE book_table SET b_title = ?, b_author = ?, b_company = ?, b_genre = ?,"
+            		+ " b_read_start = ?, b_read_end = ?, b_memo = ? WHERE b_id = ?" );
             statement.setString(1, text[1]);
             statement.setString(2, text[2]);
             statement.setString(3, text[3]);
@@ -94,7 +95,8 @@ public class DatabaseFbooks {
         try {
             connect();
 
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM book_table WHERE b_title = ?");
+            PreparedStatement statement = connection.prepareStatement(
+            		"DELETE FROM book_table WHERE b_title = ?");
             statement.setString(1, text[i].title);
             statement.executeUpdate();
 
@@ -115,7 +117,8 @@ public class DatabaseFbooks {
                 		"SELECT * FROM book_table" );
             } else {
                 statement = connection.prepareStatement(
-                		"SELECT * FROM book_table WHERE b_title = ? or b_author = ? or b_genre = ? or b_read_start = ? or b_read_end = ?" );
+                		"SELECT * FROM book_table WHERE b_title = ? or b_author = ? or b_genre = ?"
+                		+ " or b_read_start = ? or b_read_end = ?" );
                 statement.setString(1, text[0]);
                 statement.setString(2, text[1]);
                 statement.setString(3, text[2]);

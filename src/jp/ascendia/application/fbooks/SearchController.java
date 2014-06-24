@@ -9,15 +9,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 
-public class SearchPageController extends AnchorPane implements Initializable {
+public class SearchController extends AnchorPane implements Initializable {
     /**
      * コンストラクタ
      */
-    public SearchPageController() {
+    public SearchController() {
         loadFXML();
     }
 
@@ -56,6 +57,8 @@ public class SearchPageController extends AnchorPane implements Initializable {
     private DatePicker ReadStartDate;
     @FXML
     private DatePicker ReadEndDate;
+    @FXML
+    private Label MsgOutput;
 
     //検索処理
     @FXML
@@ -89,16 +92,26 @@ public class SearchPageController extends AnchorPane implements Initializable {
 
         if(SearchResult.length > 0) {
         	//検索結果表示ページへ
-        	Main.getInstance().sendSearchResController(SearchResult, SearchText);
+        	Main.getInstance().SearchResController(SearchResult, SearchText, allflg);
         } else {
         	//検索失敗
-            Main.getInstance().sendSearchFixController("見つかりませんでした。");
+        	MsgOutput.setText("見つかりませんでした。");
         }
     }
 
     //メインページへ
     @FXML
     protected void handleButtonAction() {
-        Main.getInstance().sendMainController();
+        Main.getInstance().MainController();
+    }
+
+	@FXML
+    protected void homePage() {
+        Main.getInstance().MainController();
+    }
+
+	@FXML
+    protected void AddPage() {
+        Main.getInstance().AddController();
     }
 }

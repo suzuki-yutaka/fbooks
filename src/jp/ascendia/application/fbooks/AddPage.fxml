@@ -9,7 +9,7 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="40.0" layoutY="40.0" prefHeight="42.0" prefWidth="153.0" styleClass="title" text="書籍登録" />
+      <Label layoutX="40.0" layoutY="50.0" prefHeight="42.0" prefWidth="153.0" styleClass="title" text="書籍登録" />
       <Label fx:id="MsgOutput" layoutX="224.0" layoutY="67.0" prefHeight="30.0" prefWidth="406.0" textFill="RED">
          <font>
             <Font size="16.0" />
@@ -94,8 +94,16 @@
                </font></Label>
          </children>
       </Pane>
-      <Button layoutX="330.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleButtonActionAdd" text="登録" />
-      <Button layoutX="390.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleButtonAction" text="戻る" />
+      <HBox prefHeight="30.0" style="-fx-background-color: #eeeeee;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" style="-fx-font-size: 14px; -fx-underline: true; -fx-text-fill: #1e90ff;" onMouseClicked="#homePage" prefHeight="30.0" prefWidth="70.0" text="ホーム" />
+            <Label alignment="CENTER" style="-fx-font-size: 14px; -fx-underline: true; -fx-text-fill: #1e90ff;" onMouseClicked="#SearchPage" prefHeight="30.0" prefWidth="70.0" text="検索" />
+         </children>
+      </HBox>
+      <Button layoutX="350.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleButtonActionAdd" text="登録">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
    </children>
    <stylesheets>
       <URL value="@../css/main.css" />

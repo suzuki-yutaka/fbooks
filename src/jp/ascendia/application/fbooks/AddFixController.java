@@ -59,11 +59,12 @@ public class AddFixController extends AnchorPane implements Initializable {
     //メインページへ
     @FXML
     protected void handleButtonAction() {
-        Main.getInstance().sendMainController();
+        Main.getInstance().MainController();
     }
     //登録ページへ
     @FXML
     protected void AddPagehandleButtonAction() {
-        Main.getInstance().sendAddPageController();
+        Main.getInstance().AddController();
     }
+
 }

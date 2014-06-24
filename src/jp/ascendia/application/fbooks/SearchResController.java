@@ -9,23 +9,81 @@ import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 
 public class SearchResController extends AnchorPane implements Initializable {
+    /**
+     * ステージ
+     */
+    protected static Stage editStage;
 
     /**
      * コンストラクタ
      */
     //検索結果出力
-    public SearchResController(Book[] SearchResult, String[] SearchText) throws ClassNotFoundException {
+    public SearchResController(Book[] SearchResult, String[] SearchText, int allflg) throws ClassNotFoundException {
+        //メニューボタン
+        Scene scene = Main.stage.getScene();
+        String style = Main.class.getResource("../css/Main.css").toExternalForm();
+        scene.getStylesheets().add(style);
+
+    	HBox menu = new HBox();
+    	menu.setStyle("-fx-background-color: #eeeeee;");
+    	AnchorPane.setLeftAnchor(menu, 0.0);
+    	AnchorPane.setRightAnchor(menu, 0.0);
+    	Label home = new Label("ホーム");
+    	home.setPrefWidth(70);
+    	home.setPrefHeight(30);
+    	home.setAlignment(Pos.CENTER);
+    	home.setStyle("-fx-font-size: 14px; -fx-underline: true; -fx-text-fill: #1e90ff;");
+    	Label add = new Label("登録");
+    	add.setPrefWidth(70);
+    	add.setPrefHeight(30);
+    	add.setAlignment(Pos.CENTER);
+    	add.setStyle("-fx-font-size: 14px; -fx-underline: true; -fx-text-fill: #1e90ff;");
+    	Label search = new Label("検索");
+    	search.setPrefWidth(70);
+    	search.setPrefHeight(30);
+    	search.setAlignment(Pos.CENTER);
+    	search.setStyle("-fx-font-size: 14px; -fx-underline: true; -fx-text-fill: #1e90ff;");
+
+    	home.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        	@Override
+        	public void handle(MouseEvent mouseEvent) {
+        		Main.getInstance().MainController();
+        	}
+        });
+
+    	add.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        	@Override
+        	public void handle(MouseEvent mouseEvent) {
+        		Main.getInstance().AddController();
+        	}
+        });
+
+    	search.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        	@Override
+        	public void handle(MouseEvent mouseEvent) {
+        		Main.getInstance().SearchController();
+        	}
+        });
+    	menu.getChildren().add(home);
+    	menu.getChildren().add(add);
+    	menu.getChildren().add(search);
+    	this.getChildren().add(menu);
+
         //検索結果件数
         HBox hbox = new HBox();
         Label Num  = new Label(Integer.toString(SearchResult.length));
@@ -33,15 +91,15 @@ public class SearchResController extends AnchorPane implements Initializable {
         hbox.getChildren().add(Num);
         hbox.getChildren().add(NumText);
         hbox.setLayoutX(37);
-        hbox.setLayoutY(37);
+        hbox.setLayoutY(57);
         hbox.setStyle("-fx-font-size: 24px;");
         this.getChildren().add(hbox);
 
         //スクロールパネル作成
         ScrollPane sp = new ScrollPane();
-        sp.setPrefSize(750, 400);
+        sp.setPrefSize(750, 443);
         sp.setLayoutX(17);
-        sp.setLayoutY(80);
+        sp.setLayoutY(100);
 
         //グリッドパネル格納用のVBox作成
         VBox vbox = new VBox();
@@ -51,7 +109,7 @@ public class SearchResController extends AnchorPane implements Initializable {
         vbox.setStyle("-fx-background-color: white;");
 
         for (int i = 0; i < SearchResult.length; i++) {
-            //グリッドパネル作成
+            //検索結果格納、グリッドパネル作成
             GridPane grid = new GridPane();
             grid.setPadding(new Insets(30, 0, 30, 100));
             grid.setVgap(5);
@@ -137,7 +195,19 @@ public class SearchResController extends AnchorPane implements Initializable {
 	        Edit.setOnAction(new EventHandler<ActionEvent>() {
 	        	@Override
 	        	public void handle(ActionEvent actionEvent) {
-	        		Main.getInstance().sendEditPageController(SearchResult, Integer.parseInt(Edit.getId()), SearchText);
+	        		EditController controller = new EditController(SearchResult, Integer.parseInt(Edit.getId()), SearchText);
+	                Scene editScene = new Scene(controller);
+		            Stage stage = new Stage();
+		            editStage = stage;
+		            stage.setTitle("検索結果");
+		            stage.setScene(editScene);
+		            stage.setX(400);
+		            stage.setY(100);
+		            stage.setWidth(800);
+		            stage.setHeight(600);
+		            stage.initModality(Modality.WINDOW_MODAL);
+		            stage.initOwner(Main.stage);
+		            stage.show();
 	        	}
 	        });
 
@@ -148,8 +218,13 @@ public class SearchResController extends AnchorPane implements Initializable {
 	                DatabaseFbooks db = new DatabaseFbooks();
 	                db.deleteBook(SearchResult, Integer.parseInt(Edit.getId()));
 
-	                //確定ページへ
-	                Main.getInstance().sendEditFixController("削除されました。", SearchText);
+	                Book[] SearchResult = db.searchBook(SearchText, allflg);
+	                try {
+						Main.getInstance().SearchResController(SearchResult, SearchText, allflg);
+					} catch (ClassNotFoundException e) {
+						// TODO 自動生成された catch ブロック
+						e.printStackTrace();
+					}
 	        	}
 	        });
 
@@ -163,22 +238,6 @@ public class SearchResController extends AnchorPane implements Initializable {
         }
         sp.setContent(vbox);
         this.getChildren().add(sp);
-
-        //戻るボタン
-        HBox hbox2 = new HBox();
-        Button back = new Button("戻る");
-        hbox2.setLayoutX(360);
-        hbox2.setLayoutY(500);
-        hbox2.setAlignment(Pos.BOTTOM_CENTER);
-        hbox2.getChildren().add(back);
-        this.getChildren().add(hbox2);
-
-        back.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-            	Main.getInstance().sendSearchPageController();
-            }
-        });
     }
 
     @Override

@@ -16,7 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 
-public class EditPageController extends AnchorPane implements Initializable {
+public class EditController extends AnchorPane implements Initializable {
     private static Book[] initText;
     private static int i;
     private static String[] SearchText;
@@ -24,7 +24,7 @@ public class EditPageController extends AnchorPane implements Initializable {
 	/**
      * コンストラクタ
      */
-    public EditPageController(Book[] SearchResult, int num, String[] text) {
+    public EditController(Book[] SearchResult, int num, String[] text) {
         initText = SearchResult;
         i = num;
         SearchText = text;
@@ -135,19 +135,17 @@ public class EditPageController extends AnchorPane implements Initializable {
 
         inputText[0] = initText[i].id;
         db.updateBook(inputText);
-        Main.getInstance().sendEditFixController("編集内容が反映されました。", SearchText);
+
+        EditFixController controller = new EditFixController("編集内容が反映されました。", SearchText);
+        SearchResController.editStage.setWidth(400);
+        SearchResController.editStage.setHeight(200);
+        SearchResController.editStage.getScene().setRoot(controller);
     }
 
     //検索結果ページへ
     @FXML
     protected void handleButtonAction() throws ClassNotFoundException {
-    	int allflg = 1;
-
-    	DatabaseFbooks db = new DatabaseFbooks();
-    	if (SearchText[0] != null || SearchText[1] != null || SearchText[2] != null ||
-    			SearchText[3] != null || SearchText[4] != null)
-    		allflg = 0;
-    	Book[] SearchResult = db.searchBook(SearchText, allflg);
-        Main.getInstance().sendSearchResController(SearchResult, SearchText);
+        //編集ウィンドウを閉じる
+        SearchResController.editStage.getScene().getWindow().hide();
     }
 }

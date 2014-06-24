@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -15,12 +16,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-public class AddPageController extends AnchorPane implements Initializable {
+public class AddController extends AnchorPane implements Initializable {
 
     /**
      * コンストラクタ
      */
-    public AddPageController() {
+    public AddController() {
         loadFXML();
     }
 
@@ -28,7 +29,6 @@ public class AddPageController extends AnchorPane implements Initializable {
      * FXMLのロード
      */
     private void loadFXML() {
-
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("AddPage.fxml"));
         fxmlLoader.setRoot(this);
 
@@ -65,6 +65,9 @@ public class AddPageController extends AnchorPane implements Initializable {
     private TextArea MemoArea;
     @FXML
     private Label MsgOutput;
+
+	@FXML
+	private Button addButton;
 
     //登録処理
     @FXML
@@ -113,12 +116,22 @@ public class AddPageController extends AnchorPane implements Initializable {
 
         db.addBook(inputText);
         //確定ページ
-        Main.getInstance().sendAddFixController("登録されました。");
+        MsgOutput.setText("登録されました!");
     }
 
     //メインページへ
 	@FXML
     protected void handleButtonAction() {
-        Main.getInstance().sendMainController();
+        Main.getInstance().MainController();
+    }
+
+	@FXML
+    protected void homePage() {
+        Main.getInstance().MainController();
+    }
+
+	@FXML
+    protected void SearchPage() {
+        Main.getInstance().SearchController();
     }
 }

@@ -16,7 +16,7 @@ public class Main extends Application {
     /**
      * ステージ
      */
-    private Stage stage;
+    protected static Stage stage;
 
     public void start(Stage primaryStage) throws Exception {
         // インスタンス
@@ -28,7 +28,7 @@ public class Main extends Application {
         stage.setHeight(600);
 
         // メインページに遷移
-        sendMainController();
+        MainController();
 
         stage.show();
     }
@@ -43,7 +43,7 @@ public class Main extends Application {
     /**
      * メインページへ遷移
      */
-    public void sendMainController() {
+    public void MainController() {
 
         stage.setTitle("メインページ");
 
@@ -54,22 +54,22 @@ public class Main extends Application {
     /**
      * 登録ページへ遷移
      */
-    public void sendAddPageController() {
+    public void AddController() {
 
         stage.setTitle("書籍登録");
 
-        AddPageController controller = new AddPageController();
+        AddController controller = new AddController();
         this.replaceSceneContent(controller);
     }
 
     /**
      * 検索ページへ遷移
      */
-    public void sendSearchPageController() {
+    public void SearchController() {
 
         stage.setTitle("書籍検索");
 
-        SearchPageController controller = new SearchPageController();
+        SearchController controller = new SearchController();
         this.replaceSceneContent(controller);
     }
 
@@ -77,15 +77,11 @@ public class Main extends Application {
      * 検索結果ページへ遷移
      * @param Book[], String[]
      */
-    public void sendSearchResController(Book[] SearchResult, String[] SearchText) throws ClassNotFoundException {
+    public void SearchResController(Book[] SearchResult, String[] SearchText, int allflg) throws ClassNotFoundException {
 
         stage.setTitle("検索結果");
 
-        Scene scene = stage.getScene();
-        String style = Main.class.getResource("../css/Main.css").toExternalForm();
-        scene.getStylesheets().add(style);
-
-        SearchResController controller = new SearchResController(SearchResult, SearchText);
+        SearchResController controller = new SearchResController(SearchResult, SearchText, allflg);
         this.replaceSceneContent(controller);
     }
 
@@ -93,11 +89,11 @@ public class Main extends Application {
      * 編集ページへ遷移
      * @param Book[], int, String[]
      */
-    public void sendEditPageController(Book[] SearchResult, int num, String[] SearchText) {
+    public void EditController(Book[] SearchResult, int num, String[] SearchText) {
 
         stage.setTitle("書籍編集");
 
-        EditPageController controller = new EditPageController(SearchResult, num, SearchText);
+        EditController controller = new EditController(SearchResult, num, SearchText);
         this.replaceSceneContent(controller);
     }
 
@@ -105,35 +101,11 @@ public class Main extends Application {
      * 登録完了ページへ遷移
      * @param String
      */
-    public void sendAddFixController(String FixText) {
+    public void AddFixController(String FixText) {
 
         stage.setTitle("登録完了");
 
         AddFixController controller = new AddFixController(FixText);
-        this.replaceSceneContent(controller);
-    }
-
-    /**
-     * 編集完了ページへ遷移
-     * @param String, String[]
-     */
-    public void sendEditFixController(String FixText, String[] SearchText) {
-
-        stage.setTitle("編集完了");
-
-        EditFixController controller = new EditFixController(FixText, SearchText);
-        this.replaceSceneContent(controller);
-    }
-
-    /**
-     * 検索結果ページへ遷移
-     * @param String
-     */
-    public void sendSearchFixController(String FixText) {
-
-        stage.setTitle("検索結果");
-
-        SearchFixController controller = new SearchFixController(FixText);
         this.replaceSceneContent(controller);
     }
 

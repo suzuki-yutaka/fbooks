@@ -98,8 +98,14 @@
                </font></Label>
          </children>
       </Pane>
-      <Button layoutX="330.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleButtonActionEdit" text="更新" />
-      <Button layoutX="390.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleButtonAction" text="戻る" />
+      <Button layoutX="325.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleButtonActionEdit" text="更新">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="395.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleButtonAction" text="閉じる">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
    </children>
    <stylesheets>
       <URL value="@../css/main.css" />

@@ -47,13 +47,13 @@ public class MainController extends AnchorPane implements Initializable {
     //登録ページへ
     @FXML
     protected void handleButtonActionAddPage() {
-        Main.getInstance().sendAddPageController();
+        Main.getInstance().AddController();
     }
 
     //検索ページへ
     @FXML
     protected void handleButtonActionSearPage() {
-        Main.getInstance().sendSearchPageController();
+        Main.getInstance().SearchController();
     }
 
     //アプリケーション終了

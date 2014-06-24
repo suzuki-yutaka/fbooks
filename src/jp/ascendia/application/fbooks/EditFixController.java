@@ -57,12 +57,6 @@ public class EditFixController extends AnchorPane implements Initializable {
     /**
      * ボタンクリックアクション
      */
-
-    //メインページへ
-    @FXML
-    protected void handleButtonAction() {
-        Main.getInstance().sendMainController();
-    }
     //検索結果一覧ページへ
     @FXML
     protected void SearchPagehandleButtonAction() throws ClassNotFoundException {
@@ -73,6 +67,9 @@ public class EditFixController extends AnchorPane implements Initializable {
     			SearchText[3] != null || SearchText[4] != null)
     		allflg = 0;
     	Book[] SearchResult = db.searchBook(SearchText, allflg);
-        Main.getInstance().sendSearchResController(SearchResult, SearchText);
+        Main.getInstance().SearchResController(SearchResult, SearchText, allflg);
+
+        //編集ウィンドウを閉じる
+        SearchResController.editStage.getScene().getWindow().hide();
     }
 }
