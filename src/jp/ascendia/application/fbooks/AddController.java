@@ -98,7 +98,7 @@ public class AddController extends AnchorPane implements Initializable {
         //登録済みタイトルのチェック
         Search[0] = TitleField.getText();
         Book[] SearchResult = db.searchBook(Search, 0);
-        if (SearchResult.length > 0) {
+        if (SearchResult != null && SearchResult.length > 0) {
             MsgOutput.setText("登録済みのタイトルです。");
             return;
         }

@@ -90,7 +90,7 @@ public class SearchController extends AnchorPane implements Initializable {
         DatabaseFbooks db = new DatabaseFbooks();
         Book[] SearchResult = db.searchBook(SearchText, allflg);
 
-        if(SearchResult.length > 0) {
+        if(SearchResult != null && SearchResult.length > 0) {
         	//検索結果表示ページへ
         	Main.getInstance().SearchResController(SearchResult, SearchText, allflg);
         } else {

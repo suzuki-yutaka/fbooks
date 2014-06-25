@@ -125,7 +125,7 @@ public class EditController extends AnchorPane implements Initializable {
         if (inputText[1].compareTo(initText[i].title) != 0) {
             Search[0] = inputText[1];
             SearchResult = db.searchBook(Search, 0);
-            if (SearchResult.length > 0) {
+            if (SearchResult != null && SearchResult.length > 0) {
                 if (!SearchResult[0].id.equals(initText[i].id)) {
                 	MsgOutput.setText("登録済みのタイトルです。");
                 	return;

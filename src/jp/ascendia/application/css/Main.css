@@ -10,8 +10,9 @@
 	-fx-font-size: 36px;
 	-fx-font-family: sans-serif;
 	-fx-font-weight: bolder;
-	/*-fx-text-fill: linear-gradient(rgba(240,240,255,0.8), rgba(120,120,255,0.5));
-	*/-fx-effect: dropshadow( two-pass-box , rgba( 0, 0, 120, 1),3, 0, 1, 1 );
+	-fx-text-fill: #1e90ff;
+	/*-fx-text-fill: linear-gradient(rgba(240,240,255,0.8), rgba(120,120,255,0.5));*/
+	-fx-effect: dropshadow( two-pass-box , rgba( 0, 0, 120, 1),3, 0, 1, 1 );
 	/*-fx-underline:true;*/
 }
 
