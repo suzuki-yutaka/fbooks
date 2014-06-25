@@ -11,7 +11,8 @@ import java.util.Vector;
 public class DatabaseFbooks {
     Connection connection;
     static final String NAME = "org.sqlite.JDBC";
-    static final String DATABASE_URL = "jdbc:sqlite:C:/Users/Owner/Desktop/Fbooks_common/book_table.db";
+    static final String DATABASE_URL = "jdbc:sqlite:book.db";
+
     public DatabaseFbooks() {
         connect();
     }
