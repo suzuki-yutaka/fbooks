@@ -9,6 +9,12 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <HBox prefHeight="30.0" style="-fx-background-color: #eeeeee;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" style="-fx-font-size: 14px; -fx-underline: true; -fx-text-fill: #1e90ff;" onMouseClicked="#handleButtonActionHomePage" prefHeight="30.0" prefWidth="70.0" text="ホーム" />
+            <Label alignment="CENTER" style="-fx-font-size: 14px; -fx-underline: true; -fx-text-fill: #1e90ff;" onMouseClicked="#handleButtonActionSearchPage" prefHeight="30.0" prefWidth="70.0" text="検索" />
+         </children>
+      </HBox>
       <Label layoutX="40.0" layoutY="50.0" prefHeight="42.0" prefWidth="153.0" styleClass="title" text="書籍登録" />
       <Label fx:id="MsgOutput" layoutX="224.0" layoutY="67.0" prefHeight="30.0" prefWidth="406.0" textFill="RED">
          <font>
@@ -36,11 +42,11 @@
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Label alignment="CENTER_RIGHT" layoutX="35.0" layoutY="256.0" prefHeight="22.0" prefWidth="57.0" text="メモ：">
+            <Label layoutX="283.0" layoutY="211.0" prefHeight="22.0" prefWidth="100.0" text="読書終了日：">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Label layoutX="283.0" layoutY="211.0" prefHeight="22.0" prefWidth="100.0" text="読書終了日：">
+            <Label alignment="CENTER_RIGHT" layoutX="35.0" layoutY="256.0" prefHeight="22.0" prefWidth="57.0" text="メモ：">
                <font>
                   <Font size="18.0" />
                </font></Label>
@@ -56,12 +62,6 @@
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <TextArea fx:id="MemoArea" layoutX="105.0" layoutY="257.0" prefHeight="60.0" prefWidth="450.0">
-               <font>
-                  <Font size="14.0" />
-               </font></TextArea>
-            <DatePicker fx:id="ReadStartDate" layoutX="105.0" layoutY="211.0" />
-            <DatePicker fx:id="ReadEndDate" layoutX="393.0" layoutY="211.0" />
             <ComboBox fx:id="GenreCBox" layoutX="105.0" layoutY="168.0" prefWidth="180.0">
                <items>
                   <FXCollections fx:factory="observableArrayList">
@@ -88,18 +88,18 @@
                   </FXCollections>
                </items>
             </ComboBox>
+            <DatePicker fx:id="ReadStartDate" layoutX="105.0" layoutY="211.0" />
+            <DatePicker fx:id="ReadEndDate" layoutX="393.0" layoutY="211.0" />
+            <TextArea fx:id="MemoArea" layoutX="105.0" layoutY="257.0" prefHeight="60.0" prefWidth="450.0">
+               <font>
+                  <Font size="14.0" />
+               </font></TextArea>
             <Label layoutX="105.0" layoutY="334.0" prefHeight="18.0" prefWidth="153.0" text="※は必須の入力項目です。">
                <font>
                   <Font size="14.0" />
                </font></Label>
          </children>
       </Pane>
-      <HBox prefHeight="30.0" style="-fx-background-color: #eeeeee;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label alignment="CENTER" style="-fx-font-size: 14px; -fx-underline: true; -fx-text-fill: #1e90ff;" onMouseClicked="#homePage" prefHeight="30.0" prefWidth="70.0" text="ホーム" />
-            <Label alignment="CENTER" style="-fx-font-size: 14px; -fx-underline: true; -fx-text-fill: #1e90ff;" onMouseClicked="#SearchPage" prefHeight="30.0" prefWidth="70.0" text="検索" />
-         </children>
-      </HBox>
       <Button layoutX="350.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleButtonActionAdd" text="登録">
          <font>
             <Font size="14.0" />

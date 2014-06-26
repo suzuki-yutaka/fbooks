@@ -15,7 +15,7 @@
              <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="300.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleButtonActionSearPage" prefHeight="50.0" prefWidth="138.0" text="検索">
+      <Button layoutX="300.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleButtonActionSearchPage" prefHeight="50.0" prefWidth="138.0" text="検索">
          <font>
             <Font size="14.0" />
          </font>
