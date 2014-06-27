@@ -6,13 +6,11 @@ import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 
 public class CreateOutputElement {
 
-  public void linkLabelCreate(String text, HBox hbox) {
+  public Label linkLabelCreate(String text) {
 
     Label linkLabel = new Label(text);
     linkLabel.setPrefWidth(70);
@@ -20,14 +18,7 @@ public class CreateOutputElement {
     //css用のID登録
     linkLabel.setId("linkLabel");
 
-    linkLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent mouseEvent) {
-        Main.getInstance().mainController();
-      }
-    });
-
-    hbox.getChildren().add(linkLabel);
+    return linkLabel;
   }
 
   public void bookHeadLabelCreate(String text, GridPane grid, int num) {

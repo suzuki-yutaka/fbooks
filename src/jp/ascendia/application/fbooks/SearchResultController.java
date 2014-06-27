@@ -3,11 +3,13 @@ package jp.ascendia.application.fbooks;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -29,16 +31,41 @@ public class SearchResultController extends AnchorPane implements Initializable 
     scene.getStylesheets().add(style);
 
     //ページリンク作成
-    HBox menu = new HBox();
+    HBox linkBox = new HBox();
     //css用のID登録
-    menu.setId("menu");
-    AnchorPane.setLeftAnchor(menu, 0.0);
-    AnchorPane.setRightAnchor(menu, 0.0);
+    linkBox.setId("linkBox");
+    AnchorPane.setLeftAnchor(linkBox, 0.0);
+    AnchorPane.setRightAnchor(linkBox, 0.0);
+
     //ページ遷移用label作成
-    cp.linkLabelCreate("ホーム", menu);
-    cp.linkLabelCreate("登録", menu);
-    cp.linkLabelCreate("検索", menu);
-    this.getChildren().add(menu);
+    Label home = cp.linkLabelCreate("ホーム");
+    home.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent mouseEvent) {
+        Main.getInstance().mainController();
+      }
+    });
+    linkBox.getChildren().add(home);
+
+    Label add = cp.linkLabelCreate("登録");
+    add.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent mouseEvent) {
+        Main.getInstance().addController();
+      }
+    });
+    linkBox.getChildren().add(add);
+
+    Label search = cp.linkLabelCreate("検索");
+    search.setOnMouseClicked(new EventHandler<MouseEvent>() {
+      @Override
+      public void handle(MouseEvent mouseEvent) {
+        Main.getInstance().searchController();
+      }
+    });
+    linkBox.getChildren().add(search);
+
+    this.getChildren().add(linkBox);
 
     //検索結果件数
     HBox hbox = new HBox();
