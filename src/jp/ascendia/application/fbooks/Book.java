@@ -17,7 +17,8 @@ public class Book {
     this.title = title;
     this.author = author;
     this.company = company;
-    this.genre = genre;
+    if (genre != null)
+      this.genre = genre;
     if (readStart != null)
       this.readStart = readStart.toString();
     if (readEnd != null)

@@ -63,29 +63,15 @@ public class SearchController extends AnchorPane implements Initializable {
   @FXML
   protected void handleButtonActionSearRes() throws ClassNotFoundException {
     Book searchText = new Book();
-    int allFlg = 1;
 
-    if (!"".equals(TitleField.getText())) {
-      searchText.setTitle(TitleField.getText());
-      allFlg = 0;
-    }
-    if (!"".equals(AuthorField.getText())) {
-      searchText.setAuthor(AuthorField.getText());
-      allFlg = 0;
-    }
-    if (GenreCBox.getValue() != null) {
-      searchText.setGenre(GenreCBox.getValue().toString());
-      allFlg = 0;
-    }
-    if (ReadStartDate.getValue() != null) {
-      searchText.setReadStart(ReadStartDate.getValue().toString());
-      allFlg = 0;
-    }
-    if (ReadEndDate.getValue() != null) {
-      searchText.setReadEnd(ReadEndDate.getValue().toString());
-      allFlg = 0;
-    }
+    //入力値の取得
+    searchText.setAll(TitleField.getText(), AuthorField.getText(), "",
+        GenreCBox.getValue(), ReadStartDate.getValue(), ReadEndDate.getValue(), "");
 
+    //全件検索チェック
+    int allFlg = ValueCheck.searchAllCheck(searchText);
+
+    //データベース検索
     DatabaseFbooks db = new DatabaseFbooks();
     Book[] searchResult = db.searchBook(searchText, allFlg);
 

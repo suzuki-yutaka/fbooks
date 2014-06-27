@@ -63,16 +63,15 @@ public class FixController extends AnchorPane implements Initializable {
       //登録ページへ戻る
       Main.getInstance().addController();
     } else {
-      int allflg = 1;
+      //全件検索チェック
+      int allFlg = ValueCheck.searchAllCheck(searchText);
 
+      //データベース検索
       DatabaseFbooks db = new DatabaseFbooks();
-      if (searchText.getTitle() != null || searchText.getAuthor() != null || searchText.getGenre()!= null ||
-          searchText.getReadStart() != null || searchText.getReadEnd() != null)
-        allflg = 0;
-      Book[] searchResult = db.searchBook(searchText, allflg);
+      Book[] searchResult = db.searchBook(searchText, allFlg);
 
       //検索結果一覧ページへ戻る
-      Main.getInstance().searchResultController(searchResult, searchText, allflg);
+      Main.getInstance().searchResultController(searchResult, searchText, allFlg);
     }
 
     //編集ウィンドウを閉じる

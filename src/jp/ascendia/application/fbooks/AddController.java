@@ -2,7 +2,6 @@ package jp.ascendia.application.fbooks;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -72,44 +71,34 @@ public class AddController extends AnchorPane implements Initializable {
   @FXML
   protected void handleButtonActionAdd() throws ClassNotFoundException {
     Book input = new Book();
-    LocalDate start = null, end = null;
 
-    //必須入力項目が入力されていない場合、登録不可
-    if ("".equals(TitleField.getText()) || "".equals(AuthorField.getText()) || "".equals(CompanyField.getText()) ||
-        GenreCBox.getValue() == null) {
-      MsgOutput.setText("必須の入力項目が入力されていません。");
+    //入力値の取得
+    input.setAll(TitleField.getText(), AuthorField.getText(), CompanyField.getText(),
+        GenreCBox.getValue(), ReadStartDate.getValue(), ReadEndDate.getValue(), MemoArea.getText());
+
+    //入力値チェック
+    String result = ValueCheck.inputValueCheck(input);
+    if (!result.equals("OK")) {
+      MsgOutput.setText(result);
       return;
     }
 
-    if (ReadStartDate.getValue() != null)
-      start = ReadStartDate.getValue();
-    if (ReadEndDate.getValue() != null)
-      end = ReadEndDate.getValue();
-    //読書開始日が読書終了日より大きい場合、登録不可
-    if (start != null && end != null) {
-      if (start.compareTo(end) > 0) {
-        MsgOutput.setText("読書開始日は読書終了日以前に設定してください。");
-        return;
-      }
-    }
-
-    DatabaseFbooks db = new DatabaseFbooks();
+    //データベース検索
     Book searchTmp = new Book();
-    //登録済みタイトルのチェック
     searchTmp.setTitle(TitleField.getText());
+    DatabaseFbooks db = new DatabaseFbooks();
     Book[] searchResult = db.searchBook(searchTmp, 0);
+
+    //登録済みタイトルのチェック
     if (searchResult != null && searchResult.length > 0) {
       MsgOutput.setText("登録済みのタイトルです。");
       return;
     }
 
-    input.setAll(TitleField.getText(), AuthorField.getText(), CompanyField.getText(),
-        GenreCBox.getValue().toString(), start, end, MemoArea.getText());
-
     //データベース登録
     db.addBook(input);
 
-    //確定ウィンドウ表示
+    //登録完了ウィンドウ表示
     FixController controller = new FixController("登録されました！", null);
     Scene fixScene = new Scene(controller);
     Stage stage = new Stage();

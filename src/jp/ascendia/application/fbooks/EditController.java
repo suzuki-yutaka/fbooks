@@ -84,51 +84,41 @@ public class EditController extends AnchorPane implements Initializable {
   @FXML
   protected void handleButtonActionEdit() throws ClassNotFoundException {
     Book input = new Book();
-    LocalDate start = null, end = null;
-    Book[] searchResult = null;
 
-    //必須入力項目が入力されていない場合、更新不可
-    if ("".equals(TitleField.getText()) || "".equals(AuthorField.getText()) || "".equals(CompanyField.getText()) ||
-        GenreCBox.getValue() == null) {
-      MsgOutput.setText("必須の入力項目が入力されていません。");
+    //入力値の取得
+    input.setAll(TitleField.getText(), AuthorField.getText(), CompanyField.getText(),
+        GenreCBox.getValue(), ReadStartDate.getValue(), ReadEndDate.getValue(), MemoArea.getText());
+
+    //入力値チェック
+    String outputText = ValueCheck.inputValueCheck(input);
+    if (!outputText.equals("OK")) {
+      MsgOutput.setText(outputText);
       return;
     }
 
-    if (ReadStartDate.getValue() != null)
-      start = ReadStartDate.getValue();
-    if (ReadEndDate.getValue() != null)
-      end = ReadEndDate.getValue();
-    //読書開始日が読書終了日より大きい場合、更新不可
-    if (start != null && end != null) {
-      if (start.compareTo(end) > 0) {
-        MsgOutput.setText("読書開始日は読書終了日以前に設定してください。");
-        return;
-      }
-    }
-
-    input.setAll(TitleField.getText(), AuthorField.getText(), CompanyField.getText(),
-        GenreCBox.getValue().toString(), start, end, MemoArea.getText());
-
     DatabaseFbooks db = new DatabaseFbooks();
-    Book searchTmp = new Book();
-    //登録済みタイトルのチェック
+    //編集画面でタイトルを変更した場合
     if (input.getTitle().compareTo(initText.getTitle()) != 0) {
-      searchTmp.setTitle(input.getTitle());
       //データベース検索
-      searchResult = db.searchBook(searchTmp, 0);
+      Book searchTmp = new Book();
+      searchTmp.setTitle(input.getTitle());
+      Book[] searchResult = db.searchBook(searchTmp, 0);
 
+      //登録済みタイトルのチェック
       if (searchResult != null && searchResult.length > 0) {
+        //データベースに同一タイトルが存在している場合
         if (!searchResult[0].id.equals(initText.getId())) {
           MsgOutput.setText("登録済みのタイトルです。");
           return;
         }
       }
     }
-    input.setId(initText.getId());
 
     //データベース更新
+    input.setId(initText.getId());
     db.updateBook(input);
 
+    //編集完了ウィンドウ表示
     FixController controller = new FixController("編集内容が反映されました。", searchText);
     Main.fixStage.setWidth(400);
     Main.fixStage.setHeight(200);
