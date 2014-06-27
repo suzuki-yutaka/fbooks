@@ -94,8 +94,6 @@ public class Main extends Application {
   public void editController(Book searchResult, Book searchText)
       throws ClassNotFoundException {
 
-    stage.setTitle("検索結果");
-
     EditController controller = new EditController(searchResult, searchText);
     Scene editScene = new Scene(controller);
     Stage editStage = new Stage();
@@ -119,11 +117,11 @@ public class Main extends Application {
       throws ClassNotFoundException {
 
     FixController controller = new FixController(text, searchText);
-    if (searchText == null) {
+    if (searchText == null || fixStage == null) {
       Scene fScene = new Scene(controller);
       Stage fStage = new Stage();
       fixStage = fStage;
-      fStage.setTitle("登録完了");
+      fStage.setTitle("完了");
       fStage.setScene(fScene);
       fStage.setWidth(400);
       fStage.setHeight(200);
@@ -135,7 +133,7 @@ public class Main extends Application {
       fixStage.setHeight(200);
       fixStage.setX(485);
       fixStage.setY(165);
-      fixStage.setTitle("編集完了");
+      fixStage.setTitle("完了");
       fixStage.getScene().setRoot(controller);
     }
   }

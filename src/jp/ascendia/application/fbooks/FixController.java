@@ -74,5 +74,6 @@ public class FixController extends AnchorPane implements Initializable {
 
     //編集ウィンドウを閉じる
     Main.fixStage.getScene().getWindow().hide();
+    Main.fixStage = null;
   }
 }

@@ -86,10 +86,9 @@ public class CreateOutputElement {
         DatabaseFbooks db = new DatabaseFbooks();
         db.deleteBook(searchResult[Integer.parseInt(delete.getId())]);
 
-        //検索結果一覧へ
-        Book[] result = db.searchBook(searchText, allFlg);
+        //削除完了ウィンドウ表示
         try {
-          Main.getInstance().searchResultController(result, searchText, allFlg);
+          Main.getInstance().fixController("削除されました。", searchText);
         } catch (ClassNotFoundException e) {
           // TODO 自動生成された catch ブロック
           e.printStackTrace();
