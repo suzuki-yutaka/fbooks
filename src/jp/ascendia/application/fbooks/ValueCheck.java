@@ -3,7 +3,7 @@ package jp.ascendia.application.fbooks;
 
 public class ValueCheck {
 
-  public static String inputValueCheck(Book book) {
+  public String inputValueCheck(Book book) {
 
     //必須入力項目が入力されていない場合、登録不可
     if ("".equals(book.getTitle()) || "".equals(book.getAuthor()) || "".equals(book.getCompany()) || book.getGenre() == null) {
@@ -20,7 +20,7 @@ public class ValueCheck {
     return "OK";
   }
 
-  public static int searchAllCheck(Book book) {
+  public int searchAllCheck(Book book) {
     //何れかの検索値が入力されていた場合
     if (!"".equals(book.getTitle()) || !"".equals(book.getAuthor()) ||
         book.getGenre() != null || book.getReadStart() != null || book.getReadEnd() != null) {

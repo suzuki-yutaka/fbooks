@@ -64,7 +64,8 @@ public class FixController extends AnchorPane implements Initializable {
       Main.getInstance().addController();
     } else {
       //全件検索チェック
-      int allFlg = ValueCheck.searchAllCheck(searchText);
+      ValueCheck vc = new ValueCheck();
+      int allFlg = vc.searchAllCheck(searchText);
 
       //データベース検索
       DatabaseFbooks db = new DatabaseFbooks();

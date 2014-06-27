@@ -90,7 +90,8 @@ public class EditController extends AnchorPane implements Initializable {
         GenreCBox.getValue(), ReadStartDate.getValue(), ReadEndDate.getValue(), MemoArea.getText());
 
     //入力値チェック
-    String outputText = ValueCheck.inputValueCheck(input);
+    ValueCheck vc = new ValueCheck();
+    String outputText = vc.inputValueCheck(input);
     if (!outputText.equals("OK")) {
       MsgOutput.setText(outputText);
       return;

@@ -69,7 +69,8 @@ public class SearchController extends AnchorPane implements Initializable {
         GenreCBox.getValue(), ReadStartDate.getValue(), ReadEndDate.getValue(), "");
 
     //全件検索チェック
-    int allFlg = ValueCheck.searchAllCheck(searchText);
+    ValueCheck vc = new ValueCheck();
+    int allFlg = vc.searchAllCheck(searchText);
 
     //データベース検索
     DatabaseFbooks db = new DatabaseFbooks();

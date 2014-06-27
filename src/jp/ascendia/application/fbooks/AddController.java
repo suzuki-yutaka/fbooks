@@ -77,7 +77,8 @@ public class AddController extends AnchorPane implements Initializable {
         GenreCBox.getValue(), ReadStartDate.getValue(), ReadEndDate.getValue(), MemoArea.getText());
 
     //入力値チェック
-    String result = ValueCheck.inputValueCheck(input);
+    ValueCheck vc = new ValueCheck();
+    String result = vc.inputValueCheck(input);
     if (!result.equals("OK")) {
       MsgOutput.setText(result);
       return;
