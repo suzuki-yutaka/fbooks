@@ -8,8 +8,8 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="FixField" alignment="CENTER" layoutX="32.0" layoutY="41.0" prefHeight="32.0" prefWidth="310.0" styleClass="fix" />
-      <Button layoutX="166.0" layoutY="108.0" mnemonicParsing="false" onAction="#handleButtonActionClose" text="閉じる" />
+      <Label fx:id="FixField" layoutX="32.0" layoutY="41.0" prefHeight="32.0" prefWidth="310.0" styleClass="fix" />
+      <Button layoutX="166.0" layoutY="108.0" mnemonicParsing="false" onAction="#handleButtonActionClose" styleClass="botton" text="閉じる" />
    </children>
    <stylesheets>
       <URL value="@../fbooks/css/Main.css" />

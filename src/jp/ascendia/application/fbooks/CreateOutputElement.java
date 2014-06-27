@@ -14,38 +14,39 @@ public class CreateOutputElement {
 
   public void linkLabelCreate(String text, HBox hbox) {
 
-    Label label = new Label(text);
-    label.setPrefWidth(70);
-    label.setPrefHeight(30);
-    label.setAlignment(Pos.CENTER);
-    label.setStyle("-fx-font-size: 14px; -fx-underline: true; -fx-text-fill: #1e90ff;");
+    Label linkLabel = new Label(text);
+    linkLabel.setPrefWidth(70);
+    linkLabel.setPrefHeight(30);
+    //css用のID登録
+    linkLabel.setId("linkLabel");
 
-    label.setOnMouseClicked(new EventHandler<MouseEvent>() {
+    linkLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
       public void handle(MouseEvent mouseEvent) {
         Main.getInstance().mainController();
       }
     });
 
-    hbox.getChildren().add(label);
+    hbox.getChildren().add(linkLabel);
   }
 
   public void bookHeadLabelCreate(String text, GridPane grid, int num) {
 
-    Label label = new Label(text);
-    label.setAlignment(Pos.TOP_RIGHT);
-    GridPane.setConstraints(label, 0, num);
-    GridPane.setHalignment(label, HPos.RIGHT);
-    grid.getChildren().add(label);
+    Label headLabel = new Label(text);
+    headLabel.setAlignment(Pos.TOP_RIGHT);
+    GridPane.setConstraints(headLabel, 0, num);
+    GridPane.setHalignment(headLabel, HPos.RIGHT);
+    grid.getChildren().add(headLabel);
   }
 
   public void bookOutputLabelCreate(String text, GridPane grid, int num) {
 
-    Label label = new Label(text);
-    GridPane.setConstraints(label, 1, num);
-    grid.getChildren().add(label);
-    label.setStyle("-fx-wrap-text: true;");
-    label.setMaxWidth(440);
+    Label outputLabel = new Label(text);
+    GridPane.setConstraints(outputLabel, 1, num);
+    grid.getChildren().add(outputLabel);
+    outputLabel.setMaxWidth(440);
+    //css用のID登録
+    outputLabel.setId("outputLabel");
   }
 
   public void editBottonCreate(GridPane grid, Book[] searchResult, Book searchText, int num) {

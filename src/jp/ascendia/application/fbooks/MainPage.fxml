@@ -10,21 +10,9 @@
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="40.0" layoutY="50.0" prefHeight="42.0" prefWidth="250.0" styleClass="title" text="読書記録アプリ" />
-      <Button layoutX="300.0" layoutY="146.0" mnemonicParsing="false" onAction="#handleButtonActionAddPage" prefHeight="50.0" prefWidth="138.0" text="登録">
-         <font>
-             <Font size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="300.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleButtonActionSearchPage" prefHeight="50.0" prefWidth="138.0" text="検索">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="300.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleButtonActionClose" prefHeight="50.0" prefWidth="138.0" text="閉じる">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
+      <Button layoutX="300.0" layoutY="146.0" mnemonicParsing="false" onAction="#handleButtonActionAddPage" prefHeight="50.0" prefWidth="138.0" styleClass="botton" text="登録" />
+      <Button layoutX="300.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleButtonActionSearchPage" prefHeight="50.0" prefWidth="138.0" styleClass="botton" text="検索" />
+      <Button layoutX="300.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleButtonActionClose" prefHeight="50.0" prefWidth="138.0" styleClass="botton" text="閉じる" />
       <ImageView layoutX="200.0" layoutY="130.0" fitHeight="81.0" fitWidth="81.0" preserveRatio="true">
          <image>
             <Image preserveRatio="false" smooth="false" url="@image/fukurou.png" />

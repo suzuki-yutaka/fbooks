@@ -30,7 +30,8 @@ public class SearchResultController extends AnchorPane implements Initializable 
 
     //ページリンク作成
     HBox menu = new HBox();
-    //menu.setStyle("-fx-background-color: #eeeeee;");
+    //css用のID登録
+    menu.setId("menu");
     AnchorPane.setLeftAnchor(menu, 0.0);
     AnchorPane.setRightAnchor(menu, 0.0);
     //ページ遷移用label作成
@@ -47,7 +48,8 @@ public class SearchResultController extends AnchorPane implements Initializable 
     hbox.getChildren().add(NumText);
     hbox.setLayoutX(37);
     hbox.setLayoutY(57);
-    hbox.setStyle("-fx-font-size: 24px;");
+    //css用のID登録
+    hbox.setId("hbox");
     this.getChildren().add(hbox);
 
     //スクロールパネル作成
@@ -61,7 +63,8 @@ public class SearchResultController extends AnchorPane implements Initializable 
     vbox.setPrefSize(735, 400);
     vbox.setLayoutX(37);
     vbox.setLayoutY(50);
-    vbox.setStyle("-fx-background-color: white;");
+    //css用のID登録
+    vbox.setId("vbox");
 
     for (int i = 0; i < searchResult.length; i++) {
       //検索結果格納、グリッドパネル作成
@@ -71,7 +74,8 @@ public class SearchResultController extends AnchorPane implements Initializable 
       grid.setHgap(5);
       grid.setMinHeight(USE_PREF_SIZE);
       grid.setMaxHeight(USE_PREF_SIZE);
-      grid.setStyle("-fx-font-size: 14px;");
+      //css用のID登録
+      grid.setId("grid");
 
       //書籍項目作成
       cp.bookHeadLabelCreate("タイトル：", grid, 0);
@@ -100,7 +104,8 @@ public class SearchResultController extends AnchorPane implements Initializable 
       //区切りライン作成
       Line line = new Line();
       line.setEndX(735);
-      line.setStyle("-fx-stroke:  #1e90ff;");
+      //css用のID登録
+      line.setId("line");
 
       vbox.getChildren().add(grid);
       vbox.getChildren().add(line);

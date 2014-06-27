@@ -9,59 +9,26 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox prefHeight="30.0" style="-fx-background-color: #eeeeee;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox prefHeight="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" styleClass="linkBox">
          <children>
-            <Label alignment="CENTER" style="-fx-font-size: 14px; -fx-underline: true; -fx-text-fill: #1e90ff;" onMouseClicked="#handleButtonActionHomePage" prefHeight="30.0" prefWidth="70.0" text="ホーム" />
-            <Label alignment="CENTER" style="-fx-font-size: 14px; -fx-underline: true; -fx-text-fill: #1e90ff;" onMouseClicked="#handleButtonActionSearchPage" prefHeight="30.0" prefWidth="70.0" text="検索" />
+            <Label onMouseClicked="#handleButtonActionHomePage" prefHeight="30.0" prefWidth="70.0" styleClass="link" text="ホーム" />
+            <Label onMouseClicked="#handleButtonActionSearchPage" prefHeight="30.0" prefWidth="70.0" styleClass="link" text="検索" />
          </children>
       </HBox>
       <Label layoutX="40.0" layoutY="50.0" prefHeight="42.0" prefWidth="153.0" styleClass="title" text="書籍登録" />
-      <Label fx:id="MsgOutput" layoutX="224.0" layoutY="67.0" prefHeight="30.0" prefWidth="406.0" textFill="RED">
-         <font>
-            <Font size="16.0" />
-         </font></Label>
+      <Label fx:id="MsgOutput" layoutX="224.0" layoutY="67.0" prefHeight="30.0" prefWidth="406.0" styleClass="message" />
       <Pane layoutX="57.0" layoutY="87.0" prefHeight="361.0" prefWidth="620.0">
          <children>
-            <Label alignment="CENTER_RIGHT" layoutX="2.0" layoutY="24.0" prefHeight="22.0" prefWidth="90.0" text="※タイトル：">
-               <font>
-                  <Font size="18.0" />
-               </font></Label>
-            <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="73.0" prefHeight="22.0" prefWidth="83.0" text="※著者：">
-               <font>
-                  <Font size="18.0" />
-               </font></Label>
-            <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="167.0" prefHeight="22.0" prefWidth="83.0" text="※ジャンル：">
-               <font>
-                  <Font size="18.0" />
-               </font></Label>
-            <Label alignment="CENTER_RIGHT" layoutX="9.0" layoutY="122.0" prefHeight="22.0" prefWidth="83.0" text="※出版社：">
-               <font>
-                  <Font size="18.0" />
-               </font></Label>
-            <Label alignment="CENTER_RIGHT" layoutX="-9.0" layoutY="211.0" prefHeight="22.0" prefWidth="100.0" text="読書開始日：">
-               <font>
-                  <Font size="18.0" />
-               </font></Label>
-            <Label layoutX="283.0" layoutY="211.0" prefHeight="22.0" prefWidth="100.0" text="読書終了日：">
-               <font>
-                  <Font size="18.0" />
-               </font></Label>
-            <Label alignment="CENTER_RIGHT" layoutX="35.0" layoutY="256.0" prefHeight="22.0" prefWidth="57.0" text="メモ：">
-               <font>
-                  <Font size="18.0" />
-               </font></Label>
-            <TextField fx:id="TitleField" layoutX="105.0" layoutY="21.0" prefHeight="30.0" prefWidth="450.0">
-               <font>
-                  <Font size="14.0" />
-               </font></TextField>
-            <TextField fx:id="AuthorField" layoutX="105.0" layoutY="70.0" prefHeight="30.0" prefWidth="450.0">
-               <font>
-                  <Font size="14.0" />
-               </font></TextField>
-            <TextField fx:id="CompanyField" layoutX="105.0" layoutY="119.0" prefHeight="30.0" prefWidth="450.0">
-               <font>
-                  <Font size="14.0" />
-               </font></TextField>
+            <Label layoutX="2.0" layoutY="24.0" prefHeight="22.0" prefWidth="90.0" styleClass="bookHead" text="※タイトル：" />
+            <Label layoutX="9.0" layoutY="73.0" prefHeight="22.0" prefWidth="83.0" styleClass="bookHead" text="※著者：" />
+            <Label layoutX="9.0" layoutY="167.0" prefHeight="22.0" prefWidth="83.0" styleClass="bookHead" text="※ジャンル：" />
+            <Label layoutX="9.0" layoutY="122.0" prefHeight="22.0" prefWidth="83.0" styleClass="bookHead" text="※出版社：" />
+            <Label layoutX="-9.0" layoutY="211.0" prefHeight="22.0" prefWidth="100.0" styleClass="bookHead" text="読書開始日：" />
+            <Label layoutX="283.0" layoutY="211.0" prefHeight="22.0" prefWidth="100.0" styleClass="bookHead" text="読書終了日：" />
+            <Label  layoutX="35.0" layoutY="256.0" prefHeight="22.0" prefWidth="57.0" styleClass="bookHead" text="メモ：" />
+            <TextField fx:id="TitleField" layoutX="105.0" layoutY="21.0" prefHeight="30.0" prefWidth="450.0" styleClass="bookInput" />
+            <TextField fx:id="AuthorField" layoutX="105.0" layoutY="70.0" prefHeight="30.0" prefWidth="450.0" styleClass="bookInput" />
+            <TextField fx:id="CompanyField" layoutX="105.0" layoutY="119.0" prefHeight="30.0" prefWidth="450.0" styleClass="bookInput" />
             <ComboBox fx:id="GenreCBox" layoutX="105.0" layoutY="168.0" prefWidth="180.0">
                <items>
                   <FXCollections fx:factory="observableArrayList">
@@ -90,20 +57,11 @@
             </ComboBox>
             <DatePicker fx:id="ReadStartDate" layoutX="105.0" layoutY="211.0" />
             <DatePicker fx:id="ReadEndDate" layoutX="393.0" layoutY="211.0" />
-            <TextArea fx:id="MemoArea" layoutX="105.0" layoutY="257.0" prefHeight="60.0" prefWidth="450.0">
-               <font>
-                  <Font size="14.0" />
-               </font></TextArea>
-            <Label layoutX="105.0" layoutY="334.0" prefHeight="18.0" prefWidth="153.0" text="※は必須の入力項目です。">
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
+            <TextArea fx:id="MemoArea" layoutX="105.0" layoutY="257.0" prefHeight="60.0" prefWidth="450.0" styleClass="bookInput" />
+            <Label layoutX="105.0" layoutY="334.0" prefHeight="18.0" prefWidth="153.0" styleClass="bookInput" text="※は必須の入力項目です。" />
          </children>
       </Pane>
-      <Button layoutX="350.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleButtonActionAdd" text="登録">
-         <font>
-            <Font size="14.0" />
-         </font></Button>
+      <Button layoutX="350.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleButtonActionAdd" styleClass="botton" text="登録" />
    </children>
    <stylesheets>
       <URL value="@../fbooks/css/Main.css" />
