@@ -7,15 +7,12 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class AddController extends AnchorPane implements Initializable {
 
@@ -100,17 +97,7 @@ public class AddController extends AnchorPane implements Initializable {
     db.addBook(input);
 
     //登録完了ウィンドウ表示
-    FixController controller = new FixController("登録されました！", null);
-    Scene fixScene = new Scene(controller);
-    Stage stage = new Stage();
-    Main.fixStage = stage;
-    stage.setWidth(400);
-    stage.setHeight(200);
-    stage.setTitle("登録完了");
-    stage.setScene(fixScene);
-    stage.initModality(Modality.WINDOW_MODAL);
-    stage.initOwner(Main.stage);
-    stage.show();
+    Main.getInstance().fixController("登録されました！", null);
   }
 
   //メインページへ

@@ -1,12 +1,12 @@
 package jp.ascendia.application.fbooks;
 
-
 public class ValueCheck {
 
   public String inputValueCheck(Book book) {
 
     //必須入力項目が入力されていない場合、登録不可
-    if ("".equals(book.getTitle()) || "".equals(book.getAuthor()) || "".equals(book.getCompany()) || book.getGenre() == null) {
+    if ("".equals(book.getTitle()) || "".equals(book.getAuthor()) || "".equals(book.getCompany())
+        || book.getGenre() == null) {
       return "必須の入力項目が入力されていません。";
     }
 

@@ -59,18 +59,15 @@ public class FixController extends AnchorPane implements Initializable {
   @FXML
   protected void handleButtonActionClose() throws ClassNotFoundException {
     if (searchText == null) {
-
       //登録ページへ戻る
       Main.getInstance().addController();
     } else {
       //全件検索チェック
       ValueCheck vc = new ValueCheck();
       int allFlg = vc.searchAllCheck(searchText);
-
       //データベース検索
       DatabaseFbooks db = new DatabaseFbooks();
       Book[] searchResult = db.searchBook(searchText, allFlg);
-
       //検索結果一覧ページへ戻る
       Main.getInstance().searchResultController(searchResult, searchText, allFlg);
     }

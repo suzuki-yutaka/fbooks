@@ -120,11 +120,7 @@ public class EditController extends AnchorPane implements Initializable {
     db.updateBook(input);
 
     //編集完了ウィンドウ表示
-    FixController controller = new FixController("編集内容が反映されました。", searchText);
-    Main.fixStage.setWidth(400);
-    Main.fixStage.setHeight(200);
-    Main.fixStage.setTitle("編集完了");
-    Main.fixStage.getScene().setRoot(controller);
+    Main.getInstance().fixController("編集内容が反映されました。", searchText);
   }
 
   @FXML

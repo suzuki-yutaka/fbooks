@@ -3,6 +3,7 @@ package jp.ascendia.application.fbooks;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -82,8 +83,61 @@ public class Main extends Application {
 
     stage.setTitle("検索結果");
 
-    SearchResController controller = new SearchResController(searchResult, searchText, allFlg);
+    SearchResultController controller = new SearchResultController(searchResult, searchText, allFlg);
     this.replaceSceneContent(controller);
+  }
+
+  /**
+   * 編集ウィンドウ表示
+   * @param Book[], Book
+   */
+  public void editController(Book searchResult, Book searchText)
+      throws ClassNotFoundException {
+
+    stage.setTitle("検索結果");
+
+    EditController controller = new EditController(searchResult, searchText);
+    Scene editScene = new Scene(controller);
+    Stage editStage = new Stage();
+    fixStage = editStage;
+    editStage.setTitle("書籍編集");
+    editStage.setScene(editScene);
+    editStage.setX(400);
+    editStage.setY(100);
+    editStage.setWidth(800);
+    editStage.setHeight(600);
+    editStage.initModality(Modality.WINDOW_MODAL);
+    editStage.initOwner(stage);
+    editStage.show();
+  }
+
+  /**
+   * 完了ウィンドウ表示
+   * @param String, Book
+   */
+  public void fixController(String text, Book searchText)
+      throws ClassNotFoundException {
+
+    FixController controller = new FixController(text, searchText);
+    if (searchText == null) {
+      Scene fScene = new Scene(controller);
+      Stage fStage = new Stage();
+      fixStage = fStage;
+      fStage.setTitle("登録完了");
+      fStage.setScene(fScene);
+      fStage.setWidth(400);
+      fStage.setHeight(200);
+      fStage.initModality(Modality.WINDOW_MODAL);
+      fStage.initOwner(stage);
+      fStage.show();
+    } else {
+      fixStage.setWidth(400);
+      fixStage.setHeight(200);
+      fixStage.setX(485);
+      fixStage.setY(165);
+      fixStage.setTitle("編集完了");
+      fixStage.getScene().setRoot(controller);
+    }
   }
 
   /**
