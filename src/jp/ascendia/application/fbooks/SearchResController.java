@@ -31,7 +31,7 @@ public class SearchResController extends AnchorPane implements Initializable {
   public SearchResController(Book[] searchResult, Book searchText, int allflg) throws ClassNotFoundException {
     //メニューボタン
     Scene scene = Main.stage.getScene();
-    String style = Main.class.getResource("../css/Main.css").toExternalForm();
+    String style = Main.class.getResource("../fbooks/css/Main.css").toExternalForm();
     scene.getStylesheets().add(style);
 
     HBox menu = new HBox();

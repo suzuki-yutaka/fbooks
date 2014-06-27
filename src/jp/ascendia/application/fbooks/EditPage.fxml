@@ -108,6 +108,6 @@
          </font></Button>
    </children>
    <stylesheets>
-      <URL value="@../css/main.css" />
+      <URL value="@../fbooks/css/Main.css" />
    </stylesheets>
 </fx:root>

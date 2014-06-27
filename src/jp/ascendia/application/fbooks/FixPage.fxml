@@ -12,6 +12,6 @@
       <Button layoutX="166.0" layoutY="108.0" mnemonicParsing="false" onAction="#handleButtonActionClose" text="閉じる" />
    </children>
    <stylesheets>
-      <URL value="@../css/main.css" />
+      <URL value="@../fbooks/css/Main.css" />
    </stylesheets>
 </fx:root>
