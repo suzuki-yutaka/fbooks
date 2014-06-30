@@ -6,6 +6,11 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * 画面遷移を制御するクラス
+ * @version 1.0
+ * @author Yutaka Suzuki
+ */
 public class Main extends Application {
 
   /**
@@ -20,22 +25,21 @@ public class Main extends Application {
   protected static Stage fixStage;
 
   public void start(Stage primaryStage) throws Exception {
-    // インスタンス
+    /** インスタンス */
     instance = this;
 
-    // ステージの設定
     stage = primaryStage;
     stage.setWidth(800);
     stage.setHeight(600);
 
-    // メインページに遷移
     mainController();
 
     stage.show();
   }
 
   /**
-   * @param args
+   * メイン
+   * @param args 未使用
    */
   public static void main(String[] args) {
     launch(args);
@@ -76,7 +80,11 @@ public class Main extends Application {
 
   /**
    * 検索結果ページへ遷移
-   * @param Book[], String[]
+   *
+   * @param searchResult 検索結果
+   * @param searchText 検索文字
+   * @param allFlg 全件検索フラグ
+   * @throws ClassNotFoundException 指定された名前のクラスの定義が見つからなかった場合
    */
   public void searchResultController(Book[] searchResult, Book searchText, int allFlg)
       throws ClassNotFoundException {
@@ -89,7 +97,10 @@ public class Main extends Application {
 
   /**
    * 編集ウィンドウ表示
-   * @param Book[], Book
+   *
+   * @param searchResult 検索結果
+   * @param searchText 検索文字
+   * @throws ClassNotFoundException 指定された名前のクラスの定義が見つからなかった場合
    */
   public void editController(Book searchResult, Book searchText)
       throws ClassNotFoundException {
@@ -111,7 +122,10 @@ public class Main extends Application {
 
   /**
    * 完了ウィンドウ表示
-   * @param String, Book
+   *
+   * @param text 完了メッセージ
+   * @param searchText 検索文字
+   * @throws ClassNotFoundException 指定された名前のクラスの定義が見つからなかった場合
    */
   public void fixController(String text, Book searchText)
       throws ClassNotFoundException {
@@ -140,6 +154,7 @@ public class Main extends Application {
 
   /**
    * シーンの変更
+   *
    * @param controller
    */
   private void replaceSceneContent(Parent controller) {
@@ -155,7 +170,7 @@ public class Main extends Application {
   /**
    * Get Instance
    *
-   * @return
+   * @return インスタンス
    */
   public static Main getInstance() {
     return instance;

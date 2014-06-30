@@ -7,6 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
+/**
+ * データベース操作を行うクラス
+ * @version 1.0
+ * @author Yutaka Suzuki
+ */
 public class DatabaseFbooks {
   Connection connection;
   static final String NAME = "org.sqlite.JDBC";
@@ -16,6 +21,9 @@ public class DatabaseFbooks {
     connect();
   }
 
+  /**
+   * データベース接続
+   */
   protected boolean connect() {
     try {
       if (connection != null) {
@@ -35,6 +43,9 @@ public class DatabaseFbooks {
     return false;
   }
 
+  /**
+   * データベース切断
+   */
   protected void disConnect() {
     if (connection != null) {
       try {
@@ -46,6 +57,11 @@ public class DatabaseFbooks {
     }
   }
 
+  /**
+   * データベース登録
+   *
+   * @param book 登録する書籍情報
+   */
   public void addBook(Book book) {
     try {
       connect();
@@ -68,6 +84,11 @@ public class DatabaseFbooks {
     }
   }
 
+  /**
+   * データベース更新
+   *
+   * @param book 更新する書籍情報
+   */
   public void updateBook(Book book) {
     try {
       connect();
@@ -91,6 +112,11 @@ public class DatabaseFbooks {
     }
   }
 
+  /**
+   * データベースのデータ削除
+   *
+   * @param book 削除する書籍情報
+   */
   public void deleteBook(Book book) {
     try {
       connect();
@@ -106,6 +132,13 @@ public class DatabaseFbooks {
     }
   }
 
+  /**
+   * データベース検索
+   *
+   * @param book 検索文字
+   * @param allflg 全件検索フラグ
+   * @return bookArray 検索結果
+   */
   public Book[] searchBook(Book book, int allflg) {
     Book[] bookArray = null;
     try {
@@ -137,20 +170,32 @@ public class DatabaseFbooks {
     return bookArray;
   }
 
+  /**
+   * 書籍情報取得
+   *
+   * @param rs 検索結果
+   * @throws SQLException データベースアクセスエラーまたはその他のエラーに関する情報を提供する例外です
+   */
   protected Book createBook(ResultSet rs) throws SQLException {
     Book book = new Book();
-    book.id = rs.getString("b_id");
-    book.title = rs.getString("b_title");
-    book.author = rs.getString("b_author");
-    book.company = rs.getString("b_company");
-    book.genre = rs.getString("b_genre");
-    book.readStart = rs.getString("b_read_start");
-    book.readEnd = rs.getString("b_read_end");
-    book.memo = rs.getString("b_memo");
+    book.setId(rs.getString("b_id"));
+    book.setTitle(rs.getString("b_title"));
+    book.setAuthor(rs.getString("b_author"));
+    book.setCompany(rs.getString("b_company"));
+    book.setGenre(rs.getString("b_genre"));
+    book.setReadStart(rs.getString("b_read_start"));
+    book.setReadEnd(rs.getString("b_read_end"));
+    book.setMemo(rs.getString("b_memo"));
 
     return book;
   }
 
+  /**
+   * 複数件の書籍情報作成
+   *
+   * @param rs 検索結果
+   * @throws SQLException データベースアクセスエラーまたはその他のエラーに関する情報を提供する例外です
+   */
   protected Book[] createBooks(ResultSet rs) throws SQLException {
     Vector<Book> books = new Vector<Book>();
 

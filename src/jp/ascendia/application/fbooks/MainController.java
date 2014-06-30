@@ -10,6 +10,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * メイン画面を出力するクラス
+ * @version 1.0
+ * @author Yutaka Suzuki
+ */
 public class MainController extends AnchorPane implements Initializable {
   /**
    * コンストラクタ
@@ -42,20 +47,26 @@ public class MainController extends AnchorPane implements Initializable {
 
   /**
    * ボタンクリックアクション
+   * 登録ページへ遷移
    */
-  //登録ページへ
   @FXML
   protected void handleButtonActionAddPage() {
     Main.getInstance().addController();
   }
 
-  //検索ページへ
+  /**
+   * ボタンクリックアクション
+   * 検索ページへ遷移
+   */
   @FXML
   protected void handleButtonActionSearchPage() {
     Main.getInstance().searchController();
   }
 
-  //アプリケーション終了
+  /**
+   * ボタンクリックアクション
+   * アプリケーション終了
+   */
   @FXML
   protected void handleButtonActionClose() {
     Platform.exit();

@@ -10,18 +10,25 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * 書籍情報の登録、編集、削除完了時に使用するクラス
+ * @version 1.0
+ * @author Yutaka Suzuki
+ */
 public class FixController extends AnchorPane implements Initializable {
 
   private static String msgText;
 
   private static Book searchText;
 
-  /** ラベル */
   @FXML
   private Label FixField;
 
   /**
    * コンストラクタ
+   *
+   * @param mt 完了メッセージ
+   * @param st 検索文字
    */
   public FixController(String mt, Book st) {
     msgText = mt;
@@ -37,7 +44,6 @@ public class FixController extends AnchorPane implements Initializable {
     FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("FixPage.fxml"));
     fxmlLoader.setRoot(this);
 
-    // 自分自身をコントロールとして設定
     fxmlLoader.setController(this);
 
     try {
@@ -55,9 +61,10 @@ public class FixController extends AnchorPane implements Initializable {
 
   /**
    * ボタンクリックアクション
+   * 完了ウィンドウ終了
    */
   @FXML
-  protected void handleButtonActionClose() throws ClassNotFoundException {
+  protected void handleButtonActionClose() {
     if (searchText == null) {
       //登録ページへ戻る
       Main.getInstance().addController();
@@ -69,7 +76,11 @@ public class FixController extends AnchorPane implements Initializable {
       DatabaseFbooks db = new DatabaseFbooks();
       Book[] searchResult = db.searchBook(searchText, allFlg);
       //検索結果一覧ページへ戻る
-      Main.getInstance().searchResultController(searchResult, searchText, allFlg);
+      try {
+        Main.getInstance().searchResultController(searchResult, searchText, allFlg);
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      }
     }
 
     //編集ウィンドウを閉じる

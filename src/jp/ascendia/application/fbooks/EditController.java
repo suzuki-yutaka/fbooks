@@ -15,16 +15,24 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * 書籍情報の編集時に使用するクラス
+ * @version 1.0
+ * @author Yutaka Suzuki
+ */
 public class EditController extends AnchorPane implements Initializable {
-  private static Book initText;
+  private static Book initBook;
   private static Book searchText;
 
   /**
-     * コンストラクタ
-     */
-  public EditController(Book searchResult, Book book) {
-    initText = searchResult;
-    searchText = book;
+   * コンストラクタ
+   *
+   * @param searchResult 検索結果
+   * @param st 検索文字
+   */
+  public EditController(Book searchResult, Book st) {
+    initBook = searchResult;
+    searchText = st;
 
     loadFXML();
   }
@@ -37,7 +45,6 @@ public class EditController extends AnchorPane implements Initializable {
     FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("EditPage.fxml"));
     fxmlLoader.setRoot(this);
 
-    // 自分自身をコントロールとして設定
     fxmlLoader.setController(this);
 
     try {
@@ -49,20 +56,17 @@ public class EditController extends AnchorPane implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-    TitleField.setText(initText.getTitle());
-    AuthorField.setText(initText.getAuthor());
-    CompanyField.setText(initText.getCompany());
-    GenreCBox.setValue(initText.getGenre());
-    if (initText.getReadStart() != null && !"".equals(initText.getReadStart()))
-      ReadStartDate.setValue(LocalDate.parse(initText.getReadStart()));
-    if (initText.getReadEnd() != null && !"".equals(initText.getReadStart()))
-      ReadEndDate.setValue(LocalDate.parse(initText.getReadEnd()));
-    MemoArea.setText(initText.getMemo());
+    TitleField.setText(initBook.getTitle());
+    AuthorField.setText(initBook.getAuthor());
+    CompanyField.setText(initBook.getCompany());
+    GenreCBox.setValue(initBook.getGenre());
+    if (initBook.getReadStart() != null && !"".equals(initBook.getReadStart()))
+      ReadStartDate.setValue(LocalDate.parse(initBook.getReadStart()));
+    if (initBook.getReadEnd() != null && !"".equals(initBook.getReadStart()))
+      ReadEndDate.setValue(LocalDate.parse(initBook.getReadEnd()));
+    MemoArea.setText(initBook.getMemo());
   }
 
-  /**
-   * ボタンクリックアクション
-   */
   @FXML
   private TextField TitleField;
   @FXML
@@ -80,9 +84,12 @@ public class EditController extends AnchorPane implements Initializable {
   @FXML
   private Label MsgOutput;
 
-  //編集処理
+  /**
+   * ボタンクリックアクション
+   * 編集処理
+   */
   @FXML
-  protected void handleButtonActionEdit() throws ClassNotFoundException {
+  protected void handleButtonActionEdit() {
     Book input = new Book();
 
     //入力値の取得
@@ -99,7 +106,7 @@ public class EditController extends AnchorPane implements Initializable {
 
     DatabaseFbooks db = new DatabaseFbooks();
     //編集画面でタイトルを変更した場合
-    if (input.getTitle().compareTo(initText.getTitle()) != 0) {
+    if (input.getTitle().compareTo(initBook.getTitle()) != 0) {
       //データベース検索
       Book searchTmp = new Book();
       searchTmp.setTitle(input.getTitle());
@@ -108,7 +115,7 @@ public class EditController extends AnchorPane implements Initializable {
       //登録済みタイトルのチェック
       if (searchResult != null && searchResult.length > 0) {
         //データベースに同一タイトルが存在している場合
-        if (!searchResult[0].id.equals(initText.getId())) {
+        if (!searchResult[0].id.equals(initBook.getId())) {
           MsgOutput.setText("登録済みのタイトルです。");
           return;
         }
@@ -116,16 +123,23 @@ public class EditController extends AnchorPane implements Initializable {
     }
 
     //データベース更新
-    input.setId(initText.getId());
+    input.setId(initBook.getId());
     db.updateBook(input);
 
     //編集完了ウィンドウ表示
-    Main.getInstance().fixController("編集内容が反映されました。", searchText);
+    try {
+      Main.getInstance().fixController("編集内容が反映されました。", searchText);
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    }
   }
 
+  /**
+   * ボタンクリックアクション
+   * 編集ウィンドウを閉じる
+   */
   @FXML
-  protected void handleButtonActionClose() throws ClassNotFoundException {
-    //編集ウィンドウを閉じる
+  protected void handleButtonActionClose() {
     Main.fixStage.getScene().getWindow().hide();
   }
 }

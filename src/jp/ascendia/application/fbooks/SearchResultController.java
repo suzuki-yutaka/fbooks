@@ -16,13 +16,24 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 
+/**
+ * 書籍情報の検索結果出力時に使用するクラス
+ * @version 1.0
+ * @author Yutaka Suzuki
+ */
 public class SearchResultController extends AnchorPane implements Initializable {
 
   /**
    * コンストラクタ
+   * 検索結果出力処理
+   *
+   * @param searchResult 検索結果
+   * @param searchText 検索文字
+   * @param allFlg 全件検索フラグ
+   * @throws ClassNotFoundException 指定された名前のクラスの定義が見つからなかった場合
    */
-  //検索結果出力
-  public SearchResultController(Book[] searchResult, Book searchText, int allFlg) throws ClassNotFoundException {
+  public SearchResultController(Book[] searchResult, Book searchText, int allFlg)
+      throws ClassNotFoundException {
 
     CreateOutputElement cp = new CreateOutputElement();
 
@@ -30,14 +41,13 @@ public class SearchResultController extends AnchorPane implements Initializable 
     String style = Main.class.getResource("../fbooks/css/Main.css").toExternalForm();
     scene.getStylesheets().add(style);
 
-    //ページリンク作成
+    //リンク用ラベル作成
     HBox linkBox = new HBox();
     //css用のID登録
     linkBox.setId("linkBox");
     AnchorPane.setLeftAnchor(linkBox, 0.0);
     AnchorPane.setRightAnchor(linkBox, 0.0);
 
-    //ページ遷移用label作成
     Label home = cp.linkLabelCreate("ホーム");
     home.setOnMouseClicked(new EventHandler<MouseEvent>() {
       @Override
@@ -101,10 +111,10 @@ public class SearchResultController extends AnchorPane implements Initializable 
       grid.setHgap(5);
       grid.setMinHeight(USE_PREF_SIZE);
       grid.setMaxHeight(USE_PREF_SIZE);
-      //css用のID登録
+      // css用のID登録
       grid.setId("grid");
 
-      //書籍項目作成
+      // 書籍項目ラベル作成
       cp.bookHeadLabelCreate("タイトル：", grid, 0);
       cp.bookHeadLabelCreate("著者：", grid, 1);
       cp.bookHeadLabelCreate("出版社：", grid, 2);
@@ -113,7 +123,7 @@ public class SearchResultController extends AnchorPane implements Initializable 
       cp.bookHeadLabelCreate("読書終了日：", grid, 5);
       cp.bookHeadLabelCreate("メモ：", grid, 6);
 
-      //書籍情報の取得
+      // 書籍情報出力用ラベル作成
       cp.bookOutputLabelCreate(searchResult[i].title, grid, 0);
       cp.bookOutputLabelCreate(searchResult[i].author, grid, 1);
       cp.bookOutputLabelCreate(searchResult[i].company, grid, 2);
@@ -122,16 +132,16 @@ public class SearchResultController extends AnchorPane implements Initializable 
       cp.bookOutputLabelCreate(searchResult[i].readEnd, grid, 5);
       cp.bookOutputLabelCreate(searchResult[i].memo, grid, 6);
 
-      //編集ボタン作成
+      // 編集ボタン作成
       cp.editBottonCreate(grid, searchResult, searchText, i);
 
-      //削除ボタン作成
+      // 削除ボタン作成
       cp.deleteBottonCreate(grid, searchResult, searchText, i, allFlg);
 
-      //区切りライン作成
+      // 区切りライン作成
       Line line = new Line();
       line.setEndX(735);
-      //css用のID登録
+      // css用のID登録
       line.setId("line");
 
       vbox.getChildren().add(grid);

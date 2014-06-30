@@ -14,6 +14,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * 書籍情報の登録時に使用するクラス
+ * @version 1.0
+ * @author Yutaka Suzuki
+ */
 public class AddController extends AnchorPane implements Initializable {
 
   /**
@@ -30,7 +35,6 @@ public class AddController extends AnchorPane implements Initializable {
     FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("AddPage.fxml"));
     fxmlLoader.setRoot(this);
 
-    // 自分自身をコントロールとして設定
     fxmlLoader.setController(this);
 
     try {
@@ -44,9 +48,6 @@ public class AddController extends AnchorPane implements Initializable {
   public void initialize(URL url, ResourceBundle rb) {
   }
 
-  /**
-   * ボタンクリックアクション
-   */
   @FXML
   private TextField TitleField;
   @FXML
@@ -64,9 +65,12 @@ public class AddController extends AnchorPane implements Initializable {
   @FXML
   private Label MsgOutput;
 
-  //登録処理
+  /**
+   * ボタンクリックアクション
+   * 登録処理
+   */
   @FXML
-  protected void handleButtonActionAdd() throws ClassNotFoundException {
+  protected void handleButtonActionAdd() {
     Book input = new Book();
 
     //入力値の取得
@@ -97,16 +101,26 @@ public class AddController extends AnchorPane implements Initializable {
     db.addBook(input);
 
     //登録完了ウィンドウ表示
-    Main.getInstance().fixController("登録されました！", null);
+    try {
+      Main.getInstance().fixController("登録されました！", null);
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    }
   }
 
-  //メインページへ
+  /**
+   * ボタンクリックアクション
+   * メインページへ遷移
+   */
   @FXML
   protected void handleButtonActionHomePage() {
     Main.getInstance().mainController();
   }
 
-  //検索ページへ
+  /**
+   * ボタンクリックアクション
+   * 検索ページへ遷移
+   */
   @FXML
   protected void handleButtonActionSearchPage() {
     Main.getInstance().searchController();

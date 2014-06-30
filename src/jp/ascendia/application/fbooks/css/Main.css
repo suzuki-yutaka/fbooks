@@ -17,8 +17,8 @@
 }
 
 .link {
+	-fx-border-color: #eeeeee #1e90ff #1e90ff #eeeeee;
 	-fx-font-size: 14px;
-	-fx-underline: true;
 	-fx-text-fill: #1e90ff;
 	-fx-alignment: center;
 }
@@ -67,8 +67,8 @@
 }
 
 #linkLabel {
+	-fx-border-color: #eeeeee #1e90ff #1e90ff #eeeeee;
 	-fx-font-size: 14px;
-	-fx-underline: true;
 	-fx-text-fill: #1e90ff;
 	-fx-alignment: center;
 }

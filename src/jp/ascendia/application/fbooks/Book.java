@@ -2,6 +2,11 @@ package jp.ascendia.application.fbooks;
 
 import java.time.LocalDate;
 
+/**
+ * 書籍情報クラス
+ * @version 1.0
+ * @author Yutaka Suzuki
+ */
 public class Book {
   protected String id;
   protected String title;
@@ -12,6 +17,17 @@ public class Book {
   protected String readEnd;
   protected String memo;
 
+  /**
+   * 全入力値の取得
+   *
+   * @param title タイトル
+   * @param author 著者
+   * @param company 出版社
+   * @param genre ジャンル
+   * @param readStart 読書開始日
+   * @param readEnd 読書終了日
+   * @param memo メモ
+   */
   public void setAll(String title, String author, String company,
       String genre, LocalDate readStart, LocalDate readEnd, String memo) {
     this.title = title;

@@ -13,6 +13,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * 書籍情報の検索時に使用するクラス
+ * @version 1.0
+ * @author Yutaka Suzuki
+ */
 public class SearchController extends AnchorPane implements Initializable {
   /**
    * コンストラクタ
@@ -28,7 +33,6 @@ public class SearchController extends AnchorPane implements Initializable {
     FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("SearchPage.fxml"));
     fxmlLoader.setRoot(this);
 
-    // 自分自身をコントロールとして設定
     fxmlLoader.setController(this);
 
     try {
@@ -41,10 +45,6 @@ public class SearchController extends AnchorPane implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle rb) {
   }
-
-  /**
-   * ボタンクリックアクション
-   */
 
   @FXML
   private TextField TitleField;
@@ -59,9 +59,12 @@ public class SearchController extends AnchorPane implements Initializable {
   @FXML
   private Label MsgOutput;
 
-  //検索処理
+  /**
+   * ボタンクリックアクション
+   * 検索処理
+   */
   @FXML
-  protected void handleButtonActionSearRes() throws ClassNotFoundException {
+  protected void handleButtonActionSearRes() {
     Book searchText = new Book();
 
     //入力値の取得
@@ -78,20 +81,30 @@ public class SearchController extends AnchorPane implements Initializable {
 
     if (searchResult != null && searchResult.length > 0) {
       //検索結果表示ページへ
-      Main.getInstance().searchResultController(searchResult, searchText, allFlg);
+      try {
+        Main.getInstance().searchResultController(searchResult, searchText, allFlg);
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      }
     } else {
       //検索失敗
       MsgOutput.setText("見つかりませんでした。");
     }
   }
 
-  //メインページへ
+  /**
+   * ボタンクリックアクション
+   * メインページへ遷移
+   */
   @FXML
   protected void handleButtonActionHomePage() {
     Main.getInstance().mainController();
   }
 
-  //登録ページへ
+  /**
+   * ボタンクリックアクション
+   * 登録ページへ遷移
+   */
   @FXML
   protected void handleButtonActionAddPage() {
     Main.getInstance().addController();
