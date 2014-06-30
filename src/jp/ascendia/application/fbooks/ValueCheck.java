@@ -24,8 +24,14 @@ public class ValueCheck {
     //空白文字（半角スペース、全角スペース、タブ、改行、復帰）チェック
     if (book.getTitle().matches("\\s*|　+") || book.getAuthor().matches("\\s+|　+") ||
         book.getCompany().matches("\\s*|　+") || book.getMemo().matches("\\s+|　+")) {
-      return "スペースのみの入力はできません。";
+      return "スペースのみの登録はできません。";
     }
+
+    //文字列の前後の半角スペースを削除
+    book.setTitle(book.getTitle().trim());
+    book.setAuthor(book.getAuthor().trim());
+    book.setCompany(book.getCompany().trim());
+    book.setMemo(book.getMemo().trim());
 
     //読書開始日が読書終了日より大きい場合のチェック
     if (book.getReadStart() != null && book.getReadEnd() != null) {
