@@ -1,10 +1,6 @@
 package jp.ascendia.application.fbooks;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.event.EventHandler;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -21,7 +17,7 @@ import javafx.scene.shape.Line;
  * @version 1.0
  * @author Yutaka Suzuki
  */
-public class SearchResultController extends AnchorPane implements Initializable {
+public class SearchResultController extends AnchorPane {
 
   /**
    * コンストラクタ
@@ -97,7 +93,7 @@ public class SearchResultController extends AnchorPane implements Initializable 
 
     //グリッドパネル格納用のVBox作成
     VBox vbox = new VBox();
-    vbox.setPrefSize(735, 400);
+    vbox.setPrefSize(735, 440);
     vbox.setLayoutX(37);
     vbox.setLayoutY(50);
     //css用のID登録
@@ -124,13 +120,13 @@ public class SearchResultController extends AnchorPane implements Initializable 
       cp.bookHeadLabelCreate("メモ：", grid, 6);
 
       // 書籍情報出力用ラベル作成
-      cp.bookOutputLabelCreate(searchResult[i].title, grid, 0);
-      cp.bookOutputLabelCreate(searchResult[i].author, grid, 1);
-      cp.bookOutputLabelCreate(searchResult[i].company, grid, 2);
-      cp.bookOutputLabelCreate(searchResult[i].genre, grid, 3);
-      cp.bookOutputLabelCreate(searchResult[i].readStart, grid, 4);
-      cp.bookOutputLabelCreate(searchResult[i].readEnd, grid, 5);
-      cp.bookOutputLabelCreate(searchResult[i].memo, grid, 6);
+      cp.bookOutputLabelCreate(searchResult[i].getTitle(), grid, 0);
+      cp.bookOutputLabelCreate(searchResult[i].getAuthor(), grid, 1);
+      cp.bookOutputLabelCreate(searchResult[i].getCompany(), grid, 2);
+      cp.bookOutputLabelCreate(searchResult[i].getGenre(), grid, 3);
+      cp.bookOutputLabelCreate(searchResult[i].getReadStart(), grid, 4);
+      cp.bookOutputLabelCreate(searchResult[i].getReadEnd(), grid, 5);
+      cp.bookOutputLabelCreate(searchResult[i].getMemo(), grid, 6);
 
       // 編集ボタン作成
       cp.editBottonCreate(grid, searchResult, searchText, i);
@@ -149,9 +145,5 @@ public class SearchResultController extends AnchorPane implements Initializable 
     }
     sp.setContent(vbox);
     this.getChildren().add(sp);
-  }
-
-  @Override
-  public void initialize(URL url, ResourceBundle rb) {
   }
 }

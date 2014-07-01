@@ -1,12 +1,9 @@
 package jp.ascendia.application.fbooks;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -19,7 +16,27 @@ import javafx.scene.layout.AnchorPane;
  * @version 1.0
  * @author Yutaka Suzuki
  */
-public class AddController extends AnchorPane implements Initializable {
+public class AddController extends AnchorPane {
+
+  /** 文字入力用 */
+  @FXML
+  private TextField TitleField;
+  @FXML
+  private TextField AuthorField;
+  @FXML
+  private TextField CompanyField;
+  @FXML
+  private ComboBox<String> GenreCBox;
+  @FXML
+  private DatePicker ReadStartDate;
+  @FXML
+  private DatePicker ReadEndDate;
+  @FXML
+  private TextArea MemoArea;
+
+  /** メッセージ出力用 */
+  @FXML
+  private Label MsgOutput;
 
   /**
    * コンストラクタ
@@ -44,27 +61,6 @@ public class AddController extends AnchorPane implements Initializable {
     }
   }
 
-  @Override
-  public void initialize(URL url, ResourceBundle rb) {
-  }
-
-  @FXML
-  private TextField TitleField;
-  @FXML
-  private TextField AuthorField;
-  @FXML
-  private TextField CompanyField;
-  @FXML
-  private ComboBox<String> GenreCBox;
-  @FXML
-  private DatePicker ReadStartDate;
-  @FXML
-  private DatePicker ReadEndDate;
-  @FXML
-  private TextArea MemoArea;
-  @FXML
-  private Label MsgOutput;
-
   /**
    * ボタンクリックアクション
    * 登録処理
@@ -87,7 +83,7 @@ public class AddController extends AnchorPane implements Initializable {
 
     //データベース検索
     Book searchTmp = new Book();
-    searchTmp.setTitle(TitleField.getText());
+    searchTmp.setTitle(input.getTitle());
     DatabaseFbooks db = new DatabaseFbooks();
     Book[] searchResult = db.searchBook(searchTmp, 0);
 

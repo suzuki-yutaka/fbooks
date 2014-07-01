@@ -1,12 +1,9 @@
 package jp.ascendia.application.fbooks;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -18,7 +15,24 @@ import javafx.scene.layout.AnchorPane;
  * @version 1.0
  * @author Yutaka Suzuki
  */
-public class SearchController extends AnchorPane implements Initializable {
+public class SearchController extends AnchorPane {
+
+  /** 文字入力用 */
+  @FXML
+  private TextField TitleField;
+  @FXML
+  private TextField AuthorField;
+  @FXML
+  private ComboBox<String> GenreCBox;
+  @FXML
+  private DatePicker ReadStartDate;
+  @FXML
+  private DatePicker ReadEndDate;
+
+  /** メッセージ出力用 */
+  @FXML
+  private Label MsgOutput;
+
   /**
    * コンストラクタ
    */
@@ -41,23 +55,6 @@ public class SearchController extends AnchorPane implements Initializable {
       throw new RuntimeException(exception);
     }
   }
-
-  @Override
-  public void initialize(URL url, ResourceBundle rb) {
-  }
-
-  @FXML
-  private TextField TitleField;
-  @FXML
-  private TextField AuthorField;
-  @FXML
-  private ComboBox<String> GenreCBox;
-  @FXML
-  private DatePicker ReadStartDate;
-  @FXML
-  private DatePicker ReadEndDate;
-  @FXML
-  private Label MsgOutput;
 
   /**
    * ボタンクリックアクション

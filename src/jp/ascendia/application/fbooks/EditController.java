@@ -21,8 +21,32 @@ import javafx.scene.layout.AnchorPane;
  * @author Yutaka Suzuki
  */
 public class EditController extends AnchorPane implements Initializable {
+
+  /** 編集対象の図書情報 */
   private static Book initBook;
+
+  /** 検索情報 */
   private static Book searchText;
+
+  /** 文字入力用 */
+  @FXML
+  private TextField TitleField;
+  @FXML
+  private TextField AuthorField;
+  @FXML
+  private TextField CompanyField;
+  @FXML
+  private ComboBox<String> GenreCBox;
+  @FXML
+  private DatePicker ReadStartDate;
+  @FXML
+  private DatePicker ReadEndDate;
+  @FXML
+  private TextArea MemoArea;
+
+  /** メッセージ出力用 */
+  @FXML
+  private Label MsgOutput;
 
   /**
    * コンストラクタ
@@ -67,23 +91,6 @@ public class EditController extends AnchorPane implements Initializable {
     MemoArea.setText(initBook.getMemo());
   }
 
-  @FXML
-  private TextField TitleField;
-  @FXML
-  private TextField AuthorField;
-  @FXML
-  private TextField CompanyField;
-  @FXML
-  private ComboBox<String> GenreCBox;
-  @FXML
-  private DatePicker ReadStartDate;
-  @FXML
-  private DatePicker ReadEndDate;
-  @FXML
-  private TextArea MemoArea;
-  @FXML
-  private Label MsgOutput;
-
   /**
    * ボタンクリックアクション
    * 編集処理
@@ -115,7 +122,7 @@ public class EditController extends AnchorPane implements Initializable {
       //登録済みタイトルのチェック
       if (searchResult != null && searchResult.length > 0) {
         //データベースに同一タイトルが存在している場合
-        if (!searchResult[0].id.equals(initBook.getId())) {
+        if (!searchResult[0].getId().equals(initBook.getId())) {
           MsgOutput.setText("登録済みのタイトルです。");
           return;
         }

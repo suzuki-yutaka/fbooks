@@ -8,14 +8,23 @@ import java.time.LocalDate;
  * @author Yutaka Suzuki
  */
 public class Book {
-  protected String id;
-  protected String title;
-  protected String author;
-  protected String company;
-  protected String genre;
-  protected String readStart;
-  protected String readEnd;
-  protected String memo;
+
+  /** 書籍ID */
+  private String id;
+  /** 書籍タイトル */
+  private String title;
+  /** 著者 */
+  private String author;
+  /** 出版社 */
+  private String company;
+  /** ジャンル */
+  private String genre;
+  /** 読書開始日 */
+  private String readStart;
+  /** 読書終了日 */
+  private String readEnd;
+  /** メモ */
+  private String memo;
 
   /**
    * 全入力値の取得
