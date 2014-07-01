@@ -33,6 +33,12 @@ public class ValueCheck {
     book.setCompany(book.getCompany().trim());
     book.setMemo(book.getMemo().trim());
 
+    //文字列の前後の全角スペースを削除
+    book.setTitle(fullSpaceDelete(book.getTitle()));
+    book.setAuthor(fullSpaceDelete(book.getAuthor()));
+    book.setCompany(fullSpaceDelete(book.getCompany()));
+    book.setMemo(fullSpaceDelete(book.getMemo()));
+
     //読書開始日が読書終了日より大きい場合のチェック
     if (book.getReadStart() != null && book.getReadEnd() != null) {
       if (book.getReadStart().compareTo(book.getReadEnd()) > 0) {
@@ -41,6 +47,31 @@ public class ValueCheck {
     }
 
     return "OK";
+  }
+
+  /**
+   * 文字列の前後の全角スペース削除
+   *
+   * @param str 書籍情報
+   */
+  public String fullSpaceDelete(String str) {
+    char[] tmp = str.toCharArray();
+    int end = str.length();
+    int first = 0;
+
+    if (end > 0 && (tmp[first] == '　' || tmp[end - 1] == '　')) {
+      while (tmp[first] == '　') {
+        first++;
+      }
+
+      while (tmp[end - 1] == '　') {
+        end--;
+      }
+
+      return str.substring(first, end);
+    }
+
+    return str;
   }
 
   /**
