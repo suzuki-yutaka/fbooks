@@ -16,7 +16,7 @@
          </children>
       </HBox>
       <Label layoutX="40.0" layoutY="50.0" prefHeight="42.0" prefWidth="153.0" styleClass="title" text="書籍登録" />
-      <Label fx:id="MsgOutput" layoutX="224.0" layoutY="67.0" prefHeight="30.0" prefWidth="406.0" styleClass="message" />
+      <Label fx:id="msgOutput" layoutX="224.0" layoutY="67.0" prefHeight="30.0" prefWidth="406.0" styleClass="message" />
       <Pane layoutX="57.0" layoutY="87.0" prefHeight="361.0" prefWidth="620.0">
          <children>
             <Label layoutX="2.0" layoutY="24.0" prefHeight="22.0" prefWidth="90.0" styleClass="bookHead" text="※タイトル：" />
@@ -26,10 +26,10 @@
             <Label layoutX="-9.0" layoutY="211.0" prefHeight="22.0" prefWidth="100.0" styleClass="bookHead" text="読書開始日：" />
             <Label layoutX="283.0" layoutY="211.0" prefHeight="22.0" prefWidth="100.0" styleClass="bookHead" text="読書終了日：" />
             <Label  layoutX="35.0" layoutY="256.0" prefHeight="22.0" prefWidth="57.0" styleClass="bookHead" text="メモ：" />
-            <TextField fx:id="TitleField" layoutX="105.0" layoutY="21.0" prefHeight="30.0" prefWidth="450.0" styleClass="bookInput" />
-            <TextField fx:id="AuthorField" layoutX="105.0" layoutY="70.0" prefHeight="30.0" prefWidth="450.0" styleClass="bookInput" />
-            <TextField fx:id="CompanyField" layoutX="105.0" layoutY="119.0" prefHeight="30.0" prefWidth="450.0" styleClass="bookInput" />
-            <ComboBox fx:id="GenreCBox" layoutX="105.0" layoutY="168.0" prefWidth="180.0">
+            <TextField fx:id="titleField" layoutX="105.0" layoutY="21.0" prefHeight="30.0" prefWidth="450.0" styleClass="bookInput" />
+            <TextField fx:id="authorField" layoutX="105.0" layoutY="70.0" prefHeight="30.0" prefWidth="450.0" styleClass="bookInput" />
+            <TextField fx:id="companyField" layoutX="105.0" layoutY="119.0" prefHeight="30.0" prefWidth="450.0" styleClass="bookInput" />
+            <ComboBox fx:id="genreCBox" layoutX="105.0" layoutY="168.0" prefWidth="180.0">
                <items>
                   <FXCollections fx:factory="observableArrayList">
                      <String fx:value="文学・評論" />
@@ -55,9 +55,9 @@
                   </FXCollections>
                </items>
             </ComboBox>
-            <DatePicker fx:id="ReadStartDate" layoutX="105.0" layoutY="211.0" />
-            <DatePicker fx:id="ReadEndDate" layoutX="393.0" layoutY="211.0" />
-            <TextArea fx:id="MemoArea" layoutX="105.0" layoutY="257.0" prefHeight="60.0" prefWidth="450.0" styleClass="bookInput" />
+            <DatePicker fx:id="readStartDate" layoutX="105.0" layoutY="211.0" />
+            <DatePicker fx:id="readEndDate" layoutX="393.0" layoutY="211.0" />
+            <TextArea fx:id="memoArea" layoutX="105.0" layoutY="257.0" prefHeight="60.0" prefWidth="450.0" styleClass="bookInput" />
             <Label layoutX="105.0" layoutY="334.0" prefHeight="18.0" prefWidth="153.0" styleClass="bookInput" text="※は必須の入力項目です。" />
          </children>
       </Pane>

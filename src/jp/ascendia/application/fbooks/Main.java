@@ -83,29 +83,28 @@ public class Main extends Application {
    *
    * @param searchResult 検索結果
    * @param searchText 検索文字
-   * @param allFlg 全件検索フラグ
    * @throws ClassNotFoundException 指定された名前のクラスの定義が見つからなかった場合
    */
-  public void searchResultController(Book[] searchResult, Book searchText, int allFlg)
+  public void searchResultController(Book[] searchResult, Book searchText)
       throws ClassNotFoundException {
 
     stage.setTitle("検索結果");
 
-    SearchResultController controller = new SearchResultController(searchResult, searchText, allFlg);
+    SearchResultController controller = new SearchResultController(searchResult, searchText);
     this.replaceSceneContent(controller);
   }
 
   /**
    * 編集ウィンドウ表示
    *
-   * @param searchResult 検索結果
+   * @param title 編集対象の書籍タイトル
    * @param searchText 検索文字
    * @throws ClassNotFoundException 指定された名前のクラスの定義が見つからなかった場合
    */
-  public void editController(Book searchResult, Book searchText)
+  public void editController(String title, Book searchText)
       throws ClassNotFoundException {
 
-    EditController controller = new EditController(searchResult, searchText);
+    EditController controller = new EditController(title, searchText);
     Scene editScene = new Scene(controller);
     Stage editStage = new Stage();
     fixStage = editStage;

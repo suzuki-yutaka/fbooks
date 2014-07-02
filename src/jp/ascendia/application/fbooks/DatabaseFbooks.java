@@ -177,15 +177,10 @@ public class DatabaseFbooks {
    * @throws SQLException データベースアクセスエラーまたはその他のエラーに関する情報を提供する例外です
    */
   protected Book createBook(ResultSet rs) throws SQLException {
-    Book book = new Book();
-    book.setId(rs.getString("b_id"));
-    book.setTitle(rs.getString("b_title"));
-    book.setAuthor(rs.getString("b_author"));
-    book.setCompany(rs.getString("b_company"));
-    book.setGenre(rs.getString("b_genre"));
-    book.setReadStart(rs.getString("b_read_start"));
-    book.setReadEnd(rs.getString("b_read_end"));
-    book.setMemo(rs.getString("b_memo"));
+
+    Book book = new Book(rs.getString("b_id"), rs.getString("b_title"), rs.getString("b_author"),
+        rs.getString("b_company"), rs.getString("b_genre"), rs.getString("b_read_start"),
+        rs.getString("b_read_end"), rs.getString("b_memo"));
 
     return book;
   }

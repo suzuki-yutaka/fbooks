@@ -25,7 +25,7 @@ public class FixController extends AnchorPane implements Initializable {
 
   /** メッセージ出力用 */
   @FXML
-  private Label FixField;
+  private Label fixField;
 
   /**
    * コンストラクタ
@@ -58,8 +58,8 @@ public class FixController extends AnchorPane implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-    FixField.setText(msgText);
-    FixField.setStyle("-fx-font-size: 24px");
+    fixField.setText(msgText);
+    fixField.setStyle("-fx-font-size: 24px");
   }
 
   /**
@@ -84,7 +84,7 @@ public class FixController extends AnchorPane implements Initializable {
       if (searchResult != null && searchResult.length > 0) {
         try {
           //検索結果一覧ページへ戻る
-          Main.getInstance().searchResultController(searchResult, searchText, allFlg);
+          Main.getInstance().searchResultController(searchResult, searchText);
         } catch (ClassNotFoundException e) {
           e.printStackTrace();
         }

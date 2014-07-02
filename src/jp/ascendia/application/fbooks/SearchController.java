@@ -19,19 +19,19 @@ public class SearchController extends AnchorPane {
 
   /** 文字入力用 */
   @FXML
-  private TextField TitleField;
+  private TextField titleField;
   @FXML
-  private TextField AuthorField;
+  private TextField authorField;
   @FXML
-  private ComboBox<String> GenreCBox;
+  private ComboBox<String> genreCBox;
   @FXML
-  private DatePicker ReadStartDate;
+  private DatePicker readStartDate;
   @FXML
-  private DatePicker ReadEndDate;
+  private DatePicker readEndDate;
 
   /** メッセージ出力用 */
   @FXML
-  private Label MsgOutput;
+  private Label msgOutput;
 
   /**
    * コンストラクタ
@@ -62,11 +62,10 @@ public class SearchController extends AnchorPane {
    */
   @FXML
   protected void handleButtonActionSearRes() {
-    Book searchText = new Book();
 
     //入力値の取得
-    searchText.setAll(TitleField.getText(), AuthorField.getText(), "",
-        GenreCBox.getValue(), ReadStartDate.getValue(), ReadEndDate.getValue(), "");
+    Book searchText = new Book(titleField.getText(), authorField.getText(), "",
+        genreCBox.getValue(), readStartDate.getValue(), readEndDate.getValue(), "");
 
     //全件検索チェック
     ValueCheck vc = new ValueCheck();
@@ -79,13 +78,13 @@ public class SearchController extends AnchorPane {
     if (searchResult != null && searchResult.length > 0) {
       //検索結果表示ページへ
       try {
-        Main.getInstance().searchResultController(searchResult, searchText, allFlg);
+        Main.getInstance().searchResultController(searchResult, searchText);
       } catch (ClassNotFoundException e) {
         e.printStackTrace();
       }
     } else {
       //検索失敗
-      MsgOutput.setText("見つかりませんでした。");
+      msgOutput.setText("見つかりませんでした。");
     }
   }
 

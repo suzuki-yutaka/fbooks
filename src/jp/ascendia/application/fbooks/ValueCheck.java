@@ -53,6 +53,7 @@ public class ValueCheck {
    * 文字列の前後の全角スペース削除
    *
    * @param str 書籍情報
+   * @return str 全角スペース削除結果
    */
   public String fullSpaceDelete(String str) {
     char[] tmp = str.toCharArray();

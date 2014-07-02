@@ -27,7 +27,14 @@ public class Book {
   private String memo;
 
   /**
-   * 全入力値の取得
+   * コンストラクタ
+   */
+  public Book() {
+  }
+
+  /**
+   * コンストラクタ
+   * 設定(idなし)
    *
    * @param title タイトル
    * @param author 著者
@@ -37,7 +44,7 @@ public class Book {
    * @param readEnd 読書終了日
    * @param memo メモ
    */
-  public void setAll(String title, String author, String company,
+  public Book(String title, String author, String company,
       String genre, LocalDate readStart, LocalDate readEnd, String memo) {
     this.title = title;
     this.author = author;
@@ -48,6 +55,31 @@ public class Book {
       this.readStart = readStart.toString();
     if (readEnd != null)
       this.readEnd = readEnd.toString();
+    this.memo = memo;
+  }
+
+  /**
+   * コンストラクタ
+   * 設定(id有り)
+   *
+   * @param id 書籍ID
+   * @param title タイトル
+   * @param author 著者
+   * @param company 出版社
+   * @param genre ジャンル
+   * @param readStart 読書開始日
+   * @param readEnd 読書終了日
+   * @param memo メモ
+   */
+  public Book(String id, String title, String author, String company,
+      String genre, String readStart, String readEnd, String memo) {
+    this.id = id;
+    this.title = title;
+    this.author = author;
+    this.company = company;
+    this.genre = genre;
+    this.readStart = readStart;
+    this.readEnd = readEnd;
     this.memo = memo;
   }
 

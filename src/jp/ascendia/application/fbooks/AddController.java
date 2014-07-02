@@ -20,23 +20,23 @@ public class AddController extends AnchorPane {
 
   /** 文字入力用 */
   @FXML
-  private TextField TitleField;
+  private TextField titleField;
   @FXML
-  private TextField AuthorField;
+  private TextField authorField;
   @FXML
-  private TextField CompanyField;
+  private TextField companyField;
   @FXML
-  private ComboBox<String> GenreCBox;
+  private ComboBox<String> genreCBox;
   @FXML
-  private DatePicker ReadStartDate;
+  private DatePicker readStartDate;
   @FXML
-  private DatePicker ReadEndDate;
+  private DatePicker readEndDate;
   @FXML
-  private TextArea MemoArea;
+  private TextArea memoArea;
 
   /** メッセージ出力用 */
   @FXML
-  private Label MsgOutput;
+  private Label msgOutput;
 
   /**
    * コンストラクタ
@@ -67,29 +67,27 @@ public class AddController extends AnchorPane {
    */
   @FXML
   protected void handleButtonActionAdd() {
-    Book input = new Book();
 
     //入力値の取得
-    input.setAll(TitleField.getText(), AuthorField.getText(), CompanyField.getText(),
-        GenreCBox.getValue(), ReadStartDate.getValue(), ReadEndDate.getValue(), MemoArea.getText());
+    Book input = new Book(titleField.getText(), authorField.getText(), companyField.getText(),
+        genreCBox.getValue(), readStartDate.getValue(), readEndDate.getValue(), memoArea.getText());
 
     //入力値チェック
     ValueCheck vc = new ValueCheck();
     String result = vc.inputValueCheck(input);
     if (!result.equals("OK")) {
-      MsgOutput.setText(result);
+      msgOutput.setText(result);
       return;
     }
 
     //データベース検索
-    Book searchTmp = new Book();
-    searchTmp.setTitle(input.getTitle());
+    Book searchTmp = new Book("", input.getTitle(), "", "", "", "", "", "");
     DatabaseFbooks db = new DatabaseFbooks();
     Book[] searchResult = db.searchBook(searchTmp, 0);
 
     //登録済みタイトルのチェック
     if (searchResult != null && searchResult.length > 0) {
-      MsgOutput.setText("登録済みのタイトルです。");
+      msgOutput.setText("登録済みのタイトルです。");
       return;
     }
 
