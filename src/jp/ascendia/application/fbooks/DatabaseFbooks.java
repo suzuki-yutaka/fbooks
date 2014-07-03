@@ -136,16 +136,15 @@ public class DatabaseFbooks {
    * データベース検索
    *
    * @param book 検索文字
-   * @param allflg 全件検索フラグ
    * @return bookArray 検索結果
    */
-  public Book[] searchBook(Book book, int allflg) {
+  public Book[] searchBook(Book book) {
     Book[] bookArray = null;
     try {
       PreparedStatement statement;
       connect();
 
-      if (allflg == 1) {
+      if (book == null) {
         statement = connection.prepareStatement(
             "SELECT * FROM book_table");
       } else {

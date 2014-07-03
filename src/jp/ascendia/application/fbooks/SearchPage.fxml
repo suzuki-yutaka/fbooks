@@ -57,7 +57,8 @@
             <DatePicker fx:id="readEndDate" layoutX="413.0" layoutY="168.0" />
          </children>
       </Pane>
-      <Button layoutX="370.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonActionSearRes" styleClass="botton" text="検索" />
+      <Button layoutX="340.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonActionSearRes" styleClass="botton" text="検索" />
+      <Button layoutX="405.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonActionSearAll" styleClass="botton" text="全書籍一覧" />
    </children>
    <stylesheets>
      <URL value="@../fbooks/css/Main.css" />

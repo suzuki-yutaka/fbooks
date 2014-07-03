@@ -82,7 +82,7 @@ public class ValueCheck {
    * @return 0:検索値有り、1:全件検索
    */
   public int searchAllCheck(Book book) {
-    if (!"".equals(book.getTitle()) || !"".equals(book.getAuthor()) ||
+    if (book.getTitle() != null || book.getAuthor() != null ||
         book.getGenre() != null || book.getReadStart() != null || book.getReadEnd() != null) {
       return 0;
     } else {

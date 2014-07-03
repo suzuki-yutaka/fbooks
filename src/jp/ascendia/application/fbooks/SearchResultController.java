@@ -1,32 +1,23 @@
 package jp.ascendia.application.fbooks;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * 検索結果出力に使用するクラス
  * @version 1.0
  * @author Yutaka Suzuki
  */
-public class SearchResultController extends AnchorPane implements Initializable {
-
-  /** 検索結果 */
-  private static Book[] searchResult;
-
-  /** 検索情報 */
-  private static Book searchText;
+public class SearchResultController extends FxmlLoad implements Initializable {
 
   /** 編集削除対象の書籍タイトル */
   private static String chooseTitle;
@@ -58,33 +49,18 @@ public class SearchResultController extends AnchorPane implements Initializable 
    *
    * @param sr 検索結果
    * @param st 検索文字
+   * @param fxml fxmlファイル名
    */
-  public SearchResultController(Book[] sr, Book st) {
-    searchResult = sr;
-    searchText = st;
-
-    loadFXML();
-  }
-
-  /**
-   * FXMLのロード
-   */
-  private void loadFXML() {
-
-    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("SearchResult.fxml"));
-    fxmlLoader.setRoot(this);
-
-    fxmlLoader.setController(this);
-
-    try {
-      fxmlLoader.load();
-    } catch (IOException exception) {
-      throw new RuntimeException(exception);
-    }
+  public SearchResultController(Book[] sr, Book st, String fxml) {
+    super(sr, st, fxml);
   }
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
+
+    //初期化
+    tableView.getItems().clear();
+    chooseTitle = null;
 
     //カラムとBookクラスのプロパティ対応付け
     titleColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
@@ -105,15 +81,15 @@ public class SearchResultController extends AnchorPane implements Initializable 
     //TableViewの行が選択された場合、該当するタイトルを取得する。
     TableView.TableViewSelectionModel<Book> selectionModel = tableView.getSelectionModel();
     selectionModel.selectedItemProperty().addListener(new ChangeListener<Book>() {
-        @Override
-        public void changed(ObservableValue<? extends Book> value, Book old, Book next) {
-            chooseTitle = next.getTitle();
-        }
+      @Override
+      public void changed(ObservableValue<? extends Book> value, Book old, Book next) {
+        chooseTitle = next.getTitle();
+        System.out.println("changed　" + chooseTitle);
+      }
     });
 
     msgOutput.setText(searchResult.length + "件見つかりました");
   }
-
 
   /**
    * ボタンクリックアクション
@@ -121,10 +97,13 @@ public class SearchResultController extends AnchorPane implements Initializable 
    */
   @FXML
   protected void handleButtonActionEdit() {
-    try {
-      Main.getInstance().editController(chooseTitle, searchText);
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
+    System.out.println("handleButtonActionEdit　" + chooseTitle);
+    if (chooseTitle != null) {
+      try {
+        Main.getInstance().editController(chooseTitle, searchText);
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      }
     }
   }
 
@@ -134,18 +113,19 @@ public class SearchResultController extends AnchorPane implements Initializable 
    */
   @FXML
   protected void handleButtonActionDel() {
+    System.out.println("handleButtonActionDel　" + chooseTitle);
+    if (chooseTitle != null) {
+      //データベース検索
+      DatabaseFbooks db = new DatabaseFbooks();
+      Book[] result = db.searchBook(new Book("", chooseTitle, "", "", "", "", "", ""));
 
-    //データベース検索
-    Book searchTmp = new Book("", chooseTitle,  "", "", "", "", "", "");
-    DatabaseFbooks db = new DatabaseFbooks();
-    Book[] result = db.searchBook(searchTmp, 0);
-
-    //データ削除
-    db.deleteBook(result[0]);
-    try {
-      Main.getInstance().fixController("削除されました。", searchText);
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
+      //データ削除
+      db.deleteBook(result[0]);
+      try {
+        Main.getInstance().delFixController("削除されました。", searchText);
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      }
     }
   }
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.collections.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import java.net.*?>
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="750.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -25,7 +25,7 @@
             <Label layoutX="9.0" layoutY="122.0" prefHeight="22.0" prefWidth="83.0" styleClass="bookHead" text="※出版社：" />
             <Label layoutX="-9.0" layoutY="211.0" prefHeight="22.0" prefWidth="100.0" styleClass="bookHead" text="読書開始日：" />
             <Label layoutX="283.0" layoutY="211.0" prefHeight="22.0" prefWidth="100.0" styleClass="bookHead" text="読書終了日：" />
-            <Label  layoutX="35.0" layoutY="256.0" prefHeight="22.0" prefWidth="57.0" styleClass="bookHead" text="メモ：" />
+            <Label layoutX="35.0" layoutY="256.0" prefHeight="22.0" prefWidth="57.0" styleClass="bookHead" text="メモ：" />
             <TextField fx:id="titleField" layoutX="105.0" layoutY="21.0" prefHeight="30.0" prefWidth="450.0" styleClass="bookInput" />
             <TextField fx:id="authorField" layoutX="105.0" layoutY="70.0" prefHeight="30.0" prefWidth="450.0" styleClass="bookInput" />
             <TextField fx:id="companyField" layoutX="105.0" layoutY="119.0" prefHeight="30.0" prefWidth="450.0" styleClass="bookInput" />

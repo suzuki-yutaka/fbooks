@@ -1,22 +1,18 @@
 package jp.ascendia.application.fbooks;
 
-import java.io.IOException;
-
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * 書籍情報の登録時に使用するクラス
  * @version 1.0
  * @author Yutaka Suzuki
  */
-public class AddController extends AnchorPane {
+public class AddController extends FxmlLoad {
 
   /** 文字入力用 */
   @FXML
@@ -40,25 +36,10 @@ public class AddController extends AnchorPane {
 
   /**
    * コンストラクタ
+   * @param fxml fxmlファイル名
    */
-  public AddController() {
-    loadFXML();
-  }
-
-  /**
-   * FXMLのロード
-   */
-  private void loadFXML() {
-    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("AddPage.fxml"));
-    fxmlLoader.setRoot(this);
-
-    fxmlLoader.setController(this);
-
-    try {
-      fxmlLoader.load();
-    } catch (IOException exception) {
-      throw new RuntimeException(exception);
-    }
+  public AddController(String fxml) {
+    super(fxml);
   }
 
   /**
@@ -73,17 +54,15 @@ public class AddController extends AnchorPane {
         genreCBox.getValue(), readStartDate.getValue(), readEndDate.getValue(), memoArea.getText());
 
     //入力値チェック
-    ValueCheck vc = new ValueCheck();
-    String result = vc.inputValueCheck(input);
+    String result = new ValueCheck().inputValueCheck(input);
     if (!result.equals("OK")) {
       msgOutput.setText(result);
       return;
     }
 
     //データベース検索
-    Book searchTmp = new Book("", input.getTitle(), "", "", "", "", "", "");
     DatabaseFbooks db = new DatabaseFbooks();
-    Book[] searchResult = db.searchBook(searchTmp, 0);
+    Book[] searchResult = db.searchBook(new Book("", input.getTitle(), "", "", "", "", "", ""));
 
     //登録済みタイトルのチェック
     if (searchResult != null && searchResult.length > 0) {
@@ -96,7 +75,7 @@ public class AddController extends AnchorPane {
 
     //登録完了ウィンドウ表示
     try {
-      Main.getInstance().fixController("登録されました！", null);
+      Main.getInstance().addFixController("登録されました！", null);
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     }

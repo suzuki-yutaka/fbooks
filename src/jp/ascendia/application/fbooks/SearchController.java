@@ -1,21 +1,17 @@
 package jp.ascendia.application.fbooks;
 
-import java.io.IOException;
-
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 
 /**
  * 書籍情報の検索時に使用するクラス
  * @version 1.0
  * @author Yutaka Suzuki
  */
-public class SearchController extends AnchorPane {
+public class SearchController extends FxmlLoad {
 
   /** 文字入力用 */
   @FXML
@@ -35,25 +31,10 @@ public class SearchController extends AnchorPane {
 
   /**
    * コンストラクタ
+   * @param fxml fxmlファイル名
    */
-  public SearchController() {
-    loadFXML();
-  }
-
-  /**
-   * FXMLのロード
-   */
-  private void loadFXML() {
-    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("SearchPage.fxml"));
-    fxmlLoader.setRoot(this);
-
-    fxmlLoader.setController(this);
-
-    try {
-      fxmlLoader.load();
-    } catch (IOException exception) {
-      throw new RuntimeException(exception);
-    }
+  public SearchController(String fxml) {
+    super(fxml);
   }
 
   /**
@@ -67,18 +48,36 @@ public class SearchController extends AnchorPane {
     Book searchText = new Book(titleField.getText(), authorField.getText(), "",
         genreCBox.getValue(), readStartDate.getValue(), readEndDate.getValue(), "");
 
-    //全件検索チェック
-    ValueCheck vc = new ValueCheck();
-    int allFlg = vc.searchAllCheck(searchText);
-
     //データベース検索
-    DatabaseFbooks db = new DatabaseFbooks();
-    Book[] searchResult = db.searchBook(searchText, allFlg);
+    Book[] searchResult = new DatabaseFbooks().searchBook(searchText);
 
     if (searchResult != null && searchResult.length > 0) {
       //検索結果表示ページへ
       try {
         Main.getInstance().searchResultController(searchResult, searchText);
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      }
+    } else {
+      //検索失敗
+      msgOutput.setText("見つかりませんでした。");
+    }
+  }
+
+  /**
+   * ボタンクリックアクション
+   * 全件検索処理
+   */
+  @FXML
+  protected void handleButtonActionSearAll() {
+
+    //データベース検索
+    Book[] searchResult = new DatabaseFbooks().searchBook(null);
+
+    if (searchResult != null && searchResult.length > 0) {
+      //検索結果表示ページへ
+      try {
+        Main.getInstance().searchResultController(searchResult, null);
       } catch (ClassNotFoundException e) {
         e.printStackTrace();
       }
