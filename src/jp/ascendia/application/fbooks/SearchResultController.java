@@ -84,7 +84,6 @@ public class SearchResultController extends FxmlLoad implements Initializable {
       @Override
       public void changed(ObservableValue<? extends Book> value, Book old, Book next) {
         chooseTitle = next.getTitle();
-        System.out.println("changed　" + chooseTitle);
       }
     });
 
@@ -97,7 +96,6 @@ public class SearchResultController extends FxmlLoad implements Initializable {
    */
   @FXML
   protected void handleButtonActionEdit() {
-    System.out.println("handleButtonActionEdit　" + chooseTitle);
     if (chooseTitle != null) {
       try {
         Main.getInstance().editController(chooseTitle, searchText);
@@ -113,7 +111,6 @@ public class SearchResultController extends FxmlLoad implements Initializable {
    */
   @FXML
   protected void handleButtonActionDel() {
-    System.out.println("handleButtonActionDel　" + chooseTitle);
     if (chooseTitle != null) {
       //データベース検索
       DatabaseFbooks db = new DatabaseFbooks();
