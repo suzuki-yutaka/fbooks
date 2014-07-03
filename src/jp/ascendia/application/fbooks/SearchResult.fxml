@@ -20,13 +20,13 @@
       <Label fx:id="msgOutput" layoutX="34.0" layoutY="43.0" prefHeight="30.0" prefWidth="406.0" styleClass="message" />
       <TableView fx:id="tableView" layoutX="25.0" layoutY="75.0" prefHeight="400.0" prefWidth="735.0">
         <columns>
-          <TableColumn fx:id="titleColumn" prefWidth="120.0" text="タイトル" />
-          <TableColumn fx:id="authorColumn" prefWidth="95.0" text="著者" />
-            <TableColumn fx:id="companyColumn" prefWidth="75.0" text="出版社" />
-            <TableColumn fx:id="genreColumn" prefWidth="75.0" text="ジャンル" />
-            <TableColumn fx:id="readStartColumn" text="読書開始日" />
-            <TableColumn fx:id="readEndColumn" text="読書終了日" />
-            <TableColumn fx:id="memoColumn" prefWidth="210.0" text="メモ" />
+          <TableColumn fx:id="titleColumn" minWidth="120.0" maxWidth="120.0" text="タイトル" />
+          <TableColumn fx:id="authorColumn" minWidth="95.0" maxWidth="95.0" text="著者" />
+          <TableColumn fx:id="companyColumn" minWidth="75.0" maxWidth="75.0" text="出版社" />
+          <TableColumn fx:id="genreColumn" minWidth="75.0" maxWidth="75.0" text="ジャンル" />
+          <TableColumn fx:id="readStartColumn" minWidth="80.0" maxWidth="80.0" text="読書開始日" />
+          <TableColumn fx:id="readEndColumn" minWidth="80.0"  maxWidth="80.0" text="読書終了日" />
+          <TableColumn fx:id="memoColumn" minWidth="210.0" maxWidth="210.0" text="メモ" />
         </columns>
       </TableView>
       <Button fx:id="handleButtonActionEdit" layoutX="338.0" layoutY="506.0" mnemonicParsing="false" onAction="#handleButtonActionEdit" styleClass="botton" text="編集" />
