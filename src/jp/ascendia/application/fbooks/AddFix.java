@@ -8,11 +8,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
 /**
- * 編集、削除完了ウィンドウ表示クラス
+ * 登録完了ウィンドウ表示クラス
  * @version 1.0
  * @author Yutaka Suzuki
  */
-public class EditFixController extends FxmlLoad implements Initializable {
+public class AddFix extends FxmlLoad implements Initializable {
 
   /** メッセージ出力用 */
   @FXML
@@ -25,7 +25,7 @@ public class EditFixController extends FxmlLoad implements Initializable {
    * @param st 検索文字
    * @param fxml 読み込み対象fxmlファイル名
    */
-  public EditFixController(String msg, Book st, String fxml) {
+  public AddFix(String msg, Book st, String fxml) {
     super(msg, st, fxml);
   }
 
@@ -40,24 +40,11 @@ public class EditFixController extends FxmlLoad implements Initializable {
    */
   @FXML
   protected void handleButtonActionClose() {
-
-    //データベース検索
-    Book[] searchResult = new DatabaseFbooks().searchBook(searchText);
-
-    if (searchResult != null && searchResult.length > 0) {
-      try {
-        //検索結果一覧ページへ戻る
-        Main.getInstance().searchResultController(searchResult, searchText);
-      } catch (ClassNotFoundException e) {
-        e.printStackTrace();
-      }
-    } else {
-      //検索ページへ戻る
-      Main.getInstance().searchController();
-    }
+    //登録ページへ戻る
+    Controller.getInstance().addController();
 
     //ウィンドウを閉じる
-    Main.fixStage.getScene().getWindow().hide();
-    Main.fixStage = null;
+    Controller.getInstance().closeWindow();
   }
+
 }

@@ -63,7 +63,7 @@ public class FxmlLoad extends AnchorPane {
    */
   private void loadFXML(String fxml) {
 
-    FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxml));
+    FXMLLoader fxmlLoader = new FXMLLoader(Controller.class.getResource(fxml));
     fxmlLoader.setRoot(this);
 
     fxmlLoader.setController(this);

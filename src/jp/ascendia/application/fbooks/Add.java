@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
  * @version 1.0
  * @author Yutaka Suzuki
  */
-public class AddController extends FxmlLoad {
+public class Add extends FxmlLoad {
 
   /** 文字入力用 */
   @FXML
@@ -38,7 +38,7 @@ public class AddController extends FxmlLoad {
    * コンストラクタ
    * @param fxml fxmlファイル名
    */
-  public AddController(String fxml) {
+  public Add(String fxml) {
     super(fxml);
   }
 
@@ -75,7 +75,7 @@ public class AddController extends FxmlLoad {
 
     //登録完了ウィンドウ表示
     try {
-      Main.getInstance().addFixController("登録されました！", null);
+      Controller.getInstance().addFixController("登録されました！", null);
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     }
@@ -87,7 +87,7 @@ public class AddController extends FxmlLoad {
    */
   @FXML
   protected void handleButtonActionHomePage() {
-    Main.getInstance().mainController();
+    Controller.getInstance().mainController();
   }
 
   /**
@@ -96,6 +96,6 @@ public class AddController extends FxmlLoad {
    */
   @FXML
   protected void handleButtonActionSearchPage() {
-    Main.getInstance().searchController();
+    Controller.getInstance().searchController();
   }
 }

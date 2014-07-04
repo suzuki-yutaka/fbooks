@@ -17,7 +17,7 @@ import javafx.scene.control.TextField;
  * @version 1.0
  * @author Yutaka Suzuki
  */
-public class EditController extends FxmlLoad implements Initializable {
+public class Edit extends FxmlLoad implements Initializable {
 
   /** 編集対象の書籍情報 */
   private static Book initBook[];
@@ -49,7 +49,7 @@ public class EditController extends FxmlLoad implements Initializable {
    * @param st 検索文字
    * @param fxml fxmlファイル名
    */
-  public EditController(String title, Book st, String fxml) {
+  public Edit(String title, Book st, String fxml) {
     super(title, st, fxml);
   }
 
@@ -112,7 +112,7 @@ public class EditController extends FxmlLoad implements Initializable {
 
     //編集完了ウィンドウ表示
     try {
-      Main.getInstance().editFixController("編集内容が反映されました。", searchText);
+      Controller.getInstance().editFixController("編集内容が反映されました。", searchText);
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     }
@@ -124,7 +124,6 @@ public class EditController extends FxmlLoad implements Initializable {
    */
   @FXML
   protected void handleButtonActionClose() {
-    Main.fixStage.getScene().getWindow().hide();
-    Main.fixStage = null;
+    Controller.getInstance().closeWindow();
   }
 }

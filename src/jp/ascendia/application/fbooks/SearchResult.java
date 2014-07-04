@@ -17,7 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * @version 1.0
  * @author Yutaka Suzuki
  */
-public class SearchResultController extends FxmlLoad implements Initializable {
+public class SearchResult extends FxmlLoad implements Initializable {
 
   /** 編集削除対象の書籍タイトル */
   private static String chooseTitle;
@@ -51,7 +51,7 @@ public class SearchResultController extends FxmlLoad implements Initializable {
    * @param st 検索文字
    * @param fxml fxmlファイル名
    */
-  public SearchResultController(Book[] sr, Book st, String fxml) {
+  public SearchResult(Book[] sr, Book st, String fxml) {
     super(sr, st, fxml);
   }
 
@@ -98,7 +98,7 @@ public class SearchResultController extends FxmlLoad implements Initializable {
   protected void handleButtonActionEdit() {
     if (chooseTitle != null) {
       try {
-        Main.getInstance().editController(chooseTitle, searchText);
+        Controller.getInstance().editController(chooseTitle, searchText);
       } catch (ClassNotFoundException e) {
         e.printStackTrace();
       }
@@ -119,7 +119,7 @@ public class SearchResultController extends FxmlLoad implements Initializable {
       //データ削除
       db.deleteBook(result[0]);
       try {
-        Main.getInstance().delFixController("削除されました。", searchText);
+        Controller.getInstance().delFixController("削除されました。", searchText);
       } catch (ClassNotFoundException e) {
         e.printStackTrace();
       }
@@ -132,7 +132,7 @@ public class SearchResultController extends FxmlLoad implements Initializable {
    */
   @FXML
   protected void handleButtonActionHomePage() {
-    Main.getInstance().mainController();
+    Controller.getInstance().mainController();
   }
 
   /**
@@ -141,7 +141,7 @@ public class SearchResultController extends FxmlLoad implements Initializable {
    */
   @FXML
   protected void handleButtonActionAddPage() {
-    Main.getInstance().addController();
+    Controller.getInstance().addController();
   }
 
   /**
@@ -150,6 +150,6 @@ public class SearchResultController extends FxmlLoad implements Initializable {
    */
   @FXML
   protected void handleButtonActionSearchPage() {
-    Main.getInstance().searchController();
+    Controller.getInstance().searchController();
   }
 }

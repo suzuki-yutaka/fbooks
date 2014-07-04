@@ -11,18 +11,18 @@ import javafx.stage.Stage;
  * @version 1.0
  * @author Yutaka Suzuki
  */
-public class Main extends Application {
+public class Controller extends Application {
 
   /**
-   * Main class instance
+   * Controller class instance
    */
-  private static Main instance;
+  private static Controller instance;
 
   /**
    * ステージ
    */
   private static Stage stage;
-  protected static Stage fixStage;
+  private static Stage fixStage;
 
   public void start(Stage primaryStage) throws Exception {
     /** インスタンス */
@@ -50,9 +50,9 @@ public class Main extends Application {
    */
   public void mainController() {
 
-    stage.setTitle("メインページ");
+    stage.setTitle("ホーム");
 
-    MainController controller = new MainController("MainPage.fxml");
+    Home controller = new Home("Home.fxml");
     this.replaceSceneContent(controller);
   }
 
@@ -63,7 +63,7 @@ public class Main extends Application {
 
     stage.setTitle("書籍登録");
 
-    AddController controller = new AddController("AddPage.fxml");
+    Add controller = new Add("Add.fxml");
     this.replaceSceneContent(controller);
   }
 
@@ -74,7 +74,7 @@ public class Main extends Application {
 
     stage.setTitle("書籍検索");
 
-    SearchController controller = new SearchController("SearchPage.fxml");
+    Search controller = new Search("Search.fxml");
     this.replaceSceneContent(controller);
   }
 
@@ -90,7 +90,7 @@ public class Main extends Application {
 
     stage.setTitle("検索結果");
 
-    SearchResultController controller = new SearchResultController(searchResult, searchText, "SearchResult.fxml");
+    SearchResult controller = new SearchResult(searchResult, searchText, "SearchResult.fxml");
     this.replaceSceneContent(controller);
   }
 
@@ -104,10 +104,11 @@ public class Main extends Application {
   public void editController(String title, Book searchText)
       throws ClassNotFoundException {
 
-    EditController controller = new EditController(title, searchText, "EditPage.fxml");
+    Edit controller = new Edit(title, searchText, "Edit.fxml");
     Scene editScene = new Scene(controller);
+
+    //モーダルウィンドウ作成
     Stage editStage = new Stage();
-    fixStage = editStage;
     editStage.setTitle("書籍編集");
     editStage.setScene(editScene);
     editStage.setX(400);
@@ -117,6 +118,7 @@ public class Main extends Application {
     editStage.initModality(Modality.WINDOW_MODAL);
     editStage.initOwner(stage);
     editStage.show();
+    fixStage = editStage;
   }
 
   /**
@@ -129,8 +131,10 @@ public class Main extends Application {
   public void addFixController(String text, Book searchText)
       throws ClassNotFoundException {
 
-    AddFixController controller = new AddFixController(text, searchText, "FixPage.fxml");
+    AddFix controller = new AddFix(text, searchText, "Fix.fxml");
     Scene fScene = new Scene(controller);
+
+    //モーダルウィンドウ作成
     Stage fStage = new Stage();
     fStage.setTitle("登録完了");
     fStage.setScene(fScene);
@@ -152,13 +156,16 @@ public class Main extends Application {
   public void editFixController(String text, Book searchText)
       throws ClassNotFoundException {
 
-    EditFixController controller = new EditFixController(text, searchText, "FixPage.fxml");
+    EditFix controller = new EditFix(text, searchText, "Fix.fxml");
+
+    //モーダルウィンドウ作成
+    fixStage.getScene().setRoot(controller);
     fixStage.setWidth(400);
     fixStage.setHeight(200);
     fixStage.setX(485);
     fixStage.setY(165);
     fixStage.setTitle("編集完了");
-    fixStage.getScene().setRoot(controller);
+
   }
 
   /**
@@ -171,8 +178,10 @@ public class Main extends Application {
   public void delFixController(String text, Book searchText)
       throws ClassNotFoundException {
 
-    EditFixController controller = new EditFixController(text, searchText, "FixPage.fxml");
+    EditFix controller = new EditFix(text, searchText, "Fix.fxml");
     Scene fScene = new Scene(controller);
+
+    //モーダルウィンドウ作成
     Stage fStage = new Stage();
     fStage.setTitle("削除完了");
     fStage.setScene(fScene);
@@ -182,6 +191,14 @@ public class Main extends Application {
     fStage.initOwner(stage);
     fStage.show();
     fixStage = fStage;
+  }
+
+  /**
+   * モーダルウィンドウを閉じる
+   */
+  public void closeWindow() {
+    fixStage.getScene().getWindow().hide();
+    fixStage = null;
   }
 
   /**
@@ -204,7 +221,7 @@ public class Main extends Application {
    *
    * @return インスタンス
    */
-  public static Main getInstance() {
+  public static Controller getInstance() {
     return instance;
   }
 }

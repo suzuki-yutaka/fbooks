@@ -8,12 +8,12 @@ import javafx.fxml.FXML;
  * @version 1.0
  * @author Yutaka Suzuki
  */
-public class MainController extends FxmlLoad {
+public class Home extends FxmlLoad {
   /**
    * コンストラクタ
    * @param fxml fxmlファイル名
    */
-  public MainController(String fxml) {
+  public Home(String fxml) {
     super(fxml);
   }
 
@@ -23,7 +23,7 @@ public class MainController extends FxmlLoad {
    */
   @FXML
   protected void handleButtonActionAddPage() {
-    Main.getInstance().addController();
+    Controller.getInstance().addController();
   }
 
   /**
@@ -32,7 +32,7 @@ public class MainController extends FxmlLoad {
    */
   @FXML
   protected void handleButtonActionSearchPage() {
-    Main.getInstance().searchController();
+    Controller.getInstance().searchController();
   }
 
   /**

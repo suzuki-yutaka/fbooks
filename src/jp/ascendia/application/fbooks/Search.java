@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
  * @version 1.0
  * @author Yutaka Suzuki
  */
-public class SearchController extends FxmlLoad {
+public class Search extends FxmlLoad {
 
   /** 文字入力用 */
   @FXML
@@ -33,7 +33,7 @@ public class SearchController extends FxmlLoad {
    * コンストラクタ
    * @param fxml fxmlファイル名
    */
-  public SearchController(String fxml) {
+  public Search(String fxml) {
     super(fxml);
   }
 
@@ -54,7 +54,7 @@ public class SearchController extends FxmlLoad {
     if (searchResult != null && searchResult.length > 0) {
       //検索結果表示ページへ
       try {
-        Main.getInstance().searchResultController(searchResult, searchText);
+        Controller.getInstance().searchResultController(searchResult, searchText);
       } catch (ClassNotFoundException e) {
         e.printStackTrace();
       }
@@ -77,7 +77,7 @@ public class SearchController extends FxmlLoad {
     if (searchResult != null && searchResult.length > 0) {
       //検索結果表示ページへ
       try {
-        Main.getInstance().searchResultController(searchResult, null);
+        Controller.getInstance().searchResultController(searchResult, null);
       } catch (ClassNotFoundException e) {
         e.printStackTrace();
       }
@@ -93,7 +93,7 @@ public class SearchController extends FxmlLoad {
    */
   @FXML
   protected void handleButtonActionHomePage() {
-    Main.getInstance().mainController();
+    Controller.getInstance().mainController();
   }
 
   /**
@@ -102,6 +102,6 @@ public class SearchController extends FxmlLoad {
    */
   @FXML
   protected void handleButtonActionAddPage() {
-    Main.getInstance().addController();
+    Controller.getInstance().addController();
   }
 }
