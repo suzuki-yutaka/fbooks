@@ -19,8 +19,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class SearchResult extends FxmlLoad implements Initializable {
 
-  /** 編集削除対象の書籍タイトル */
-  private static String chooseTitle;
+  /** 削除対象の書籍ID */
+  private static String chooseId;
 
   /** 文字入力用 */
   @FXML
@@ -60,7 +60,7 @@ public class SearchResult extends FxmlLoad implements Initializable {
 
     //初期化
     tableView.getItems().clear();
-    chooseTitle = null;
+    chooseId = null;
 
     //カラムとBookクラスのプロパティ対応付け
     titleColumn.setCellValueFactory(new PropertyValueFactory<Book, String>("title"));
@@ -83,7 +83,8 @@ public class SearchResult extends FxmlLoad implements Initializable {
     selectionModel.selectedItemProperty().addListener(new ChangeListener<Book>() {
       @Override
       public void changed(ObservableValue<? extends Book> value, Book old, Book next) {
-        chooseTitle = next.getTitle();
+        if (next != null)
+          chooseId = next.getId();
       }
     });
 
@@ -96,9 +97,9 @@ public class SearchResult extends FxmlLoad implements Initializable {
    */
   @FXML
   protected void handleButtonActionEdit() {
-    if (chooseTitle != null) {
+    if (chooseId != null) {
       try {
-        Controller.getInstance().editController(chooseTitle, searchText);
+        Controller.getInstance().editController(chooseId, searchText);
       } catch (ClassNotFoundException e) {
         e.printStackTrace();
       }
@@ -111,15 +112,11 @@ public class SearchResult extends FxmlLoad implements Initializable {
    */
   @FXML
   protected void handleButtonActionDel() {
-    if (chooseTitle != null) {
-      //データベース検索
-      DatabaseFbooks db = new DatabaseFbooks();
-      Book[] result = db.searchBook(new Book("", chooseTitle, "", "", "", "", "", ""));
-
+    if (chooseId != null) {
       //データ削除
-      db.deleteBook(result[0]);
+      new DatabaseFbooks().deleteBook(new Book(chooseId, "", "", "", "", "", "", ""));
       try {
-        Controller.getInstance().delFixController("削除されました。", searchText);
+        Controller.getInstance().delFixController(searchText);
       } catch (ClassNotFoundException e) {
         e.printStackTrace();
       }

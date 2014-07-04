@@ -75,7 +75,7 @@ public class Add extends FxmlLoad {
 
     //登録完了ウィンドウ表示
     try {
-      Controller.getInstance().addFixController("登録されました！", null);
+      Controller.getInstance().addFixController(null);
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     }

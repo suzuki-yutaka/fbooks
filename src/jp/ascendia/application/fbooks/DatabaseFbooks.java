@@ -95,7 +95,7 @@ public class DatabaseFbooks {
 
       PreparedStatement statement = connection.prepareStatement(
           "UPDATE book_table SET b_title = ?, b_author = ?, b_company = ?, b_genre = ?,"
-              + " b_read_start = ?, b_read_end = ?, b_memo = ? WHERE b_id = ?");
+              + " b_read_start = date(?), b_read_end = date(?), b_memo = ? WHERE b_id = ?");
       statement.setString(1, book.getTitle());
       statement.setString(2, book.getAuthor());
       statement.setString(3, book.getCompany());
@@ -145,9 +145,16 @@ public class DatabaseFbooks {
       connect();
 
       if (book == null) {
+
         statement = connection.prepareStatement(
             "SELECT * FROM book_table");
+      } else if (book.getId() != null && !"".equals(book.getId())){
+
+        statement = connection.prepareStatement(
+            "SELECT * FROM book_table WHERE b_id = ?");
+        statement.setString(1, book.getId());
       } else {
+
         statement = connection.prepareStatement(
             "SELECT * FROM book_table WHERE b_title = ? or b_author = ? or b_genre = ?"
                 + " or b_read_start = ? or b_read_end = ?");

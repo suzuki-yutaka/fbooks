@@ -31,7 +31,7 @@ public class EditFix extends FxmlLoad implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-    fixField.setText(text);
+      fixField.setText(tmp);
   }
 
   /**

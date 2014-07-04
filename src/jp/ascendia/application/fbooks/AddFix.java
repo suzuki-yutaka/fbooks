@@ -21,17 +21,16 @@ public class AddFix extends FxmlLoad implements Initializable {
   /**
    * コンストラクタ
    *
-   * @param msg 出力メッセージ
    * @param st 検索文字
    * @param fxml 読み込み対象fxmlファイル名
    */
-  public AddFix(String msg, Book st, String fxml) {
-    super(msg, st, fxml);
+  public AddFix(Book st, String fxml) {
+    super(st, fxml);
   }
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-    fixField.setText(text);
+    fixField.setText("登録されました！");
   }
 
   /**

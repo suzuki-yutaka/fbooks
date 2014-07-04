@@ -97,14 +97,14 @@ public class Controller extends Application {
   /**
    * 編集ウィンドウ表示
    *
-   * @param title 編集対象の書籍タイトル
+   * @param id 編集対象の書籍ID
    * @param searchText 検索文字
    * @throws ClassNotFoundException 指定された名前のクラスの定義が見つからなかった場合
    */
-  public void editController(String title, Book searchText)
+  public void editController(String id, Book searchText)
       throws ClassNotFoundException {
 
-    Edit controller = new Edit(title, searchText, "Edit.fxml");
+    Edit controller = new Edit(id, searchText, "Edit.fxml");
     Scene editScene = new Scene(controller);
 
     //モーダルウィンドウ作成
@@ -124,14 +124,13 @@ public class Controller extends Application {
   /**
    * 登録完了ウィンドウ表示
    *
-   * @param text 完了メッセージ
    * @param searchText 検索文字
    * @throws ClassNotFoundException 指定された名前のクラスの定義が見つからなかった場合
    */
-  public void addFixController(String text, Book searchText)
+  public void addFixController(Book searchText)
       throws ClassNotFoundException {
 
-    AddFix controller = new AddFix(text, searchText, "Fix.fxml");
+    AddFix controller = new AddFix(searchText, "Fix.fxml");
     Scene fScene = new Scene(controller);
 
     //モーダルウィンドウ作成
@@ -149,14 +148,13 @@ public class Controller extends Application {
   /**
    * 編集完了ウィンドウ表示
    *
-   * @param text 完了メッセージ
    * @param searchText 検索文字
    * @throws ClassNotFoundException 指定された名前のクラスの定義が見つからなかった場合
    */
-  public void editFixController(String text, Book searchText)
+  public void editFixController(Book searchText)
       throws ClassNotFoundException {
 
-    EditFix controller = new EditFix(text, searchText, "Fix.fxml");
+    EditFix controller = new EditFix("編集内容が反映されました。", searchText, "Fix.fxml");
 
     //モーダルウィンドウ作成
     fixStage.getScene().setRoot(controller);
@@ -165,20 +163,18 @@ public class Controller extends Application {
     fixStage.setX(485);
     fixStage.setY(165);
     fixStage.setTitle("編集完了");
-
   }
 
   /**
    * 削除完了ウィンドウ表示
    *
-   * @param text 完了メッセージ
    * @param searchText 検索文字
    * @throws ClassNotFoundException 指定された名前のクラスの定義が見つからなかった場合
    */
-  public void delFixController(String text, Book searchText)
+  public void delFixController(Book searchText)
       throws ClassNotFoundException {
 
-    EditFix controller = new EditFix(text, searchText, "Fix.fxml");
+    EditFix controller = new EditFix("削除されました。", searchText, "Fix.fxml");
     Scene fScene = new Scene(controller);
 
     //モーダルウィンドウ作成

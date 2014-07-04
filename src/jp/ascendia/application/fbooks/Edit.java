@@ -45,18 +45,18 @@ public class Edit extends FxmlLoad implements Initializable {
   /**
    * コンストラクタ
    *
-   * @param title 編集対象の書籍タイトル
+   * @param id 編集対象の書籍ID
    * @param st 検索文字
    * @param fxml fxmlファイル名
    */
-  public Edit(String title, Book st, String fxml) {
-    super(title, st, fxml);
+  public Edit(String id, Book st, String fxml) {
+    super(id, st, fxml);
   }
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     //データベース検索
-    initBook = new DatabaseFbooks().searchBook(new Book("", text, "", "", "", "", "", ""));
+    initBook = new DatabaseFbooks().searchBook(new Book(tmp, "", "", "", "", "", "", ""));
 
     if (initBook != null && initBook.length > 0) {
       titleField.setText(initBook[0].getTitle());
@@ -112,7 +112,7 @@ public class Edit extends FxmlLoad implements Initializable {
 
     //編集完了ウィンドウ表示
     try {
-      Controller.getInstance().editFixController("編集内容が反映されました。", searchText);
+      Controller.getInstance().editFixController(searchText);
     } catch (ClassNotFoundException e) {
       e.printStackTrace();
     }
