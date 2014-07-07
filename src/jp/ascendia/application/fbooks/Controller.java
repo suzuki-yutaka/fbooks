@@ -124,13 +124,12 @@ public class Controller extends Application {
   /**
    * 登録完了ウィンドウ表示
    *
-   * @param searchText 検索文字
    * @throws ClassNotFoundException 指定された名前のクラスの定義が見つからなかった場合
    */
-  public void addFixController(Book searchText)
+  public void addFixController()
       throws ClassNotFoundException {
 
-    AddFix controller = new AddFix(searchText, "Fix.fxml");
+    AddFix controller = new AddFix("Fix.fxml");
     Scene fScene = new Scene(controller);
 
     //モーダルウィンドウ作成
@@ -154,7 +153,7 @@ public class Controller extends Application {
   public void editFixController(Book searchText)
       throws ClassNotFoundException {
 
-    EditFix controller = new EditFix("編集内容が反映されました。", searchText, "Fix.fxml");
+    EditFix controller = new EditFix(searchText, "Fix.fxml");
 
     //モーダルウィンドウ作成
     fixStage.getScene().setRoot(controller);
@@ -174,7 +173,7 @@ public class Controller extends Application {
   public void delFixController(Book searchText)
       throws ClassNotFoundException {
 
-    EditFix controller = new EditFix("削除されました。", searchText, "Fix.fxml");
+    DelFix controller = new DelFix(searchText, "Fix.fxml");
     Scene fScene = new Scene(controller);
 
     //モーダルウィンドウ作成

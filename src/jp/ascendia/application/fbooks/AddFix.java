@@ -21,11 +21,10 @@ public class AddFix extends FxmlLoad implements Initializable {
   /**
    * コンストラクタ
    *
-   * @param st 検索文字
    * @param fxml 読み込み対象fxmlファイル名
    */
-  public AddFix(Book st, String fxml) {
-    super(st, fxml);
+  public AddFix(String fxml) {
+    super(fxml);
   }
 
   @Override

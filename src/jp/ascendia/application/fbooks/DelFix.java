@@ -8,11 +8,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
 /**
- * 編集完了ウィンドウ表示クラス
+ * 削除完了ウィンドウ表示クラス
  * @version 1.0
  * @author Yutaka Suzuki
  */
-public class EditFix extends FxmlLoad implements Initializable {
+public class DelFix extends FxmlLoad implements Initializable {
 
   /** メッセージ出力用 */
   @FXML
@@ -24,13 +24,13 @@ public class EditFix extends FxmlLoad implements Initializable {
    * @param st 検索文字
    * @param fxml 読み込み対象fxmlファイル名
    */
-  public EditFix(Book st, String fxml) {
+  public DelFix(Book st, String fxml) {
     super(st, fxml);
   }
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-      fixField.setText("編集内容が反映されました。");
+      fixField.setText("削除されました。");
   }
 
   /**

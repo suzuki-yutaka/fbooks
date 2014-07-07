@@ -42,7 +42,7 @@ public class Search extends FxmlLoad {
    * 検索処理
    */
   @FXML
-  protected void handleButtonActionSearRes() {
+  protected void handleButtonActionSearchRes() {
 
     //入力値の取得
     Book searchText = new Book(titleField.getText(), authorField.getText(), "",
@@ -69,7 +69,7 @@ public class Search extends FxmlLoad {
    * 全件検索処理
    */
   @FXML
-  protected void handleButtonActionSearAll() {
+  protected void handleButtonActionSearchAll() {
 
     //データベース検索
     Book[] searchResult = new DatabaseFbooks().searchBook(null);

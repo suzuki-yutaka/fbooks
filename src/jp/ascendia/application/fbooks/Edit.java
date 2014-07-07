@@ -56,7 +56,7 @@ public class Edit extends FxmlLoad implements Initializable {
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     //データベース検索
-    initBook = new DatabaseFbooks().searchBook(new Book(tmp, "", "", "", "", "", "", ""));
+    initBook = new DatabaseFbooks().searchBook(new Book(b_id, "", "", "", "", "", "", ""));
 
     if (initBook != null && initBook.length > 0) {
       titleField.setText(initBook[0].getTitle());

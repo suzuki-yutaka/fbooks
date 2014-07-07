@@ -12,7 +12,8 @@ import javafx.scene.layout.AnchorPane;
  */
 public class FxmlLoad extends AnchorPane {
 
-  protected static String tmp;
+  /** 書籍ID */
+  protected static String b_id;
 
   /** 検索結果 */
   protected static Book searchResult[];
@@ -58,12 +59,12 @@ public class FxmlLoad extends AnchorPane {
   /**
    * コンストラクタ
    *
-   * @param str メッセージ
+   * @param id 書籍ID
    * @param st 検索文字
    * @param fxml 読み込み対象fxmlファイル名
    */
-  public FxmlLoad(String str, Book st, String fxml) {
-    tmp = str;
+  public FxmlLoad(String id, Book st, String fxml) {
+    b_id = id;
     searchText = st;
 
     loadFXML(fxml);
