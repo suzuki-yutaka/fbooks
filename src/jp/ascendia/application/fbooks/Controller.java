@@ -51,7 +51,7 @@ public class Controller extends Application {
    */
   public void mainController() {
 
-    mainStage.setTitle("ホーム");
+    mainStage.setTitle("読書記録アプリ");
 
     Home controller = new Home("Home.fxml");
     this.replaceSceneContent(controller);
