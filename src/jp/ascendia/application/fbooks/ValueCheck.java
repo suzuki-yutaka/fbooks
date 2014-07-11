@@ -46,7 +46,7 @@ public class ValueCheck {
       }
     }
 
-    return "OK";
+    return null;
   }
 
   /**

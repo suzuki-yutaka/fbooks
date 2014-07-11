@@ -55,7 +55,7 @@ public class Add extends FxmlLoad {
 
     //入力値チェック
     String result = new ValueCheck().inputValueCheck(input);
-    if (!result.equals("OK")) {
+    if (result != null) {
       msgOutput.setText(result);
       return;
     }

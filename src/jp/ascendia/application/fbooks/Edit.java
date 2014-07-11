@@ -84,7 +84,7 @@ public class Edit extends FxmlLoad implements Initializable {
 
     //入力値チェック
     String outputText = new ValueCheck().inputValueCheck(input);
-    if (!outputText.equals("OK")) {
+    if (outputText != null) {
       msgOutput.setText(outputText);
       return;
     }
