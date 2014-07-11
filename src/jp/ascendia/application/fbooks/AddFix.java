@@ -39,10 +39,10 @@ public class AddFix extends FxmlLoad implements Initializable {
   @FXML
   protected void handleButtonActionClose() {
     //登録ページへ戻る
-    Controller.getInstance().addController();
+    Controller.getInstance().mainController();
 
     //ウィンドウを閉じる
-    Controller.getInstance().closeWindow();
+    Controller.getInstance().closeFixWindow();
   }
 
 }

@@ -57,7 +57,7 @@
          </children>
       </Pane>
       <Button layoutX="325.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleButtonActionEdit" styleClass="botton" text="更新" />
-      <Button layoutX="395.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleButtonActionClose" styleClass="botton" text="閉じる" />
+      <Button layoutX="395.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleButtonActionClose" styleClass="botton" text="戻る" />
    </children>
    <stylesheets>
       <URL value="@../fbooks/css/Main.css" />

@@ -124,6 +124,16 @@ public class Edit extends FxmlLoad implements Initializable {
    */
   @FXML
   protected void handleButtonActionClose() {
-    Controller.getInstance().closeWindow();
+    //データベース検索
+    Book[] searchResult = new DatabaseFbooks().searchBook(searchText);
+
+    if (searchResult != null && searchResult.length > 0) {
+      try {
+        //検索結果一覧ページへ戻る
+        Controller.getInstance().searchResultController(searchResult, searchText);
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      }
+    }
   }
 }

@@ -125,6 +125,16 @@ public class SearchResult extends FxmlLoad implements Initializable {
 
   /**
    * ボタンクリックアクション
+   * 削除処理
+   */
+  @FXML
+  protected void handleButtonActionClose() {
+    //ウィンドウを閉じる
+    Controller.getInstance().closeWindow();
+  }
+
+  /**
+   * ボタンクリックアクション
    * メインページへ遷移
    */
   @FXML

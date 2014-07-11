@@ -2,6 +2,7 @@
 
 <?import java.lang.*?>
 <?import java.net.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -9,20 +10,116 @@
 
 <fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="40.0" layoutY="50.0" prefHeight="42.0" prefWidth="250.0" styleClass="title" text="読書記録アプリ" />
-      <Button layoutX="300.0" layoutY="146.0" mnemonicParsing="false" onAction="#handleButtonActionAddPage" prefHeight="50.0" prefWidth="138.0" styleClass="botton" text="登録" />
-      <Button layoutX="300.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleButtonActionSearchPage" prefHeight="50.0" prefWidth="138.0" styleClass="botton" text="検索" />
-      <Button layoutX="300.0" layoutY="334.0" mnemonicParsing="false" onAction="#handleButtonActionClose" prefHeight="50.0" prefWidth="138.0" styleClass="botton" text="閉じる" />
-      <ImageView layoutX="200.0" layoutY="130.0" fitHeight="81.0" fitWidth="81.0" preserveRatio="true">
-         <image>
-            <Image preserveRatio="false" smooth="false" url="@image/fukurou.png" />
-         </image>
-      </ImageView>
-      <ImageView layoutX="200.0" layoutY="225.0" fitHeight="79.0" fitWidth="102.0" preserveRatio="true">
-         <image>
-           <Image preserveRatio="false" smooth="false" url="@image/dog.png" />
-         </image>
-      </ImageView>
+      <TabPane fx:id="tabPane" prefHeight="550.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <tabs>
+            <Tab text="登録">
+               <content>
+                  <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="40.0" layoutY="50.0" prefHeight="42.0" prefWidth="153.0" styleClass="title" text="書籍登録" />
+                        <Label fx:id="addMsgOutput" layoutX="224.0" layoutY="67.0" prefHeight="30.0" prefWidth="406.0" styleClass="message" />
+                        <Pane layoutX="57.0" layoutY="87.0" prefHeight="361.0" prefWidth="620.0">
+                           <children>
+                              <Label layoutX="2.0" layoutY="24.0" prefHeight="22.0" prefWidth="90.0" styleClass="bookHead" text="※タイトル：" />
+                              <Label layoutX="9.0" layoutY="73.0" prefHeight="22.0" prefWidth="83.0" styleClass="bookHead" text="※著者：" />
+                              <Label layoutX="9.0" layoutY="167.0" prefHeight="22.0" prefWidth="83.0" styleClass="bookHead" text="※ジャンル：" />
+                              <Label layoutX="9.0" layoutY="122.0" prefHeight="22.0" prefWidth="83.0" styleClass="bookHead" text="※出版社：" />
+                              <Label layoutX="-9.0" layoutY="211.0" prefHeight="22.0" prefWidth="100.0" styleClass="bookHead" text="読書開始日：" />
+                              <Label layoutX="283.0" layoutY="211.0" prefHeight="22.0" prefWidth="100.0" styleClass="bookHead" text="読書終了日：" />
+                              <Label layoutX="35.0" layoutY="256.0" prefHeight="22.0" prefWidth="57.0" styleClass="bookHead" text="メモ：" />
+                              <TextField fx:id="addTitleField" layoutX="105.0" layoutY="21.0" prefHeight="30.0" prefWidth="450.0" styleClass="bookInput" />
+                              <TextField fx:id="addAuthorField" layoutX="105.0" layoutY="70.0" prefHeight="30.0" prefWidth="450.0" styleClass="bookInput" />
+                              <TextField fx:id="addCompanyField" layoutX="105.0" layoutY="119.0" prefHeight="30.0" prefWidth="450.0" styleClass="bookInput" />
+                              <ComboBox fx:id="addGenreCBox" layoutX="105.0" layoutY="168.0" prefWidth="180.0">
+                                 <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="文学・評論" />
+                                       <String fx:value="人文・思想" />
+                                       <String fx:value="社会・政治" />
+                                       <String fx:value="ノンフィクション" />
+                                       <String fx:value="歴史・地理" />
+                                       <String fx:value="ビジネス・経済" />
+                                       <String fx:value="投資・金融・会社経営" />
+                                       <String fx:value="科学・テクノロジー" />
+                                       <String fx:value="医学・薬学・看護学・歯科学" />
+                                       <String fx:value="コンピュータ・IT" />
+                                       <String fx:value="アート・建築・デザイン" />
+                                       <String fx:value="趣味・実用" />
+                                       <String fx:value="スポーツ・アウトドア" />
+                                       <String fx:value="資格・検定・就職" />
+                                       <String fx:value="暮らし・健康・子育て" />
+                                       <String fx:value="旅行ガイド・マップ" />
+                                       <String fx:value="コミック" />
+                                       <String fx:value="文庫" />
+                                       <String fx:value="雑誌" />
+                                       <String fx:value="その他" />
+                                    </FXCollections>
+                                 </items>
+                              </ComboBox>
+                              <DatePicker fx:id="addReadStartDate" layoutX="105.0" layoutY="211.0" />
+                              <DatePicker fx:id="addReadEndDate" layoutX="393.0" layoutY="211.0" />
+                              <TextArea fx:id="addMemoArea" layoutX="105.0" layoutY="257.0" prefHeight="60.0" prefWidth="450.0" styleClass="bookInput" />
+                              <Label layoutX="105.0" layoutY="334.0" prefHeight="18.0" prefWidth="153.0" styleClass="bookInput" text="※は必須の入力項目です。" />
+                           </children>
+                        </Pane>
+                        <Button layoutX="350.0" layoutY="451.0" mnemonicParsing="false" onAction="#handleButtonActionAdd" styleClass="botton" text="登録" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="検索">
+               <content>
+                  <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="40.0" layoutY="50.0" prefHeight="42.0" prefWidth="153.0" styleClass="title" text="書籍検索" />
+                        <Label fx:id="searchMsgOutput" layoutX="224.0" layoutY="90.0" prefHeight="30.0" prefWidth="406.0" styleClass="message" />
+                        <Pane layoutX="61.0" layoutY="107.0" prefHeight="157.0" prefWidth="550.0">
+                           <children>
+                              <Label layoutX="30.0" layoutY="25.0" prefHeight="22.0" prefWidth="83.0" styleClass="bookHead" text="タイトル：" />
+                              <Label layoutX="30.0" layoutY="75.0" prefHeight="22.0" prefWidth="83.0" styleClass="bookHead" text="著者：" />
+                              <Label layoutX="30.0" layoutY="123.0" prefHeight="22.0" prefWidth="83.0" styleClass="bookHead" text="ジャンル：" />
+                              <Label layoutX="12.0" layoutY="167.0" prefHeight="22.0" prefWidth="100.0" styleClass="bookHead" text="読書開始日：" />
+                              <Label layoutX="304.0" layoutY="167.0" prefHeight="22.0" prefWidth="100.0" styleClass="bookHead" text="読書終了日：" />
+                              <TextField fx:id="searchTitleField" layoutX="125.0" layoutY="24.0" prefHeight="30.0" prefWidth="450.0" styleClass="bookInput" />
+                              <TextField fx:id="searchAuthorField" layoutX="125.0" layoutY="74.0" prefHeight="30.0" prefWidth="450.0" styleClass="bookInput" />
+                              <ComboBox fx:id="searchGenreCBox" layoutX="125.0" layoutY="124.0" prefWidth="180.0">
+                                 <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="文学・評論" />
+                                       <String fx:value="人文・思想" />
+                                       <String fx:value="社会・政治" />
+                                       <String fx:value="ノンフィクション" />
+                                       <String fx:value="歴史・地理" />
+                                       <String fx:value="ビジネス・経済" />
+                                       <String fx:value="投資・金融・会社経営" />
+                                       <String fx:value="科学・テクノロジー" />
+                                       <String fx:value="医学・薬学・看護学・歯科学" />
+                                       <String fx:value="コンピュータ・IT" />
+                                       <String fx:value="アート・建築・デザイン" />
+                                       <String fx:value="趣味・実用" />
+                                       <String fx:value="スポーツ・アウトドア" />
+                                       <String fx:value="資格・検定・就職" />
+                                       <String fx:value="暮らし・健康・子育て" />
+                                       <String fx:value="旅行ガイド・マップ" />
+                                       <String fx:value="コミック" />
+                                       <String fx:value="文庫" />
+                                       <String fx:value="雑誌" />
+                                       <String fx:value="その他" />
+                                    </FXCollections>
+                                 </items>
+                              </ComboBox>
+                              <DatePicker fx:id="searchReadStartDate" layoutX="125.0" layoutY="168.0" />
+                              <DatePicker fx:id="searchReadEndDate" layoutX="413.0" layoutY="168.0" />
+                           </children>
+                        </Pane>
+                        <Button layoutX="340.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonActionSearchRes" styleClass="botton" text="検索" />
+                        <Button layoutX="405.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonActionSearchAll" styleClass="botton" text="全書籍一覧" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
    </children>
    <stylesheets>
      <URL value="@../fbooks/css/Main.css" />

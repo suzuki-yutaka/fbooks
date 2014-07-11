@@ -50,12 +50,9 @@ public class DelFix extends FxmlLoad implements Initializable {
       } catch (ClassNotFoundException e) {
         e.printStackTrace();
       }
-    } else {
-      //検索ページへ戻る
-      Controller.getInstance().searchController();
     }
 
     //ウィンドウを閉じる
-    Controller.getInstance().closeWindow();
+    Controller.getInstance().closeFixWindow();
   }
 }

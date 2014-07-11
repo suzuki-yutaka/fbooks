@@ -21,20 +21,21 @@ public class Controller extends Application {
   /**
    * ステージ
    */
-  private static Stage stage;
+  private static Stage mainStage;
+  private static Stage editStage;
   private static Stage fixStage;
 
   public void start(Stage primaryStage) throws Exception {
     /** インスタンス */
     instance = this;
 
-    stage = primaryStage;
-    stage.setWidth(800);
-    stage.setHeight(600);
+    mainStage = primaryStage;
+    mainStage.setWidth(800);
+    mainStage.setHeight(600);
 
     mainController();
 
-    stage.show();
+    mainStage.show();
   }
 
   /**
@@ -50,7 +51,7 @@ public class Controller extends Application {
    */
   public void mainController() {
 
-    stage.setTitle("ホーム");
+    mainStage.setTitle("ホーム");
 
     Home controller = new Home("Home.fxml");
     this.replaceSceneContent(controller);
@@ -61,7 +62,7 @@ public class Controller extends Application {
    */
   public void addController() {
 
-    stage.setTitle("書籍登録");
+    mainStage.setTitle("登録");
 
     Add controller = new Add("Add.fxml");
     this.replaceSceneContent(controller);
@@ -72,7 +73,7 @@ public class Controller extends Application {
    */
   public void searchController() {
 
-    stage.setTitle("書籍検索");
+    mainStage.setTitle("検索");
 
     Search controller = new Search("Search.fxml");
     this.replaceSceneContent(controller);
@@ -88,10 +89,24 @@ public class Controller extends Application {
   public void searchResultController(Book[] searchResult, Book searchText)
       throws ClassNotFoundException {
 
-    stage.setTitle("検索結果");
-
     SearchResult controller = new SearchResult(searchResult, searchText, "SearchResult.fxml");
-    this.replaceSceneContent(controller);
+    //モーダルウィンドウ作成
+    if (editStage == null) {
+      Scene scene = new Scene(controller);
+      Stage stage = new Stage();
+      stage.setTitle("検索結果");
+      stage.setScene(scene);
+      stage.setX(400);
+      stage.setY(100);
+      stage.setWidth(800);
+      stage.setHeight(600);
+      stage.initModality(Modality.WINDOW_MODAL);
+      stage.initOwner(mainStage);
+      stage.show();
+      editStage = stage;
+    } else {
+      editStage.getScene().setRoot(controller);
+    }
   }
 
   /**
@@ -105,20 +120,8 @@ public class Controller extends Application {
       throws ClassNotFoundException {
 
     Edit controller = new Edit(id, searchText, "Edit.fxml");
-    Scene editScene = new Scene(controller);
-
-    //モーダルウィンドウ作成
-    Stage editStage = new Stage();
-    editStage.setTitle("書籍編集");
-    editStage.setScene(editScene);
-    editStage.setX(400);
-    editStage.setY(100);
-    editStage.setWidth(800);
-    editStage.setHeight(600);
-    editStage.initModality(Modality.WINDOW_MODAL);
-    editStage.initOwner(stage);
-    editStage.show();
-    fixStage = editStage;
+    editStage.setTitle("編集");
+    editStage.getScene().setRoot(controller);
   }
 
   /**
@@ -130,18 +133,18 @@ public class Controller extends Application {
       throws ClassNotFoundException {
 
     AddFix controller = new AddFix("Fix.fxml");
-    Scene fScene = new Scene(controller);
+    Scene scene = new Scene(controller);
 
     //モーダルウィンドウ作成
-    Stage fStage = new Stage();
-    fStage.setTitle("登録完了");
-    fStage.setScene(fScene);
-    fStage.setWidth(400);
-    fStage.setHeight(200);
-    fStage.initModality(Modality.WINDOW_MODAL);
-    fStage.initOwner(stage);
-    fStage.show();
-    fixStage = fStage;
+    Stage stage = new Stage();
+    stage.setTitle("登録完了");
+    stage.setScene(scene);
+    stage.setWidth(400);
+    stage.setHeight(200);
+    stage.initModality(Modality.WINDOW_MODAL);
+    stage.initOwner(mainStage);
+    stage.show();
+    fixStage = stage;
   }
 
   /**
@@ -154,14 +157,18 @@ public class Controller extends Application {
       throws ClassNotFoundException {
 
     EditFix controller = new EditFix(searchText, "Fix.fxml");
+    Scene scene = new Scene(controller);
 
     //モーダルウィンドウ作成
-    fixStage.getScene().setRoot(controller);
-    fixStage.setWidth(400);
-    fixStage.setHeight(200);
-    fixStage.setX(485);
-    fixStage.setY(165);
-    fixStage.setTitle("編集完了");
+    Stage stage = new Stage();
+    stage.setTitle("編集完了");
+    stage.setScene(scene);
+    stage.setWidth(400);
+    stage.setHeight(200);
+    stage.initModality(Modality.WINDOW_MODAL);
+    stage.initOwner(editStage);
+    stage.show();
+    fixStage = stage;
   }
 
   /**
@@ -174,24 +181,32 @@ public class Controller extends Application {
       throws ClassNotFoundException {
 
     DelFix controller = new DelFix(searchText, "Fix.fxml");
-    Scene fScene = new Scene(controller);
+    Scene scene = new Scene(controller);
 
     //モーダルウィンドウ作成
-    Stage fStage = new Stage();
-    fStage.setTitle("削除完了");
-    fStage.setScene(fScene);
-    fStage.setWidth(400);
-    fStage.setHeight(200);
-    fStage.initModality(Modality.WINDOW_MODAL);
-    fStage.initOwner(stage);
-    fStage.show();
-    fixStage = fStage;
+    Stage stage = new Stage();
+    stage.setTitle("削除完了");
+    stage.setScene(scene);
+    stage.setWidth(400);
+    stage.setHeight(200);
+    stage.initModality(Modality.WINDOW_MODAL);
+    stage.initOwner(editStage);
+    stage.show();
+    fixStage = stage;
   }
 
   /**
    * モーダルウィンドウを閉じる
    */
   public void closeWindow() {
+    editStage.getScene().getWindow().hide();
+    editStage = null;
+  }
+
+  /**
+   * モーダルウィンドウを閉じる
+   */
+  public void closeFixWindow() {
     fixStage.getScene().getWindow().hide();
     fixStage = null;
   }
@@ -202,12 +217,12 @@ public class Controller extends Application {
    * @param controller
    */
   private void replaceSceneContent(Parent controller) {
-    Scene scene = stage.getScene();
+    Scene scene = mainStage.getScene();
     if (scene == null) {
       scene = new Scene(controller);
-      stage.setScene(scene);
+      mainStage.setScene(scene);
     } else {
-      stage.getScene().setRoot(controller);
+      mainStage.getScene().setRoot(controller);
     }
   }
 
