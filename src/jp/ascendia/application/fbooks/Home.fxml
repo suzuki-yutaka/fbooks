@@ -17,7 +17,7 @@
                   <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="40.0" layoutY="30.0" prefHeight="42.0" prefWidth="153.0" styleClass="title" text="書籍登録" />
-                        <Label fx:id="addMsgOutput" layoutX="224.0" layoutY="47.0" prefHeight="30.0" prefWidth="406.0" styleClass="message" />
+                        <Label fx:id="addMsgOutput" layoutX="254.0" layoutY="47.0" prefHeight="30.0" prefWidth="406.0" styleClass="message" />
                         <Pane layoutX="57.0" layoutY="67.0" prefHeight="361.0" prefWidth="620.0">
                            <children>
                               <Label layoutX="2.0" layoutY="24.0" prefHeight="22.0" prefWidth="90.0" styleClass="bookHead" text="※タイトル：" />
@@ -59,10 +59,15 @@
                               <DatePicker fx:id="addReadStartDate" layoutX="105.0" layoutY="211.0" />
                               <DatePicker fx:id="addReadEndDate" layoutX="393.0" layoutY="211.0" />
                               <TextArea fx:id="addMemoArea" layoutX="105.0" layoutY="257.0" prefHeight="60.0" prefWidth="450.0" styleClass="bookInput" />
-                              <Label layoutX="105.0" layoutY="334.0" prefHeight="18.0" prefWidth="153.0" styleClass="bookInput" text="※は必須の入力項目です。" />
+                              <Label layoutX="105.0" layoutY="334.0" prefHeight="19.0" prefWidth="193.0" styleClass="bookInput" text="※は必須の入力項目です。" />
                            </children>
                         </Pane>
                         <Button layoutX="350.0" layoutY="431.0" mnemonicParsing="false" onAction="#handleButtonActionAdd" styleClass="botton" text="登録" />
+                        <ImageView fitHeight="75.0" fitWidth="100.0" layoutX="185.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/dog.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </content>
@@ -72,7 +77,7 @@
                   <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="40.0" layoutY="30.0" prefHeight="42.0" prefWidth="153.0" styleClass="title" text="書籍検索" />
-                        <Label fx:id="searchMsgOutput" layoutX="224.0" layoutY="50.0" prefHeight="30.0" prefWidth="406.0" styleClass="message" />
+                        <Label fx:id="searchMsgOutput" layoutX="239.0" layoutY="45.0" prefHeight="30.0" prefWidth="406.0" styleClass="message" />
                         <Pane layoutX="34.0" layoutY="64.0" prefHeight="289.0" prefWidth="595.0">
                            <children>
                               <Label layoutX="30.0" layoutY="25.0" prefHeight="22.0" prefWidth="83.0" styleClass="bookHead" text="タイトル：" />
@@ -114,6 +119,11 @@
                         </Pane>
                         <Button layoutX="313.0" layoutY="317.0" mnemonicParsing="false" onAction="#handleButtonActionSearchRes" styleClass="botton" text="検索" />
                         <Button layoutX="378.0" layoutY="317.0" mnemonicParsing="false" onAction="#handleButtonActionSearchAll" styleClass="botton" text="全書籍一覧" />
+                        <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="182.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@image/fukurou.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </content>
